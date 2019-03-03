@@ -1,0 +1,57 @@
+﻿body {
+}
+
+.promo {
+    margin: 4px;
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 1px 1px 2px 1px #818181;
+}
+
+.e {
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    font-size: 15px;
+}
+
+.imge {
+    width: 400px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.txt {
+    width: 400px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.pe {
+    width: 370px;
+    height: 100px;
+    margin: 0 auto;
+    font-size: 11.5px;
+}
+
+.pi {
+    width: 370px;
+    margin: 0 auto;
+}
+
+
+#conte1 {
+    width: auto;
+    height: auto;
+}
+
+#conte2 {
+    width: auto;
+    height: 270px;
+}
+
+hr {
+    background: #0080FF;
+}

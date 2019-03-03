@@ -1,0 +1,43 @@
+﻿body {
+}
+
+#tabla {
+    overflow: hidden;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 1px 1px 2px 1px #818181;
+}
+
+#titulo {
+    margin: 20px;
+}
+
+.t {
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 1px 1px 2px 1px #818181;
+    height: 250px;
+}
+
+.btn1{
+    border-radius: 5px 0px 0px 5px;
+    margin: 0;
+}
+
+.ch {
+    color: #c3497f;
+    font-weight: bold;
+}
+
+h5 {
+    font-weight: bold;
+}
+
+.pag {
+    margin: 50px;
+}
+
+#eTabla {
+    background-color: #c3497f;
+    color: white;
+}
