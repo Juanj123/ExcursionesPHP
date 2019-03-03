@@ -4,7 +4,8 @@ la BD -->
 class Conexion
 {
     private static $db = 'viajesLore' ;
-private static $servidor = 'localhost' ;
+    private static $servidor = 'localhost' ;
+    private static $puerto = '3307';
     private static $usuario = 'root';
     private static $password = '';
     private static $conexion  = null;
