@@ -1,29 +1,31 @@
 ﻿var visible = 0;
 var asientosActivo1 = 0; var asientosActivo2 = 0; var asientosActivo3 = 0; var asientosActivo4 = 0; var asientosActivo5 = 0; var
-    asientosActivo6 = 0; var asientosActivo7 = 0; var asientosActivo8 = 0; var asientosActivo9 = 0; var asientosActivo10 = 0; var
-        asientosActivo11 = 0; var asientosActivo12 = 0; var asientosActivo13 = 0; var asientosActivo14 = 0; var asientosActivo15 = 0; var
-            asientosActivo16 = 0; var asientosActivo17 = 0; var asientosActivo18 = 0; var asientosActivo19 = 0; var asientosActivo20 = 0; var
-                asientosActivo21 = 0; var asientosActivo22 = 0; var asientosActivo23 = 0; var asientosActivo24 = 0; var asientosActivo25 = 0; var
-                    asientosActivo26 = 0; var asientosActivo27 = 0; var asientosActivo28 = 0; var asientosActivo29 = 0; var asientosActivo30 = 0; var
-                        asientosActivo31 = 0; var asientosActivo32 = 0; var asientosActivo33 = 0; var asientosActivo34 = 0; var asientosActivo35 = 0; var
-                            asientosActivo36 = 0; var asientosActivo37 = 0; var asientosActivo38 = 0; var asientosActivo39 = 0; var asientosActivo40 = 0; var
-                                asientosActivo41 = 0; var asientosActivo42 = 0; var asientosActivo43 = 0; var asientosActivo44 = 0; var asientosActivo45 = 0; var
-                                    asientosActivo46 = 0; var asientosActivo47 = 0; var asientosActivo48 = 0;
+asientosActivo6 = 0; var asientosActivo7 = 0; var asientosActivo8 = 0; var asientosActivo9 = 0; var asientosActivo10 = 0; var
+asientosActivo11 = 0; var asientosActivo12 = 0; var asientosActivo13 = 0; var asientosActivo14 = 0; var asientosActivo15 = 0; var
+asientosActivo16 = 0; var asientosActivo17 = 0; var asientosActivo18 = 0; var asientosActivo19 = 0; var asientosActivo20 = 0; var
+asientosActivo21 = 0; var asientosActivo22 = 0; var asientosActivo23 = 0; var asientosActivo24 = 0; var asientosActivo25 = 0; var
+asientosActivo26 = 0; var asientosActivo27 = 0; var asientosActivo28 = 0; var asientosActivo29 = 0; var asientosActivo30 = 0; var
+asientosActivo31 = 0; var asientosActivo32 = 0; var asientosActivo33 = 0; var asientosActivo34 = 0; var asientosActivo35 = 0; var
+asientosActivo36 = 0; var asientosActivo37 = 0; var asientosActivo38 = 0; var asientosActivo39 = 0; var asientosActivo40 = 0; var
+asientosActivo41 = 0; var asientosActivo42 = 0; var asientosActivo43 = 0; var asientosActivo44 = 0; var asientosActivo45 = 0; var
+asientosActivo46 = 0; var asientosActivo47 = 0; var asientosActivo48 = 0;
 var asientosSeleccionados = [];
 Array.prototype.unique = function (a) {
     return function () {
         return this.filter(a);
     };
 }
-    (function (a, b, c) {
-        return c.indexOf(a, b + 1) < 0;
-    });
+(function (a, b, c) {
+    return c.indexOf(a, b + 1) < 0;
+});
 
 $(document).ready(function () {
-    $("#Validacion").modal("show");
     $("#txtTotal").val(Sumar());
     $("#lblTotalNinos").html("$" + pagoNino().toString());
     $("#lblTotalAdultos").html("$" + pagoAdulto().toString());
+    $("#Validacion").modal("show");
+    
+    
 
     $("#btnCerrar").click(function () {
         //$("#exampleModal").modal("hide");
@@ -78,16 +80,14 @@ $(document).ready(function () {
 });
 
 function Sumar() {
-    var n1 = document.getElementById('cmbAdultos').value;
-    var n2 = document.getElementById('cmbNinos').value;
+    var n1 = $(cmbAdultos).val();
+    var n2 = $(cmbNinos).val();
     var suma = parseInt(n1) + parseInt(n2);
     return suma;
 }
 
 function pagoTotal() {
-    var n1 = document.getElementById('cmbAdultos').value;
-    var n2 = document.getElementById('cmbNinos').value;
-    var suma = parseInt(n1) + parseInt(n2);
+    var suma = parseFloat(pagoAdulto())+parseFloat(pagoNino())
     return suma;
 }
 
@@ -170,4 +170,26 @@ $("#btnConfirmar").click(function () {
         var asiento = '<button type="button" class="btn btn-primary"><h4>Asiento <span class="badge badge-light">' + asientosSeleccionados.unique()[j] + '</span></h4></button>';
         $("#Padre").append(asiento);
     }
+});
+
+function pagoAdulto() {
+    var n1 = $("#cmbAdultos").val();
+    var precio = $("#lblPrecioAdulto").html();
+    var suma = parseFloat(n1)*parseFloat(precio);
+    return suma;
+}
+
+function pagoNino() {
+    var precio = $("#lblPrecioNino").html()
+    var n2 = $("#cmbNinos").val();
+    var suma = precio * parseInt(n2);
+    return suma;
+}
+$("#cmbAdultos").change(function () {
+    $("#txtTotal").val(Sumar());
+    $("#lblTotalAdultos").html("$" + pagoAdulto().toString());
+});
+$("#cmbNinos").change(function () {
+    $("#txtTotal").val(Sumar());
+    $("#lblTotalNinos").html("$" + pagoNino().toString());
 });

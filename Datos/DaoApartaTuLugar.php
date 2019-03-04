@@ -4,8 +4,7 @@ require_once '../Pojos/PojoApartaTuLugar.php'; /*importa el modelo */
 
 class DaoApartaTuLugar
 {
-	private $conexion; /*Crea una variable conexion*/
-
+    private $conexion; /*Crea una variable conexion*/
 	private function conectar()
 	{
 		try{
@@ -208,7 +207,7 @@ class DaoApartaTuLugar
 
     		$sentenciaSQL = $this->conexion->prepare("SELECT img, destino, costo_adulto, costo_niño as costoNino FROM viajes where idViaje = ?"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
 
-    		$sentenciaSQL->execute();/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
+    		$sentenciaSQL->execute([$id]);/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
 
     		/*Se recorre el cursor para obtener los datos*/
     		foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)
@@ -382,3 +381,4 @@ class DaoApartaTuLugar
     	}
     }
 }
+?>

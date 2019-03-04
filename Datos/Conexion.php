@@ -3,9 +3,9 @@ la BD -->
 <?php
 class Conexion
 {
-    private static $db = 'viajesLore' ;
+    private static $db = 'viajeslore' ;
     private static $servidor = 'localhost' ;
-    private static $puerto = '3307';
+    private static $puerto = '3306';
     private static $usuario = 'root';
     private static $password = '';
     private static $conexion  = null;
@@ -23,7 +23,7 @@ class Conexion
         {     
             try
             {
-                self::$conexion =  new PDO( "mysql:host=".self::$servidor.";"."dbname=".self::$db, self::$usuario, self::$password); 
+                self::$conexion =  new PDO( "mysql:host=".self::$servidor.";"."dbname=".self::$db, self::$usuario, self::$password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")); 
                 self::$conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 return self::$conexion;
             }
