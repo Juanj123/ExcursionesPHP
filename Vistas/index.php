@@ -1,6 +1,6 @@
 <?php
 $dbuser="root";
-$dbpass="";
+$dbpass="root";
 $dbname="viajesLore";
 $chandle = new mysqli("localhost", $dbuser, $dbpass) or die("Error conectando a la BBDD");
 echo "Conectado correctamente";
