@@ -168,10 +168,9 @@
     <script src="JS/jquery-3.3.1.min.js"></script>
     <script src="JS/popper.min.js"></script>
     <script src="JS/bootstrap.min.js"></script>
-    <script src="JS/jquery-3.2.1.min.js"></script>
+    <script src="JS/bootbox.min.js"></script>
     <script src="JS/internos/apartaTuLugar.js"></script>
     <script src="JS/internos/Autobus.js"></script>
     <script src="JS/internos/envio.js"></script>
-    <script src="JS/bootbox.min.js"></script>
 </body>
 </html>
