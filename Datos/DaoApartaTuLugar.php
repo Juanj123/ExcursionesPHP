@@ -1,6 +1,11 @@
 <?php
 require_once 'Conexion.php'; /*importa Conexion.php*/
 require_once '../Pojos/PojoApartaTuLugar.php'; /*importa el modelo */
+require_once '../Pojos/PojoUsuarios.php';
+require_once '../Pojos/PojoViaje.php';
+require_once '../Pojos/PojoAutobus.php';
+
+
 
 class DaoApartaTuLugar
 {
@@ -293,7 +298,7 @@ class DaoApartaTuLugar
     }
     public function getTipoAutobus($id)
     {
-    	$idAutobus;
+    	$idAutobus = 0;
     	try
     	{
     		$this->conectar();
@@ -302,7 +307,7 @@ class DaoApartaTuLugar
 
     		$sentenciaSQL = $this->conexion->prepare("SELECT idAutobus FROM autoviaje where idViaje = ?"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
 
-    		$sentenciaSQL->execute();/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
+    		$sentenciaSQL->execute([$id]);/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
 
     		/*Se recorre el cursor para obtener los datos*/
     		foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)

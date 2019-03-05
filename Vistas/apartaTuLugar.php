@@ -156,10 +156,13 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        var a = '<asp:Literal ID="idAuto" runat="server"></asp:Literal>';
-        var b = '<asp:Literal ID="idViaje" runat="server"></asp:Literal>';
-    </script>
+    <?php
+    $idAutobus = $objDaoAparta->getTipoAutobus($idViajes);
+    echo "<script>
+    var a = ".$idAutobus.";
+    </script>";
+    ?>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="JS/jquery-3.3.1.min.js"></script>
@@ -168,6 +171,7 @@
     <script src="JS/jquery-3.2.1.min.js"></script>
     <script src="JS/internos/apartaTuLugar.js"></script>
     <script src="JS/internos/Autobus.js"></script>
+    <script src="JS/internos/envio.js"></script>
     <script src="JS/bootbox.min.js"></script>
 </body>
 </html>
