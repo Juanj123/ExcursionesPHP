@@ -35,7 +35,7 @@ class DaoApartaTuLugar
 					$obj->idUsuario,
 					$obj->idAutobus,
 					$obj->idViaje,
-					$obj->n_asientos
+					$obj->n_Asiento
 				)
 			);
 			$clave=$this->conexion->lastInsertId();
@@ -63,9 +63,9 @@ class DaoApartaTuLugar
     		$this->conexion->prepare($sql)
     		->execute(
     			array(
-    				$obj->idAutobus,
-    				$obj->idViaje,
-    				$obj->totalPagar
+    				$obj-> idAutobus,
+    				$obj-> idViaje,
+    				$obj-> totalPagar
     			)
     		);
     		$clave=$this->conexion->lastInsertId();
@@ -92,8 +92,8 @@ class DaoApartaTuLugar
     		$this->conexion->prepare($sql)
     		->execute(
     			array(
-    				$obj->idUsuario,
-    				$obj->idReservacion
+    				$obj-> idUsuario,
+    				$obj-> idReservacion
     			)
     		);
     		$clave=$this->conexion->lastInsertId();
@@ -364,7 +364,7 @@ class DaoApartaTuLugar
 
     		$sentenciaSQL = $this->conexion->prepare("SELECT idUsuario FROM usuarios where Usuario = ?"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
 
-    		$sentenciaSQL->execute();/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
+    		$sentenciaSQL->execute([$usuario]);/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
 
     		/*Se recorre el cursor para obtener los datos*/
     		foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)

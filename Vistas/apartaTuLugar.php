@@ -171,180 +171,32 @@
         if (isset($_POST)) {    
             $pojo-> totalPagar= $_COOKIE["Total"];
             $pojo-> idAutobus= $idAutobus;
-            $pojo-> idUsuario= $_SESSION['Nombre']="bmxpc7";
+            $_SESSION['Nombre']="bmxpc7";
+            $pojo-> idUsuario= $objDaoAparta->getIdUsuario($_SESSION['Nombre']);
             $pojo-> idViaje=   $idViaje;
             $arregloAsientos = array();
             $arregloFinal = array();
             $valores = $_COOKIE["Asientos"];
             $arr1 = str_split($valores);
+            var_dump($arr1);
             $contador = 0;
-            foreach ($arr1 as $key) {
-                if (strpos($valores, ',') !== false) {
-                    if (strpos($valores, '48') !== false) {
-                        array_push($arregloAsientos, 48);
-                    }
-                    if (strpos($valores, '47') !== false) {
-                        array_push($arregloAsientos, 47);
-                    }
-                    if (strpos($valores, '46') !== false) {
-                        array_push($arregloAsientos, 46);
-                    }
-                    if (strpos($valores, '45') !== false){
-                        array_push($arregloAsientos, 45);
-                    }
-                    if (strpos($valores, '44') !== false) {
-                        array_push($arregloAsientos, 44);
-                    }
-                    if (strpos($valores, '43') !== false){
-                        array_push($arregloAsientos, 43);
-                    }
-                    if (strpos($valores, '42') !== false) {
-                        array_push($arregloAsientos, 42);
-                    }
-                    if (strpos($valores, '41') !== false){
-                        array_push($arregloAsientos, 41);
-                    }
-                    if (strpos($valores, '40') !== false) {
-                        array_push($arregloAsientos, 40);
-                    }
-                    if (strpos($valores, '39') !== false){
-                        array_push($arregloAsientos, 39);
-                    }
-                    if (strpos($valores, '38') !== false) {
-                        array_push($arregloAsientos, 38);
-                    }
-                    if (strpos($valores, '37') !== false) {
-                        array_push($arregloAsientos, 37);
-                    }
-                    if (strpos($valores, '36') !== false) {
-                        array_push($arregloAsientos, 36);
-                    }
-                    if (strpos($valores, '35') !== false){
-                        array_push($arregloAsientos, 35);
-                    }
-                    if (strpos($valores, '34') !== false) {
-                        array_push($arregloAsientos, 34);
-                    }
-                    if (strpos($valores, '33') !== false){
-                        array_push($arregloAsientos, 33);
-                    }
-                    if (strpos($valores, '32') !== false) {
-                        array_push($arregloAsientos, 32);
-                    }
-                    if (strpos($valores, '31') !== false){
-                        array_push($arregloAsientos, 31);
-                    }
-                    if (strpos($valores, '30') !== false) {
-                        array_push($arregloAsientos, 30);
-                    }
-                    if (strpos($valores, '29') !== false){
-                        array_push($arregloAsientos, 29);
-                    }
-                    if (strpos($valores, '28') !== false) {
-                        array_push($arregloAsientos, 28);
-                    }
-                    if (strpos($valores, '27') !== false) {
-                        array_push($arregloAsientos, 27);
-                    }
-                    if (strpos($valores, '26') !== false) {
-                        array_push($arregloAsientos, 26);
-                    }
-                    if (strpos($valores, '25') !== false){
-                        array_push($arregloAsientos, 25);
-                    }
-                    if (strpos($valores, '24') !== false) {
-                        array_push($arregloAsientos, 24);
-                    }
-                    if (strpos($valores, '23') !== false){
-                        array_push($arregloAsientos, 23);
-                    }
-                    if (strpos($valores, '22') !== false) {
-                        array_push($arregloAsientos, 22);
-                    }
-                    if (strpos($valores, '21') !== false){
-                        array_push($arregloAsientos, 21);
-                    }
-                    if (strpos($valores, '20') !== false) {
-                        array_push($arregloAsientos, 20);
-                    }
-                    if (strpos($valores, '19') !== false){
-                        array_push($arregloAsientos, 19);
-                    }
-                    if (strpos($valores, '18') !== false) {
-                        array_push($arregloAsientos, 18);
-                    }
-                    if (strpos($valores, '17') !== false) {
-                        array_push($arregloAsientos, 17);
-                    }
-                    if (strpos($valores, '16') !== false) {
-                        array_push($arregloAsientos, 16);
-                    }
-                    if (strpos($valores, '15') !== false){
-                        array_push($arregloAsientos, 15);
-                    }
-                    if (strpos($valores, '14') !== false) {
-                        array_push($arregloAsientos, 14);
-                    }
-                    if (strpos($valores, '13') !== false){
-                        array_push($arregloAsientos, 13);
-                    }
-                    if (strpos($valores, '12') !== false) {
-                        array_push($arregloAsientos, 12);
-                    }
-                    if (strpos($valores, '11') !== false){
-                        array_push($arregloAsientos, 11);
-                    }
-                    if (strpos($valores, '10') !== false) {
-                        array_push($arregloAsientos, 10);
-                    }
-                    if (strpos($valores, '9') !== false) {
-                        array_push($arregloAsientos, 9);
-                    }
-                    if (strpos($valores, '8') !== false) {
-                        array_push($arregloAsientos, 8);
-                    }
-                    if (strpos($valores, '7') !== false) {
-                        array_push($arregloAsientos, 7);
-                    }
-                    if (strpos($valores, '6') !== false){
-                        array_push($arregloAsientos, 6);
-                    }
-                    if (strpos($valores, '5') !== false) {
-                        array_push($arregloAsientos, 5);
-                    }
-                    if (strpos($valores, '4') !== false){
-                        array_push($arregloAsientos, 4);
-                    }
-                    if (strpos($valores, '3') !== false) {
-                        array_push($arregloAsientos, 3);
-                    }
-                    if (strpos($valores, '2') !== false){
-                        array_push($arregloAsientos, 2);
-                    }
-                    if (strpos($valores, '1') !== false) {
-                        array_push($arregloAsientos, 1);
-                    }
-                }
-            }
-            var_dump(count($arregloAsientos));
-            if (count($arregloAsientos) > 1) {
-                $arregloFinal =array_unique($arregloAsientos);
-            }else{
-                $arregloFinal = $arregloAsientos;
-            }
-            
+            $arregloAsientos = preg_split("[,]", $valores);
+            $remp = array("Asiento","[","]","{","}",":",'"');
+            $arregloFinal = str_replace($remp, "", $arregloAsientos);
+            var_dump($arregloAsientos);
             var_dump($arregloFinal);
+            
             foreach ($arregloFinal as $asiento)
             {
                 $pojo-> n_Asiento = $asiento;
-              var_dump($pojo-> n_Asiento);
                 $objDaoAparta->registrarAsientos($pojo);
             }
             $objDaoAparta->registrarReservacion($pojo);
             $pojo-> idReservacion=$objDaoAparta->getIdReservacion();
             $objDaoAparta->registrarReservacionUsuario($pojo);
-            var_dump($arregloFinal);
-            echo "<script>location.href='apartaTuLugar.php'</script>";
+             
+            
+            #echo "<script>location.href='apartaTuLugar.php'</script>";
         }
     } 
     ?>
