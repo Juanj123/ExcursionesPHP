@@ -1,10 +1,4 @@
-<?php
-$dbuser="root";
-$dbpass="root";
-$dbname="viajesLore";
-$chandle = new mysqli("localhost", $dbuser, $dbpass) or die("Error conectando a la BBDD");
-echo "Conectado correctamente";
-mysqli_select_db($chandle, $dbname) or die ($dbname . " Base de datos no encontrada." . $dbuser);
-echo " Base de datos " . $dbname . " seleccionada";
-mysqli_close($chandle);
+<?php 
+$resultado = $_POST["valorCaja1"] + $_POST["valorCaja2"]; 
+echo $resultado; //haciendo este echo estas respondiendo la solicitud ajax
 ?>

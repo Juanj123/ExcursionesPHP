@@ -183,7 +183,6 @@
             $arregloAsientos = preg_split("[,]", $valores);
             $remp = array("Asiento","[","]","{","}",":",'"');
             $arregloFinal = str_replace($remp, "", $arregloAsientos);
-            var_dump($arregloAsientos);
             var_dump($arregloFinal);
             
             foreach ($arregloFinal as $asiento)
@@ -194,9 +193,7 @@
             $objDaoAparta->registrarReservacion($pojo);
             $pojo-> idReservacion=$objDaoAparta->getIdReservacion();
             $objDaoAparta->registrarReservacionUsuario($pojo);
-             
-            
-            #echo "<script>location.href='apartaTuLugar.php'</script>";
+            echo "<script>location.href='apartaTuLugar.php'</script>";
         }
     } 
     ?>
