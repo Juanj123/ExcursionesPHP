@@ -19,8 +19,8 @@
 <body>
     <?php
     $objDaoAparta = new DaoApartaTuLugar();
-    $idViajes = 1;
-    $lista = $objDaoAparta->getDatosViaje($idViajes);
+    $idViaje = 1;
+    $lista = $objDaoAparta->getDatosViaje($idViaje);
     ?>
     <div id="tarjetaLugarViaje" style="position: absolute; margin-left: 50%">
         <h2 id="lblDestino" style="position: center"><?php echo $lista[0]->{"Destino"}; ?></h2>
@@ -159,7 +159,7 @@
         </div>
     </div>
     <?php
-    $idAutobus = $objDaoAparta->getTipoAutobus($idViajes);
+    $idAutobus = $objDaoAparta->getTipoAutobus($idViaje);
     echo "<script>
     var a = ".$idAutobus.";
     </script>";
@@ -169,10 +169,10 @@
     $pojo = new PojoApartaTuLugar();
     if (isset($_GET['add'])) {
         if (isset($_POST)) {    
-            #$pojo-> totalPagar=$_POST["txtTotPag"];
-            #$pojo-> idAutobus= $idAutobus;
-            #$pojo-> idUsuario= $idUsuario;
-            #$pojo-> idViaje=   $idViaje;
+            $pojo-> totalPagar= $_COOKIE["Total"];
+            $pojo-> idAutobus= $idAutobus;
+            $pojo-> idUsuario= $_SESSION['Nombre']="bmxpc7";
+            $pojo-> idViaje=   $idViaje;
             $arregloAsientos = array();
             $arregloFinal = array();
             $valores = $_COOKIE["Asientos"];
@@ -326,11 +326,25 @@
                     }
                 }
             }
-            $arregloFinal =array_unique($arregloAsientos);
+            var_dump(count($arregloAsientos));
+            if (count($arregloAsientos) > 1) {
+                $arregloFinal =array_unique($arregloAsientos);
+            }else{
+                $arregloFinal = $arregloAsientos;
+            }
+            
             var_dump($arregloFinal);
-            #$objDaoAparta->registrarReservacion($pojo);
-            #$pojo-> idReservacion=$objDaoAparta->getIdReservacion();
-            #echo "<script>location.href='ApartTuLugar.php'</script>";
+            foreach ($arregloFinal as $asiento)
+            {
+                $pojo-> n_Asiento = $asiento;
+              var_dump($pojo-> n_Asiento);
+                $objDaoAparta->registrarAsientos($pojo);
+            }
+            $objDaoAparta->registrarReservacion($pojo);
+            $pojo-> idReservacion=$objDaoAparta->getIdReservacion();
+            $objDaoAparta->registrarReservacionUsuario($pojo);
+            var_dump($arregloFinal);
+            echo "<script>location.href='apartaTuLugar.php'</script>";
         }
     } 
     ?>

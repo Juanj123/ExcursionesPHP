@@ -65,7 +65,7 @@ class DaoApartaTuLugar
     			array(
     				$obj->idAutobus,
     				$obj->idViaje,
-    				$obj->totalAPagar
+    				$obj->totalPagar
     			)
     		);
     		$clave=$this->conexion->lastInsertId();
