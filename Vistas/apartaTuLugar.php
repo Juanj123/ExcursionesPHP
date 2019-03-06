@@ -17,7 +17,7 @@
     ?>
 </head>
 <body>
-    <?php 
+    <?php
     $objDaoAparta = new DaoApartaTuLugar();
     $idViajes = 1;
     $lista = $objDaoAparta->getDatosViaje($idViajes);
@@ -117,22 +117,24 @@
     </div>
     <div id="pegaAquiAutobus"></div>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false" data-backdrop="static">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Confirmar Lugares</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger" id="btnCerrar">Cancelar</button>
-                    <button type="submit" Class="btn btn-outline-dark" ID="BtnEnviar">Confirmar Lugares </button>
+        <form action="?add" method="POST">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirmar Lugares</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" id="btnCerrar">Cancelar</button>
+                        <button type="submit" Class="btn btn-outline-dark" id="BtnEnviar">Confirmar Lugares </button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
     <div class="modal Reposo" tabindex="-1" role="dialog" id="ModalReposo">
         <div class="modal-dialog" role="document">
@@ -161,6 +163,176 @@
     echo "<script>
     var a = ".$idAutobus.";
     </script>";
+    ?>
+
+    <?php 
+    $pojo = new PojoApartaTuLugar();
+    if (isset($_GET['add'])) {
+        if (isset($_POST)) {    
+            #$pojo-> totalPagar=$_POST["txtTotPag"];
+            #$pojo-> idAutobus= $idAutobus;
+            #$pojo-> idUsuario= $idUsuario;
+            #$pojo-> idViaje=   $idViaje;
+            $arregloAsientos = array();
+            $arregloFinal = array();
+            $valores = $_COOKIE["Asientos"];
+            $arr1 = str_split($valores);
+            $contador = 0;
+            foreach ($arr1 as $key) {
+                if (strpos($valores, ',') !== false) {
+                    if (strpos($valores, '48') !== false) {
+                        array_push($arregloAsientos, 48);
+                    }
+                    if (strpos($valores, '47') !== false) {
+                        array_push($arregloAsientos, 47);
+                    }
+                    if (strpos($valores, '46') !== false) {
+                        array_push($arregloAsientos, 46);
+                    }
+                    if (strpos($valores, '45') !== false){
+                        array_push($arregloAsientos, 45);
+                    }
+                    if (strpos($valores, '44') !== false) {
+                        array_push($arregloAsientos, 44);
+                    }
+                    if (strpos($valores, '43') !== false){
+                        array_push($arregloAsientos, 43);
+                    }
+                    if (strpos($valores, '42') !== false) {
+                        array_push($arregloAsientos, 42);
+                    }
+                    if (strpos($valores, '41') !== false){
+                        array_push($arregloAsientos, 41);
+                    }
+                    if (strpos($valores, '40') !== false) {
+                        array_push($arregloAsientos, 40);
+                    }
+                    if (strpos($valores, '39') !== false){
+                        array_push($arregloAsientos, 39);
+                    }
+                    if (strpos($valores, '38') !== false) {
+                        array_push($arregloAsientos, 38);
+                    }
+                    if (strpos($valores, '37') !== false) {
+                        array_push($arregloAsientos, 37);
+                    }
+                    if (strpos($valores, '36') !== false) {
+                        array_push($arregloAsientos, 36);
+                    }
+                    if (strpos($valores, '35') !== false){
+                        array_push($arregloAsientos, 35);
+                    }
+                    if (strpos($valores, '34') !== false) {
+                        array_push($arregloAsientos, 34);
+                    }
+                    if (strpos($valores, '33') !== false){
+                        array_push($arregloAsientos, 33);
+                    }
+                    if (strpos($valores, '32') !== false) {
+                        array_push($arregloAsientos, 32);
+                    }
+                    if (strpos($valores, '31') !== false){
+                        array_push($arregloAsientos, 31);
+                    }
+                    if (strpos($valores, '30') !== false) {
+                        array_push($arregloAsientos, 30);
+                    }
+                    if (strpos($valores, '29') !== false){
+                        array_push($arregloAsientos, 29);
+                    }
+                    if (strpos($valores, '28') !== false) {
+                        array_push($arregloAsientos, 28);
+                    }
+                    if (strpos($valores, '27') !== false) {
+                        array_push($arregloAsientos, 27);
+                    }
+                    if (strpos($valores, '26') !== false) {
+                        array_push($arregloAsientos, 26);
+                    }
+                    if (strpos($valores, '25') !== false){
+                        array_push($arregloAsientos, 25);
+                    }
+                    if (strpos($valores, '24') !== false) {
+                        array_push($arregloAsientos, 24);
+                    }
+                    if (strpos($valores, '23') !== false){
+                        array_push($arregloAsientos, 23);
+                    }
+                    if (strpos($valores, '22') !== false) {
+                        array_push($arregloAsientos, 22);
+                    }
+                    if (strpos($valores, '21') !== false){
+                        array_push($arregloAsientos, 21);
+                    }
+                    if (strpos($valores, '20') !== false) {
+                        array_push($arregloAsientos, 20);
+                    }
+                    if (strpos($valores, '19') !== false){
+                        array_push($arregloAsientos, 19);
+                    }
+                    if (strpos($valores, '18') !== false) {
+                        array_push($arregloAsientos, 18);
+                    }
+                    if (strpos($valores, '17') !== false) {
+                        array_push($arregloAsientos, 17);
+                    }
+                    if (strpos($valores, '16') !== false) {
+                        array_push($arregloAsientos, 16);
+                    }
+                    if (strpos($valores, '15') !== false){
+                        array_push($arregloAsientos, 15);
+                    }
+                    if (strpos($valores, '14') !== false) {
+                        array_push($arregloAsientos, 14);
+                    }
+                    if (strpos($valores, '13') !== false){
+                        array_push($arregloAsientos, 13);
+                    }
+                    if (strpos($valores, '12') !== false) {
+                        array_push($arregloAsientos, 12);
+                    }
+                    if (strpos($valores, '11') !== false){
+                        array_push($arregloAsientos, 11);
+                    }
+                    if (strpos($valores, '10') !== false) {
+                        array_push($arregloAsientos, 10);
+                    }
+                    if (strpos($valores, '9') !== false) {
+                        array_push($arregloAsientos, 9);
+                    }
+                    if (strpos($valores, '8') !== false) {
+                        array_push($arregloAsientos, 8);
+                    }
+                    if (strpos($valores, '7') !== false) {
+                        array_push($arregloAsientos, 7);
+                    }
+                    if (strpos($valores, '6') !== false){
+                        array_push($arregloAsientos, 6);
+                    }
+                    if (strpos($valores, '5') !== false) {
+                        array_push($arregloAsientos, 5);
+                    }
+                    if (strpos($valores, '4') !== false){
+                        array_push($arregloAsientos, 4);
+                    }
+                    if (strpos($valores, '3') !== false) {
+                        array_push($arregloAsientos, 3);
+                    }
+                    if (strpos($valores, '2') !== false){
+                        array_push($arregloAsientos, 2);
+                    }
+                    if (strpos($valores, '1') !== false) {
+                        array_push($arregloAsientos, 1);
+                    }
+                }
+            }
+            $arregloFinal =array_unique($arregloAsientos);
+            var_dump($arregloFinal);
+            #$objDaoAparta->registrarReservacion($pojo);
+            #$pojo-> idReservacion=$objDaoAparta->getIdReservacion();
+            #echo "<script>location.href='ApartTuLugar.php'</script>";
+        }
+    } 
     ?>
 
     <!-- Optional JavaScript -->

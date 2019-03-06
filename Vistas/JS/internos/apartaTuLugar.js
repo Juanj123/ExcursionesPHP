@@ -67,7 +67,7 @@ $(document).ready(function () {
             '<div class="alert alert-dark" role="alert">' +
             '<h3 style="color:black; text-align:center;">Total a pagar</h3>' +
             '</div>' +
-            '<h3 style="color:black; text-align:center; font-weight: bold;">$' + (parseFloat(pagoAdulto()) + parseFloat(pagoNino())) + '</h3>' +
+            '<h3 id="txtTotPag" style="color:black; text-align:center; font-weight: bold;">$' + (parseFloat(pagoAdulto()) + parseFloat(pagoNino())) + '</h3>' +
             '<div class="alert alert-dark" role="alert">' +
             '<h3 style="color:black; text-align:center;">Asientos Seleccionados</h3>' +
             '</div>' +
@@ -155,7 +155,7 @@ $("#btnConfirmar").click(function () {
         '<div class="alert alert-dark" role="alert">' +
         '<h3 style="color:black; text-align:center;">Total a pagar</h3>' +
         '</div>' +
-        '<h3 style="color:black; text-align:center; font-weight: bold;">$' + (parseFloat(pagoAdulto()) + parseFloat(pagoNino())) + '</h3>' +
+        '<h3 id="txtTotPag" style="color:black; text-align:center; font-weight: bold;">$' + (parseFloat(pagoAdulto()) + parseFloat(pagoNino())) + '</h3>' +
         '<div class="alert alert-dark" role="alert">' +
         '<h3 style="color:black; text-align:center;">Asientos Seleccionados</h3>' +
         '</div>' +

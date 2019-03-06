@@ -15,3 +15,7 @@ function realizaProceso(valorCaja1, valorCaja2){
                 }
         });
 }
+
+$("#BtnEnviar").click(function () {
+        
+});

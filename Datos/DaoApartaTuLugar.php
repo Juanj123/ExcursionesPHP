@@ -325,9 +325,9 @@ class DaoApartaTuLugar
     		Conexion::cerrarConexion();
     	}
     }
-    public function getIdReservacion(PojoApartaTuLugar $obj)
+    public function getIdReservacion()
     {
-    	$idReservacion;
+    	$idReservacion = 0;
     	try
     	{
     		$this->conectar();
@@ -341,8 +341,7 @@ class DaoApartaTuLugar
     		/*Se recorre el cursor para obtener los datos*/
     		foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)
     		{
-    			$obj = new PojoAutobus();
-    			$idReservacion = $obj->IdReservacion = $fila->idReservacion;
+    			$idReservacion = $fila->idReservacion;
     		}
 
     		return $idReservacion;
