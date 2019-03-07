@@ -30,7 +30,7 @@
    	console.log(obj);
     $.ajax({
         type:"POST",
-        url:"ModificarVideo.php",
+        url:"Vistas/ModificarVideo.php",
 	    data: obj,
         error: function (xhr, ajaxOptions, thrownError) {
 		    console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);

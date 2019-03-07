@@ -1,5 +1,4 @@
-﻿
-var data;
+﻿var data;
 var tabla;
 function addRowDT(data) {
     tabla = $("#tableViajes").dataTable({
@@ -28,7 +27,7 @@ function sendDataAjax() {
 
     $.ajax({
         type: "POST",
-        url: "ViajesAdmin.aspx/ListViajes",
+        url: "ViajesAdmin.php",
         data: {},
         contentType: "application/json; charset=utf-8",
         error: function (xhr, ajaxOptions, thrownError) {
@@ -49,7 +48,7 @@ function deleteDataAjax(data) {
 
     $.ajax({
         type: "POST",
-        url: "ViajesAdmin.aspx/EliminarDatos",
+        url: "ViajesAdmin.php",
         data: obj,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',

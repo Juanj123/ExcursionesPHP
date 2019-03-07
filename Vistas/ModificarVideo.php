@@ -4,7 +4,7 @@ require_once "../Pojos/PojoVideo.php";
 $pojo = new PojoVideo();
 $dao = new DaoVideo();
 
-
+var_dump($_POST["nombre"]);
 $pojo-> nombre =$_POST["nombre"];
 $pojo-> estado =$_POST["estado"];
 $pojo-> url =$_POST["url"];
