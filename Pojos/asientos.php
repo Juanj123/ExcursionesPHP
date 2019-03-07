@@ -2,7 +2,7 @@
 	/**
 	* 
 	*/
-	class PojoVideo
+	class Asientos
 	{
 		//Definiendo atributos
 		public $n_Asiento;
