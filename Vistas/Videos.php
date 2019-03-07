@@ -9,6 +9,9 @@
     <link href=" css/estilosMaster.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="JS/datatables/dataTables.bootstrap4.min.css">
 
+    <link rel="stylesheet" type="text/css" href="CSS/alertify.css">
+    <link rel="stylesheet" type="text/css" href="CSS/default.css">
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
 
@@ -124,7 +127,7 @@
                                 <button class="btn btn-success" data-target="#exampleModalCenter" data-toggle="modal" onclick="agregarForm(' <?php echo $datos ?>')">Editar</button>
                             </td>
                             <td>
-                                <button class="btn btn-danger">Eliminar</button>
+                                <button class="btn btn-danger" onclick="preguntarSiNo('<?php echo ($clave->{"url"}); ?>')">Eliminar</button>
                             </td>
                         </tr>
                         <?php 
@@ -246,6 +249,7 @@
     <script type="text/javascript" src="JS/dataTables.bootstrap4.js"></script>
     <script type="text/javascript" src="JS/jquery.scrollUp.js"></script>
     <script type="text/javascript" src="JS/funciones.js"></script>
+    <script type="text/javascript" src="JS/alertify.js"></script>
     <script>
         $(function () {
             $.scrollUp({

@@ -26,24 +26,56 @@
    			 */
 
    	var obj = JSON.stringify({ nombre: $("#txtnombre").val(), url: $("#txtLink").val(), estado: $("#cbEstado").val() });
-
-   	console.log(obj);
     $.ajax({
         type:"POST",
-        url:"ModificarVideo.php",
+        url:"../ModificarVideo.php",
 	    data: obj,
         error: function (xhr, ajaxOptions, thrownError) {
 		    console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
         },
 		success: function(r){
-			if (r) {
-				alert("Actualizado con exito");
-            window.location = "Videos.php";
+			if (r==true) {
+				console.log(r.d);
+				alertify.success('Actualizado con exito :)');
+            /* window.location = "Videos.php";*/
         }else{
-        	alert("Fallo el servidor :(");
+        	console.log(r.d);
+        	alertify.error('Fallo el servidor :(');
             
 		}
         }
     });
                        
-                    }
+ }
+
+ function preguntarSiNo(id)
+ {
+ 	alertify.confirm('Eliminar datos','¿Esta seguro de eliminar este registro?',
+  function(){
+    eleminarDatos(id);
+  },
+  function(){
+    alertify.error('Se cancelo');
+  });
+ }
+
+ function eleminarDatos(id)
+ {
+ 	cadena = "id" + id;
+
+ 	$.ajax({
+ 		type:"POST",
+ 		url:"../eliminarDatos.php",
+ 		data: cadena,
+ 		success: function(r){
+ 			console.log(r.d);
+ 			if(r)
+ 			{
+ 				alertify.success('Eliminado con exito');
+ 				/* window.location = "Videos.php";*/
+ 			}else{
+ 				alertify.error('Fallo el servidor');
+ 			}
+ 		}
+ 	});
+ }
