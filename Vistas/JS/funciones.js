@@ -25,21 +25,23 @@
    			 "url="+urlv;
    			 */
 
-   	var obj = JSON.stringify({ nombre: $("#txtnombre").val(), url: $("#txtLink").val(), estado: $("#cbEstado").val() });
+   	var obj = JSON.stringify({nombre: $("#txtnombre").val(), url: $("#txtLink").val(), estado: $("#cbEstado").val() });
+    
     $.ajax({
-        type:"POST",
-        url:"../ModificarVideo.php",
+        type:'post',
+        url:'../../../../lore nuevo/ExcursionesPHP/Vistas/ModificarVideo.php',
 	    data: obj,
         error: function (xhr, ajaxOptions, thrownError) {
 		    console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
         },
-		success: function(r){
-			if (r==true) {
+		success: function(response){
+      console.log(response);
+			if (response.d==true) {
 				console.log(r.d);
 				alertify.success('Actualizado con exito :)');
             /* window.location = "Videos.php";*/
         }else{
-        	console.log(r.d);
+        	console.log(response.d);
         	alertify.error('Fallo el servidor :(');
             
 		}

@@ -5,11 +5,12 @@
 	class PojoVideo
 	{
 		//Definiendo atributos
-		public $idVideo;
-		public $idUsuario;
 		public $nombre;
 		public $estado;
 		public $url;
+		public $idVideo;
+		public $idUsuario;
+		
 
 		function __construct1(){}
 

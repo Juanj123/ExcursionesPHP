@@ -150,26 +150,28 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <div class="form-group">
+                                <form action="../../../lore nuevo/ExcursionesPHP/Vistas/ModificarVideo.php" method="post"><div class="form-group">
                                     <Label  Text="Nombre"></Label>
-                                    <input class="form-control" type="text" id="txtnombre" placeholder="Nombre">
+                                    <input class="form-control" type="text" id="txtnombre" name="nombre" placeholder="Nombre">
                                 </div>
                                 <div class="form-group">
                                    <label>Link</label>
-                                    <input class="form-control" type="text" id="txtLink" placeholder="Link">
+                                    <input class="form-control" type="text" id="txtLink" name="url" placeholder="Link">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Estado</label>
-                                     <select class="form-control" id="cbEstado">
+                                     <select class="form-control" id="cbEstado" name="estado">
                                         <option>Activo</option>
                                         <option>Inactivo</option>
                                     </select>
                                 </div>
+                                
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-primary" id="btnActualizar">Actualizar</button>
+                                <button type="submit" class="btn btn-primary" id="btnActualizar">Actualizar</button>
+                                </form>
                             </div>
                         </div>
                     </div>
