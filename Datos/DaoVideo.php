@@ -51,9 +51,11 @@ private $conexion; /*Crea una variable conexion*/
 		//Función para editar al principalVideo de acuerdo al objeto recibido como parámetro
 	public function editar(PojoVideo $obj)
 	{
-		try 
-		{
+		
+		//try 
+		//{
 			$sql = "UPDATE principalVideo SET 
+					
                     idUsuario = ?,
                     nombre = ?,
                     estado = ?,
@@ -62,21 +64,24 @@ private $conexion; /*Crea una variable conexion*/
 
             $this->conectar();
             
-            $sentenciaSQL = $this->conexion->prepare($sql);			          
+            $sentenciaSQL = $this->conexion->prepare($sql);	
+
 			$sentenciaSQL->execute(
-				array(	$obj-> idVideo,
-						$obj-> idUsuario,
-						$obj-> nombre,
-						$obj-> estado,
-						$obj-> url)
-					);
+				array(    
+					//$obj->idVideo,
+					    $obj->idUsuario,
+						$obj->nombre,
+						$obj->estado,
+						$obj->url,
+				        $obj->idVideo));
+			//var_dump($sentenciaSQL);
             return true;
-		} catch (Exception $e){
-			echo $e->getMessage();
-			return false;
-		}finally{
-            Conexion::cerrarConexion();
-        }
+		//} catch (Exception $e){
+			//echo $e->getMessage();
+			//return false;
+		//}finally{
+           // Conexion::cerrarConexion();
+        //}
 	}
 
 	    //Elimina el principalVideo con el id indicado como parámetro
@@ -116,9 +121,9 @@ private $conexion; /*Crea una variable conexion*/
 			foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)
 			{
 				$obj = new PojoVideo();
-	            $obj->nombre = $fila-> nombre;
-	            $obj->estado = $fila-> estado;
-	            $obj->url = $fila-> url;
+	            $obj->nombre = $fila->nombre;
+	            $obj->estado = $fila->estado;
+	            $obj->url = $fila->url;
 
                 
 				$lista[] = $obj;
@@ -137,8 +142,8 @@ private $conexion; /*Crea una variable conexion*/
 	    /*Metodo que obtiene un registro de la base de datos, retorna un objeto */
 	public function obtenerUno($id)
 	{
-		try
-		{ 
+		//try
+		//{ 
             $this->conectar();
             
 			$registro = null; /*Se declara una variable  que almacenará el registro obtenido de la BD*/
@@ -150,23 +155,24 @@ private $conexion; /*Crea una variable conexion*/
 			$fila=$sentenciaSQL->fetch(PDO::FETCH_OBJ);
 			
             $obj = new PojoVideo();
-                $obj-> idVideo = $fila->idVideo;
-			return $obj;
-		}
-		catch(Exception $e){
-            echo $e->getMessage();
-            return null;
-		}finally{
+            $obj->idVideo = $fila->idVideo;
             Conexion::cerrarConexion();
-        }
+			return $obj;
+		//}
+		//catch(Exception $e){
+            //echo $e->getMessage();
+            //return null;
+		//}finally{
+            
+       //}
 	}
 
 
 		    /*Metodo que obtiene un registro de la base de datos, retorna un objeto */
 	public function obtenerIdUsuario($id)
 	{
-		try
-		{ 
+		//try
+		//{ 
             $this->conectar();
             
 			$registro = null; /*Se declara una variable  que almacenará el registro obtenido de la BD*/
@@ -178,15 +184,16 @@ private $conexion; /*Crea una variable conexion*/
 			$fila=$sentenciaSQL->fetch(PDO::FETCH_OBJ);
 			
             $obj = new PojoVideo();
-                $obj-> idVideo = $fila->idVideo;
-			return $obj;
-		}
-		catch(Exception $e){
-            echo $e->getMessage();
-            return null;
-		}finally{
+            $obj->idUsuario = $fila->idUsuario;
             Conexion::cerrarConexion();
-        }
+			return $obj;
+		//}
+		//catch(Exception $e){
+           // echo $e->getMessage();
+            //return null;
+		//}finally{
+            
+        //}
 	}
 
 

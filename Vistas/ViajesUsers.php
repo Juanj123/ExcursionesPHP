@@ -9,23 +9,53 @@
     <link rel="stylesheet" href="CSS/bootstrap.min.css">
     <link rel="stylesheet" href="../Vistas/CSS/animate.min.css">
     <link rel="stylesheet" href="../vistas/CSS/apartaTuLugar.css" />
-        <link href="../Vistas/JS/bootstrap.min.js" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../Vistas/CSS/estilosPrincipal.css">
+<link href="../Vistas/JS/bootstrap.min.js" rel="stylesheet" type="text/js" />
+
+            <?php 
+                include "../Datos/DatosViajes.php";
+                require_once "../Pojos/PojoViaje.php";      
+            ?>
 </head>
 <body>
      <div class="container-fluid">
         <div class="row">
-            <fieldset class="col-12">
-               <legend>Buscar</legend>
-                 <p>
+            <div class="col-12"> 
+            <fieldset style="border-style: solid; border: solid;" class="col-12">
 
-                 <input type="checkbox" name="cb-autos" value="gusta"> Destino
+               <legend>Buscar Viajes</legend>
+                     <div class="row"><p class="col-9">Ingresa Busqueda: <input type="text" name="Ingresa Busqueda:" class="col-9"></p>
 
-                 <input type="checkbox" name="cb-deportes" value="gusta"> Mes
+                    <p class="col-1"> <input type="checkbox" name="checkbox" id="checkbox_id" value="value">
+                   <label for="checkbox_id">Destino</label></p>
+                   <p class="col-1"> <input type="checkbox" name="checkbox" id="checkbox_id" value="value">
+                   <label for="checkbox_id">Mes</label></p>
+                   <p class="col-1"> <input type="checkbox" name="checkbox" id="checkbox_id" value="value">
+                   <label for="checkbox_id">Año</label></p></div>
+                   
 
-                 <input type="checkbox" name="cb-videojuegos" value="gusta">Año
+              </fieldset>  
+            </div>
+        </div>
+        <div class="row">
+            <?php 
+                $objviajes= new DatosViajes();
 
-                 </p>
-            </fieldset>
+                $lista= $objviajes->obtenerviajes();
+
+                var_dump($lista);
+                foreach ($lista as $list ) {
+                     echo "entre";
+                   echo "<div class=promo style=float:left overflow:hidden margin-left:25px margin-top:15px>";
+                    echo "<div class=imge><img  style=width:400px height:200px></div> ";
+                    echo "<h3>$list->destino</h3>";
+                    echo "<div class=txt><p class=text-justify pe>BALNEARIO LA GRUTA👙 Y A DISFRUTAR DE UNA TARDE EN SAN MIGUEL DE ALLENDE🏦 DOMINGO 12 DE MAYO 2019 Vamos a disfrutar de las aguas termales del balneario la gruta en San Miguel de Allende y como el lugar lo cierran temprano nos vamos a disfrutar de una tarde-noche en San Miguel de Allende..te late ?? !!</p> </div>";
+                    echo "<div class=pi style=overflow:hidden> <h4 style=float:left></h4><Button class=btn btn-success btnIdViaje  style=float:right><i class=fas fa-bus></i> Reservar</Button></div>";
+                    echo "</div>";
+                    echo "sali";
+                }
+               
+             ?>
         </div>
       </div>
     

@@ -25,9 +25,8 @@
    			 "url="+urlv;
    			 */
 
-   	var obj = JSON.stringify({ nombre: $("#txtnombre").val(), url: $("#txtLink").val(), estado: $("#cbEstado").val() });
-
-   	console.log(obj);
+   	var obj = JSON.stringify({nombre: $("#txtnombre").val(), url: $("#txtLink").val(), estado: $("#cbEstado").val() });
+    
     $.ajax({
         type:"POST",
         url:"Vistas/ModificarVideo.php",
@@ -35,15 +34,50 @@
         error: function (xhr, ajaxOptions, thrownError) {
 		    console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
         },
-		success: function(r){
-			if (r) {
-				alert("Actualizado con exito");
-            window.location = "Videos.php";
+		success: function(response){
+      console.log(response);
+			if (response.d==true) {
+				console.log(r.d);
+				alertify.success('Actualizado con exito :)');
+            /* window.location = "Videos.php";*/
         }else{
-        	alert("Fallo el servidor :(");
+        	console.log(response.d);
+        	alertify.error('Fallo el servidor :(');
             
 		}
         }
     });
                        
-                    }
+ }
+
+ function preguntarSiNo(id)
+ {
+ 	alertify.confirm('Eliminar datos','¿Esta seguro de eliminar este registro?',
+  function(){
+    eleminarDatos(id);
+  },
+  function(){
+    alertify.error('Se cancelo');
+  });
+ }
+
+ function eleminarDatos(id)
+ {
+ 	cadena = "id" + id;
+
+ 	$.ajax({
+ 		type:"POST",
+ 		url:"../eliminarDatos.php",
+ 		data: cadena,
+ 		success: function(r){
+ 			console.log(r.d);
+ 			if(r)
+ 			{
+ 				alertify.success('Eliminado con exito');
+ 				/* window.location = "Videos.php";*/
+ 			}else{
+ 				alertify.error('Fallo el servidor');
+ 			}
+ 		}
+ 	});
+ }
