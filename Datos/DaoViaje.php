@@ -16,9 +16,9 @@ class DaoViaje
 			die($e->getMessage()); /*Si la conexion no se establece se cortara el flujo enviando un mensaje con el error*/
 		}
 	}
-	public function registrarAsientos(PojoViaje $obj)
+	public function registrarViaje(PojoViaje $obj)
 	{
-
+        var_dump($obj);
 		$clave=0;
 		try 
 		{
