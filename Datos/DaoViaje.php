@@ -81,7 +81,7 @@ class DaoViaje
 
     		$lista = array(); /*Se declara una variable de tipo  arreglo que almacenará los registros obtenidos de la BD*/
 
-    		$sentenciaSQL = $this->conexion->prepare("SELECT destino, hora_salida, dia, mes, año as ano, costo_adulto, descripcion FROM viajes"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
+    		$sentenciaSQL = $this->conexion->prepare("SELECT idViaje, destino, hora_salida, dia, mes, año as ano, costo_adulto, descripcion FROM viajes"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
 
     		$sentenciaSQL->execute();/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
 
@@ -89,6 +89,7 @@ class DaoViaje
     		foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)
     		{
     			$obj = new PojoViaje();
+                $obj->idViaje = $fila->idViaje;
     			$obj->destino = $fila->destino;
     			$obj->hora = $fila->hora_salida;
     			$obj->dia = $fila->dia;
@@ -189,5 +190,34 @@ class DaoViaje
         //}finally{
            // Conexion::cerrarConexion();
         //}
+    }
+    public function getIdViaje($destino)
+    {
+        $idViaje = 0;
+        try
+        {
+            $this->conectar();
+
+            $lista = array(); /*Se declara una variable de tipo  arreglo que almacenará los registros obtenidos de la BD*/
+
+            $sentenciaSQL = $this->conexion->prepare("SELECT idViaje FROM viajes where destino like  = ?"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
+
+            $sentenciaSQL->execute([$destino]);/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
+
+            /*Se recorre el cursor para obtener los datos*/
+            foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)
+            {
+                $obj = new PojoViaje();
+                $idViaje = $obj->idViaje = $fila->idViaje;
+            }
+
+            return $idViaje;
+        }
+        catch(Exception $e){
+            echo $e->getMessage();
+            return null;
+        } finally {
+            Conexion::cerrarConexion();
+        }
     }
 }

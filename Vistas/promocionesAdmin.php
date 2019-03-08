@@ -26,9 +26,10 @@
         <button id="btnAgregar" type="button" class="btn btn-success" style="margin-left: 50%;">Agregar Viaje</button>
         <br />
         <?php 
-        require_once "../Datos/DaoViaje.php";
-        $daoViaje = new DaoViaje();
-        $lista = $daoViaje->getDatosViaje();
+        require_once "../Datos/DaoPromociones.php";
+        $daoPromociones = new DaoPromociones();
+        $lista = $daoPromociones->obtenerPromociones();
+        $listaDes = $daoPromociones->obtenerDestinos();
 
         ?>
         <table id="tableViajes" class="table table-bordered table-hover table-responsive-sm table-responsive-md text-center">
@@ -36,32 +37,25 @@
 
             <tr>
               <th scope="col">Destino</th>
-              <th scope="col">Hora</th>
-              <th scope="col">fecha</th>
-              <th scope="col">Costo</th>
-              <th scope="col">Descripcion</th>
-              <th scope="col">Acciones</th>
+              <th scope="col">costo Adulto</th>
+              <th scope="col">Costo Niño Menos de 6 Años</th>
+              <th scope="col">Costo Niño Mayor de 6 Años</th>
             </tr>
           </thead>
           <tbody>
            <?php 
            foreach ($lista as $clave) {
             $datos = $clave->{"destino"}."||".
-            $clave->{"hora"}."||".
-            $clave->{"dia"}."||".
-            $clave->{"mes"}."||".
-            $clave->{"anio"}."||".
             $clave->{"costo"}."||".
-            $clave->{"descripcion"}."||".
-            $clave->{"idViaje"};
+            $clave->{"CostoNino"}."||".
+            $clave->{"costoad"};
             ?>
 
             <tr>
               <td><?php echo($clave->{"destino"}); ?></td>
-              <td><?php echo($clave->{"hora"}); ?></td>
-              <td><?php echo($clave->{"dia"})."/".$clave->{"mes"}."/".$clave->{"anio"}; ?></td>
               <td><?php echo($clave->{"costo"}); ?></td>
-              <td><?php echo($clave->{"descripcion"}); ?></td>
+              <td><?php echo($clave->{"CostoNino"}); ?></td>
+              <td><?php echo($clave->{"costoad"}); ?></td>
               <td>
                 <button class="btn btn-success" data-target="#ModalModificar" data-toggle="modal" onclick="agregarForm(' <?php echo $datos ?>')">Editar</button>
                 <button class="btn btn-danger" onclick="preguntarSiNo('<?php echo ($clave->{"idViaje"}); ?>')">Eliminar</button>
@@ -94,14 +88,6 @@
             <option>12</option>
           </select>
           <div class="form-group">
-            <label for="txtDestino">Destino</label>
-            <input type="text" class="form-control" name="txtDestino" placeholder="Destino">
-          </div>
-          <div class="form-group">
-            <label for="txtHoraSalida">Hora de Salida</label>
-            <input type="text" class="form-control" name="txtHoraSalida" placeholder="Hora de Salida">
-          </div>
-          <div class="form-group">
             <label for="txtCostoAdulto">Costo Adulto</label>
             <input type="text" class="form-control" name="txtCostoAdulto" placeholder="Costo Adulto">
           </div>
@@ -113,33 +99,10 @@
             <label for="txtCostoMay">Costo Mayores de 6 años</label>
             <input type="text" class="form-control" name="txtCostoMay" placeholder="Costo Mayores de 6 años">
           </div>
-          <div class="form-group">
-            <label for="txtDescripcion">Descripcion</label>
-            <textarea class="form-control" name ="txtDescripcion" rows="4" placeholder="Descripcion"></textarea>
-          </div>
-          <label>Fecha del Viaje</label>
-          <br>
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <input type="text" class="form-control" name="txtDia" placeholder="Dia">
-            <input type="text" class="form-control" name="txtMes" placeholder="Mes">
-            <input type="text" class="form-control" name="txtAnio" placeholder="Año">
-          </div>
-          <div class="form-group">
-            <label for="txtNota">Nota</label>
-            <textarea class="form-control" name="txtNota" rows="4" placeholder="Nota"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="txtItinerario">Itinerario</label>
-            <textarea class="form-control" name="txtItinerario" rows="4" placeholder="Itinerario"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="btnSubirImagen">Guardar Imagen</label>
-            <input type="file" class="form-control-file" name="btnSubirImagen" accept="image/*">
-          </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
         </div>
       </div>
     </div>
