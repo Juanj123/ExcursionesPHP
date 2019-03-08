@@ -94,9 +94,9 @@
       $pojo-> anio=$_POST['txtAnio'];
       $pojo-> nota=$_POST['txtNota'];
       $pojo-> itinerario=$_POST['txtItinerario'];
-      $pojo-> idAutobus=$_POST['btnSubirImagen'];
+      $pojo-> img=$_POST['btnSubirImagen'];
       $daoViaje->registrarViaje($pojo);
-      echo "<script>alert('Datos Guardados')</script>";
+      echo "<script>location.href ='AgregarViaje.php';</script>";
     }
   }
   ?>

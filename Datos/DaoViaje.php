@@ -22,13 +22,12 @@ class DaoViaje
 		$clave=0;
 		try 
 		{
-			$sql = "INSERT INTO viajes (idAutobus, img, destino, hora_salida, costo_adulto, costo_niño, costo_ad, descripcion, dia, mes, año, nota, itinerario) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			$sql = "INSERT INTO viajes (img, destino, hora_salida, costo_adulto, costo_niño, costo_ad, descripcion, dia, mes, año, nota, itinerario) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 			$this->conectar();
 			$this->conexion->prepare($sql)
 			->execute(
 				array(
-					$obj->idAutobus,
 					$obj->img,
 					$obj->destino,
 					$obj->hora,
@@ -142,11 +141,11 @@ class DaoViaje
     }
     public function editarViaje(PojoViaje $obj)
     {
+        var_dump($obj);
         
         //try 
         //{
             $sql = "UPDATE viajes SET 
-            idViaje= ?,
             img= ?,
             destino= ?,
             hora_regreso= ?,
@@ -167,13 +166,21 @@ class DaoViaje
             $sentenciaSQL = $this->conexion->prepare($sql); 
 
             $sentenciaSQL->execute(
-                array(    
-                    //$obj->idVideo,
-                        $obj->idUsuario,
-                        $obj->nombre,
-                        $obj->estado,
-                        $obj->url,
-                        $obj->idVideo));
+                array(
+                    $obj->idViaje,
+                    $obj->img,
+                    $obj->destino,
+                    $obj->hora,
+                    $obj->costo,
+                    $obj->costoNinio,
+                    $obj->costoAd,
+                    $obj->descripcion,
+                    $obj->dia,
+                    $obj->mes,
+                    $obj->anio,
+                    $obj->nota,
+                    $obj->itinerario
+                ));
             //var_dump($sentenciaSQL);
             return true;
         //} catch (Exception $e){

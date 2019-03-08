@@ -55,10 +55,8 @@
               <td><?php echo($clave->{"costo"}); ?></td>
               <td><?php echo($clave->{"descripcion"}); ?></td>
               <td>
-                <div class="btn-group btn-group-lg" role="group" aria-label="...">
-                  <?php echo('<button id="btnEliminar" value="Eliminar" title="Eliminar" class="btn btn-danger">Eliminar</button>'); ?>
-                  <?php echo('<button id="btnModificar" value="Modificar" title="Modificar" class="btn btn-success">Modificar</button>'); ?>
-                </div>
+                <?php echo('<button id="btnEliminar" class="btn btn-danger">Eliminar</button>'); ?>
+                <?php echo('<button id="btnModificar" class="btn btn-success">Modificar</button>'); ?>
               </td>
             </tr>
           </tbody>
@@ -187,26 +185,26 @@
 
 </script>
 
-  <?php 
-  if (isset($_GET['add'])) {
-    if (isset($_POST)) {
-      $pojo-> idAutobus=$_POST['cmbIdAutobus'];
-      $pojo-> destino=$_POST['txtDestino'];
-      $pojo-> hora=$_POST['txtHoraSalida'];
-      $pojo-> costo=$_POST['txtCostoAdulto'];
-      $pojo-> costoNinio=$_POST['txtCostoNiño'];
-      $pojo-> costoAd=$_POST['txtCostoMay'];
-      $pojo-> descripcion=$_POST['txtDescripcion'];
-      $pojo-> dia=$_POST['txtDia'];
-      $pojo-> mes=$_POST['txtMes'];
-      $pojo-> anio=$_POST['txtAnio'];
-      $pojo-> nota=$_POST['txtNota'];
-      $pojo-> itinerario=$_POST['txtItinerario'];
-      $pojo-> idAutobus=$_POST['btnSubirImagen'];
-      $daoViaje->editarViaje($pojo);
-      echo "<script>alert('Datos Guardados')</script>";
-    }
+<?php 
+if (isset($_GET['add'])) {
+  if (isset($_POST)) {
+    $pojo-> idAutobus=$_POST['cmbIdAutobus'];
+    $pojo-> destino=$_POST['txtDestino'];
+    $pojo-> hora=$_POST['txtHoraSalida'];
+    $pojo-> costo=$_POST['txtCostoAdulto'];
+    $pojo-> costoNinio=$_POST['txtCostoNiño'];
+    $pojo-> costoAd=$_POST['txtCostoMay'];
+    $pojo-> descripcion=$_POST['txtDescripcion'];
+    $pojo-> dia=$_POST['txtDia'];
+    $pojo-> mes=$_POST['txtMes'];
+    $pojo-> anio=$_POST['txtAnio'];
+    $pojo-> nota=$_POST['txtNota'];
+    $pojo-> itinerario=$_POST['txtItinerario'];
+    $pojo-> img=$_POST['btnSubirImagen'];
+    $daoViaje->editarViaje($pojo);
+    echo "<script>alert('Datos Guardados')</script>";
   }
-  ?>
+}
+?>
 </body>
 </html>
