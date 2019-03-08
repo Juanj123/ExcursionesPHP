@@ -9,7 +9,7 @@
 		public $idAutobus;
 		public $dia;
 		public $mes;
-		public $año;
+		public $anio;
 		public $destino;
 		public $hora;
 		public $descripcion;
@@ -28,7 +28,7 @@
 			$this->idAutobus=$idAutobus;
 			$this->dia=$dia;
 			$this->mes=$mes;
-			$this->año=$año;
+			$this->anio=$anio;
 			$this->destino=$destino;
 			$this->hora=$hora;
 			$this->descripcion=$descripcion;

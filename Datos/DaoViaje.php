@@ -38,7 +38,7 @@ class DaoViaje
                     $obj->descripcion,
                     $obj->dia,
                     $obj->mes,
-                    $obj->año,
+                    $obj->anio,
                     $obj->nota,
                     $obj->itinerario
 				)
@@ -94,7 +94,7 @@ class DaoViaje
     			$obj->hora = $fila->hora_salida;
     			$obj->dia = $fila->dia;
     			$obj->mes = $fila->mes;
-    			$obj->año = $fila->ano;
+    			$obj->anio = $fila->ano;
                 $obj->costo = $fila->costo_adulto;
                 $obj->descripcion = $fila->descripcion;
 
@@ -139,5 +139,48 @@ class DaoViaje
         } finally {
             Conexion::cerrarConexion();
         }
+    }
+    public function editarViaje(PojoViaje $obj)
+    {
+        
+        //try 
+        //{
+            $sql = "UPDATE viajes SET 
+            idViaje= ?,
+            img= ?,
+            destino= ?,
+            hora_regreso= ?,
+            hora_salida= ?,
+            costo_adulto= ?,
+            costo_niño= ?,
+            costo_ad= ?,
+            descripcion= ?,
+            dia= ?,
+            mes= ?,
+            año= ?,
+            nota= ?,
+            itinerario= ? 
+            WHERE idViaje = ?";
+
+            $this->conectar();
+            
+            $sentenciaSQL = $this->conexion->prepare($sql); 
+
+            $sentenciaSQL->execute(
+                array(    
+                    //$obj->idVideo,
+                        $obj->idUsuario,
+                        $obj->nombre,
+                        $obj->estado,
+                        $obj->url,
+                        $obj->idVideo));
+            //var_dump($sentenciaSQL);
+            return true;
+        //} catch (Exception $e){
+            //echo $e->getMessage();
+            //return false;
+        //}finally{
+           // Conexion::cerrarConexion();
+        //}
     }
 }

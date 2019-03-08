@@ -23,7 +23,7 @@
       <div class="col-md-12 col-lg-12 col-sm-12 col-xl-12">
         <h2>Viajes</h2>
         <br />
-        <button type="button" class="btn btn-success" style="margin-left: 50%;">Agregar Viaje</button>
+        <button id="btnAgregar" type="button" class="btn btn-success" style="margin-left: 50%;">Agregar Viaje</button>
         <br />
         <?php 
         require_once "../Datos/DaoViaje.php";
@@ -51,13 +51,13 @@
              <tr>
               <td><?php echo($clave->{"destino"}); ?></td>
               <td><?php echo($clave->{"hora"}); ?></td>
-              <td><?php echo($clave->{"dia"})."/".$clave->{"mes"}."/".$clave->{"año"}; ?></td>
+              <td><?php echo($clave->{"dia"})."/".$clave->{"mes"}."/".$clave->{"anio"}; ?></td>
               <td><?php echo($clave->{"costo"}); ?></td>
               <td><?php echo($clave->{"descripcion"}); ?></td>
               <td>
                 <div class="btn-group btn-group-lg" role="group" aria-label="...">
-                  <?php echo('<button id="btnEliminar" value="Eliminar" title="Eliminar" class="btn btn-danger btn-delete">Eliminar</button>'); ?>
-                  <?php echo('<button id="btnModificar" value="Modificar" title="Modificar" class="btn btn-success btn-delete">Modificar</button>'); ?>
+                  <?php echo('<button id="btnEliminar" value="Eliminar" title="Eliminar" class="btn btn-danger">Eliminar</button>'); ?>
+                  <?php echo('<button id="btnModificar" value="Modificar" title="Modificar" class="btn btn-success">Modificar</button>'); ?>
                 </div>
               </td>
             </tr>
@@ -73,6 +73,74 @@
       </table>
     </div>
   </div>
+</div>
+<div class="modal fade" id="ModalModificar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <form action="?add" method="POST" accept-charset="utf-8">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modificar Viaje</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <label for="cmbIdAutobus">Numero del ID autobus</label>
+          <select class="form-control" name="cmbIdAutobus">
+            <option>11</option>
+            <option>12</option>
+          </select>
+          <div class="form-group">
+            <label for="txtDestino">Destino</label>
+            <input type="text" class="form-control" name="txtDestino" placeholder="Destino">
+          </div>
+          <div class="form-group">
+            <label for="txtHoraSalida">Hora de Salida</label>
+            <input type="text" class="form-control" name="txtHoraSalida" placeholder="Hora de Salida">
+          </div>
+          <div class="form-group">
+            <label for="txtCostoAdulto">Costo Adulto</label>
+            <input type="text" class="form-control" name="txtCostoAdulto" placeholder="Costo Adulto">
+          </div>
+          <div class="form-group">
+            <label for="txtCostoNiño">Costo Menores de 6 años</label>
+            <input type="text" class="form-control" name="txtCostoNiño" placeholder="Costo Mayores de 6 años">
+          </div>
+          <div class="form-group">
+            <label for="txtCostoMay">Costo Mayores de 6 años</label>
+            <input type="text" class="form-control" name="txtCostoMay" placeholder="Costo Mayores de 6 años">
+          </div>
+          <div class="form-group">
+            <label for="txtDescripcion">Descripcion</label>
+            <textarea class="form-control" name ="txtDescripcion" rows="4" placeholder="Descripcion"></textarea>
+          </div>
+          <label>Fecha del Viaje</label>
+          <br>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <input type="text" class="form-control" name="txtDia" placeholder="Dia">
+            <input type="text" class="form-control" name="txtMes" placeholder="Mes">
+            <input type="text" class="form-control" name="txtAnio" placeholder="Año">
+          </div>
+          <div class="form-group">
+            <label for="txtNota">Nota</label>
+            <textarea class="form-control" name="txtNota" rows="4" placeholder="Nota"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="txtItinerario">Itinerario</label>
+            <textarea class="form-control" name="txtItinerario" rows="4" placeholder="Itinerario"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="btnSubirImagen">Guardar Imagen</label>
+            <input type="file" class="form-control-file" name="btnSubirImagen" accept="image/*">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
 
 <script type="text/javascript" src="JS/jquery-3.3.1.min.js"></script>
@@ -108,7 +176,37 @@
 
 
   });
+
+  $("#btnModificar").click(function () {
+    $('#ModalModificar').modal('show');
+  });
+
+  $("#btnAgregar").click(function () {
+    location.href ="AgregarViaje.php";
+  });
+
 </script>
 
+  <?php 
+  if (isset($_GET['add'])) {
+    if (isset($_POST)) {
+      $pojo-> idAutobus=$_POST['cmbIdAutobus'];
+      $pojo-> destino=$_POST['txtDestino'];
+      $pojo-> hora=$_POST['txtHoraSalida'];
+      $pojo-> costo=$_POST['txtCostoAdulto'];
+      $pojo-> costoNinio=$_POST['txtCostoNiño'];
+      $pojo-> costoAd=$_POST['txtCostoMay'];
+      $pojo-> descripcion=$_POST['txtDescripcion'];
+      $pojo-> dia=$_POST['txtDia'];
+      $pojo-> mes=$_POST['txtMes'];
+      $pojo-> anio=$_POST['txtAnio'];
+      $pojo-> nota=$_POST['txtNota'];
+      $pojo-> itinerario=$_POST['txtItinerario'];
+      $pojo-> idAutobus=$_POST['btnSubirImagen'];
+      $daoViaje->editarViaje($pojo);
+      echo "<script>alert('Datos Guardados')</script>";
+    }
+  }
+  ?>
 </body>
 </html>

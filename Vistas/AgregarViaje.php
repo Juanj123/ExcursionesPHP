@@ -91,7 +91,7 @@
       $pojo-> descripcion=$_POST['txtDescripcion'];
       $pojo-> dia=$_POST['txtDia'];
       $pojo-> mes=$_POST['txtMes'];
-      $pojo-> años=$_POST['txtAnio'];
+      $pojo-> anio=$_POST['txtAnio'];
       $pojo-> nota=$_POST['txtNota'];
       $pojo-> itinerario=$_POST['txtItinerario'];
       $pojo-> idAutobus=$_POST['btnSubirImagen'];
