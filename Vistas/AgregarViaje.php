@@ -42,7 +42,7 @@
             <input type="text" class="form-control" id="txtCostoAdulto" placeholder="Costo Adulto">
           </div>
           <div class="form-group">
-            <label for="txtCostoNiño">Costo Mayores de 6 años</label>
+            <label for="txtCostoNiño">Costo Menores de 6 años</label>
             <input type="text" class="form-control" id="txtCostoNiño" placeholder="Costo Mayores de 6 años">
           </div>
           <div class="form-group">
@@ -68,6 +68,10 @@
             <label for="txtItinerario">Itinerario</label>
             <textarea class="form-control" id="txtItinerario" rows="4" placeholder="Itinerario"></textarea>
           </div>
+          <div class="form-group">
+            <label for="btnSubirImagen">Guardar Imagen</label>
+            <input type="file" class="form-control-file" id="btnSubirImagen">
+          </div>
           <button type="submit" class="btn btn-primary">Guardar Viaje</button>
           <button type="button" class="btn btn-secondary">Cancelar</button>
         </form>
@@ -76,7 +80,6 @@
   </div>
 
   <?php 
-  $pojo = new PojoApartaTuLugar();
   if (isset($_GET['add'])) {
     if (isset($_POST)) {    
       $pojo-> totalPagar= $_COOKIE["Total"];
