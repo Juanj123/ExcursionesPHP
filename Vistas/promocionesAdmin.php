@@ -47,15 +47,15 @@
            foreach ($lista as $clave) {
             $datos = $clave->{"destino"}."||".
             $clave->{"costo"}."||".
-            $clave->{"CostoNino"}."||".
-            $clave->{"costoad"};
+            $clave->{"costoNinio"}."||".
+            $clave->{"costoAd"};
             ?>
 
             <tr>
               <td><?php echo($clave->{"destino"}); ?></td>
               <td><?php echo($clave->{"costo"}); ?></td>
-              <td><?php echo($clave->{"CostoNino"}); ?></td>
-              <td><?php echo($clave->{"costoad"}); ?></td>
+              <td><?php echo($clave->{"costoNinio"}); ?></td>
+              <td><?php echo($clave->{"costoAd"}); ?></td>
               <td>
                 <button class="btn btn-success" data-target="#ModalModificar" data-toggle="modal" onclick="agregarForm(' <?php echo $datos ?>')">Editar</button>
                 <button class="btn btn-danger" onclick="preguntarSiNo('<?php echo ($clave->{"idViaje"}); ?>')">Eliminar</button>

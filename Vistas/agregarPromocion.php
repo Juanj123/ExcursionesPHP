@@ -58,12 +58,11 @@
   if (isset($_GET['add'])) {
     if (isset($_POST)) {
       $pojo-> idViaje=$daoViaje->getIdViaje($_POST['cmbDestinos']);
-      var_dump($pojo->idViaje);
       $pojo-> costo=$_POST['txtCostoAdulto'];
       $pojo-> costoNinio=$_POST['txtCostoNiño'];
       $pojo-> costoAd=$_POST['txtCostoMay'];
       $daoViaje->registrarPromocion($pojo);
-      #echo "<script>location.href ='AgregarViaje.php';</script>";
+      echo "<script>location.href ='promocionesAdmin.php';</script>";
     }
   }
   ?>

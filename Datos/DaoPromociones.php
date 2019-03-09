@@ -21,7 +21,7 @@ require_once '../Pojos/PojoViaje.php';
 
     		$lista = array(); /*Se declara una variable de tipo  arreglo que almacenará los registros obtenidos de la BD*/
 
-    		$sentenciaSQL = $this->conexion->prepare("SELECT A.destino, N.costo_adulto, N.costo_niño, N.costo_ad FROM viajes A INNER JOIN ofertas N ON A.idViaje = N.idViaje;"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
+    		$sentenciaSQL = $this->conexion->prepare("SELECT A.img ,A.destino, N.costo_adulto, N.costo_niño, N.costo_ad FROM viajes A INNER JOIN ofertas N ON A.idViaje = N.idViaje;"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
 
     		$sentenciaSQL->execute();/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
 
@@ -29,10 +29,11 @@ require_once '../Pojos/PojoViaje.php';
     		foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)
     		{
     			$obj = new PojoViaje();
+                $obj->img = $fila->img;
     			$obj->destino = $fila->destino;
-    			$obj->costo = $fila->costo_ad;
-    			$obj->CostoNino = $fila->costo_niño;
-    			$obj->costoad = $fila->costo_adulto;
+    			$obj->costoAd = $fila->costo_ad;
+    			$obj->costoNinio = $fila->costo_niño;
+    			$obj->costo = $fila->costo_adulto;
 
     			$lista[] = $obj;
     		}
