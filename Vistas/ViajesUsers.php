@@ -39,6 +39,7 @@
             </div>
         </div>
         <div class="row col-12">
+          <form method="post" action="apartaTuLugar.php">
             <?php 
                 $objviajes= new DatosViajes();
 
@@ -50,15 +51,13 @@
                     echo "<div class='imge'><img src='$list->img' style='width:400px;height:200px;'></div> ";
                     echo "<h3>$list->destino</h3>";
                     echo "<div class='txt'><p class='text-justifype pe'>BALNEARIO LA GRUTA👙 Y A DISFRUTAR DE UNA TARDE EN SAN MIGUEL DE ALLENDE🏦 DOMINGO 12 DE MAYO 2019 Vamos a disfrutar de las aguas termales del balneario la gruta en San Miguel de Allende y como el lugar lo cierran temprano nos vamos a disfrutar de una tarde-noche en San Miguel de Allende..te late ?? !!</p></div>";
-                    echo "<div class='pi' style='overflow: hidden'><h4 style='float: left'>$ $list->costoad Adultos</h4><Button class='btn btn-success IdViaje' style='float: right'><i class='fas fa-bus'></i>Reservar</Button></div>";
+                    echo "<div class='pi' style='overflow: hidden'><h4 style='float: left'>$ $list->costoad Adultos</h4><Button class='btn btn-success IdViaje' name='id' value='$list->idViaje' type='submit' style='float: right'><i class='fas fa-bus'></i>Reservar</Button></div>";
                     echo "</div>";
                 }
                
              ?>
+             </form>
         </div>
       </div>
-    <script >
-      $("buscar").typea
-    </script>
 </body>
 </html>
