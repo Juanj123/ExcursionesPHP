@@ -15,10 +15,11 @@
 		public $usuario;
 		public $pw;
 		public $tipo;
+		public $passadmin;
 
 		function __construct1(){}
 
-		function __construct2($id,$nombres,$apellidos,$telefono,$edad,$correo,$direccion,$usuario,$pw)
+		function __construct2($id,$nombres,$apellidos,$telefono,$edad,$correo,$direccion,$usuario,$pw,$tipo,$passadmin)
 		{
 			$this->id=$id;
 			$this->nombres=$nombres;
@@ -30,6 +31,7 @@
 			$this->usuario=$usuario;
 			$this->contraseña=$pw;
 			$this->tipo=$tipo;
+			$this->passadmin=$passadmin;
 		}
 	}
 ?>

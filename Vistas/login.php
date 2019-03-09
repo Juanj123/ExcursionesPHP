@@ -102,15 +102,15 @@
     
         <div class="login-box">
             <img src="img/Niña.png" alt="Logo" class="avatar"/>
-            <form id="form1">
+            <form id="form1" method="post" action="../funciones/validarLogin.php">
                 <h1>Login</h1>
                 <p>Nombre Usuario</p>
                 <input type="text" class="form-control campos" name="nombreusuario" ID="txtnombreusuario" Font-Names="nombreusuario" placeholder="Ingresa Nombre de usuario"/>
                  <p>Contraseña</p>
-                <input   class="form-control campos" ID="txtcontrasena" placeholder="Ingresa contraseña" />
-                <input type="button" name="" value="Entrar"  ID="entrar"  />
+                <input  type="password" class="form-control campos" ID="txtcontrasena" name="contrasena" placeholder="Ingresa contraseña" />
+                <BUTTON type="submit" name="Entrar" value="Entrar"  ID="entrar" >Entrar</BUTTON>
                 <a href="#">Olvidaste Contraseña?</a>
-                <input type="button" value="Registrar" ID="entrar2" />
+                <BUTTON type="" value="Registrar" ID="entrar2">Registrar </BUTTON> 
             </form>
         </div>
     
