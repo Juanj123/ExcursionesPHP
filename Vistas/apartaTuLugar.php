@@ -13,36 +13,51 @@
     <title>Aparta Tu Lugar</title>
     <?php
     require_once("../Datos/DaoApartaTuLugar.php");
+    require_once("../Datos/DaoPromociones.php");
     require_once("../Pojos/PojoApartaTuLugar.php");
     ?>
 </head>
 <body>
     <?php
     $objDaoAparta = new DaoApartaTuLugar();
-    $idViaje = 1;
-    $lista = $objDaoAparta->getDatosViaje($idViaje);
+    $objDaoPromociones = new DaoPromociones();
+    $idViaje = 2;
+    if ($objDaoAparta->ViajeOferta($idViaje) == 1 ) {
+        echo "<script>alert('Este Viaje tiene Descuento');</script>";
+        $lista = $objDaoAparta->getDatosOferta($idViaje);
+    }else{
+        $lista = $objDaoAparta->getDatosViaje($idViaje);
+    }
+    
+
     ?>
     <div id="tarjetaLugarViaje" style="position: absolute; margin-left: 50%">
-        <h2 id="lblDestino" style="position: center"><?php echo $lista[0]->{"Destino"}; ?></h2>
+        <h2 id="lblDestino" style="position: center"><?php echo $lista[0]->{"destino"}; ?></h2>
         <div class="card" style="width: 25rem;">
-            <img id="imgViaje" class="card-img-top" src= <?php echo $lista[0]->{"Img"}; ?> alt="Card image cap">
+            <img id="imgViaje" class="card-img-top" src= <?php echo $lista[0]->{"img"}; ?> alt="Card image cap">
             <div class="card-body">
                 <h4 class="card-text">Precios:</h4>
                 <div class="alert alert-success" role="alert">
-                    <h5 class="alert-link" style="text-align: center;">Adulto:</h5>
+                    <h5 class="alert-link" style="text-align: center;">Precio Aduto:</h5>
                 </div>
                 
                 <h5 id="lblPrecioAdulto" style="text-align: center;">
                     <?php 
-                    echo $lista[0]->{"Costo_adulto"};
+                    echo $lista[0]->{"costo"};
                     ?>
                 </h5>
                 <div class="alert alert-info" role="alert">
-                    <h5 class="alert-link" style="text-align: center;">Niño: </h5>
+                    <h5 class="alert-link" style="text-align: center;">Precio Menor de 6 Años: </h5>
                 </div>
-                
                 <h5 id="lblPrecioNino" style="text-align: center;">
-                    <?php echo $lista[0]->{"CostoNino"}; ?>             
+                    <?php echo $lista[0]->{"costoNinio"}; ?>             
+                </h5>
+
+                <div class="alert alert-info" role="alert">
+                    <h5 class="alert-link" style="text-align: center;">Precio Mayor de 6 Años: </h5>
+                </div>
+                <h5 id="lblPrecioNino" style="text-align: center;">
+                    <?php echo $lista[0]->{"costoAd"}; ?>             
                 </h5>
                 <button type="button" id="btnInfo" class="btn btn-success"><i class="fas fa-info"></i> Mas Informacion</button>
             </div>
