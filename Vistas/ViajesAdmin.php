@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
   <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
 
-  <title>Hello, world!</title>
+  <title>Viajes</title>
 </head>
 <body>
   <div class="container">
@@ -48,12 +48,16 @@
            foreach ($lista as $clave) {
             $datos = $clave->{"destino"}."||".
             $clave->{"hora"}."||".
+            $clave->{"costo"}."||".
+            $clave->{"costoNinio"}."||".
+            $clave->{"costoAd"}."||".
+            $clave->{"descripcion"}."||".
             $clave->{"dia"}."||".
             $clave->{"mes"}."||".
             $clave->{"anio"}."||".
-            $clave->{"costo"}."||".
-            $clave->{"descripcion"}."||".
-            $clave->{"idViaje"};
+            $clave->{"nota"}."||".
+            $clave->{"itinerario"}."||".
+            $clave->{"img"};
             ?>
 
             <tr>
@@ -95,42 +99,42 @@
           </select>
           <div class="form-group">
             <label for="txtDestino">Destino</label>
-            <input type="text" class="form-control" name="txtDestino" placeholder="Destino">
+            <input type="text" class="form-control" name="txtDestino" id="txtDestino" placeholder="Destino">
           </div>
           <div class="form-group">
             <label for="txtHoraSalida">Hora de Salida</label>
-            <input type="text" class="form-control" name="txtHoraSalida" placeholder="Hora de Salida">
+            <input type="text" class="form-control" name="txtHoraSalida" id="txtHoraSalida" placeholder="Hora de Salida">
           </div>
           <div class="form-group">
             <label for="txtCostoAdulto">Costo Adulto</label>
-            <input type="text" class="form-control" name="txtCostoAdulto" placeholder="Costo Adulto">
+            <input type="text" class="form-control" name="txtCostoAdulto" id="txtCostoAdulto" placeholder="Costo Adulto">
           </div>
           <div class="form-group">
             <label for="txtCostoNiño">Costo Menores de 6 años</label>
-            <input type="text" class="form-control" name="txtCostoNiño" placeholder="Costo Mayores de 6 años">
+            <input type="text" class="form-control" name="txtCostoNiño" id="txtCostoNiño" placeholder="Costo Mayores de 6 años">
           </div>
           <div class="form-group">
             <label for="txtCostoMay">Costo Mayores de 6 años</label>
-            <input type="text" class="form-control" name="txtCostoMay" placeholder="Costo Mayores de 6 años">
+            <input type="text" class="form-control" name="txtCostoMay" id="txtCostoMay" placeholder="Costo Mayores de 6 años">
           </div>
           <div class="form-group">
             <label for="txtDescripcion">Descripcion</label>
-            <textarea class="form-control" name ="txtDescripcion" rows="4" placeholder="Descripcion"></textarea>
+            <textarea class="form-control" name ="txtDescripcion" id="txtDescripcion" rows="4" placeholder="Descripcion"></textarea>
           </div>
           <label>Fecha del Viaje</label>
           <br>
           <div class="btn-group" role="group" aria-label="Basic example">
-            <input type="text" class="form-control" name="txtDia" placeholder="Dia">
-            <input type="text" class="form-control" name="txtMes" placeholder="Mes">
-            <input type="text" class="form-control" name="txtAnio" placeholder="Año">
+            <input type="text" class="form-control" name="txtDia" id="txtDia" placeholder="Dia">
+            <input type="text" class="form-control" name="txtMes" id="txtMes" placeholder="Mes">
+            <input type="text" class="form-control" name="txtAnio" id="txtAnio" placeholder="Año">
           </div>
           <div class="form-group">
             <label for="txtNota">Nota</label>
-            <textarea class="form-control" name="txtNota" rows="4" placeholder="Nota"></textarea>
+            <textarea class="form-control" name="txtNota" id="txtNota" rows="4" placeholder="Nota"></textarea>
           </div>
           <div class="form-group">
             <label for="txtItinerario">Itinerario</label>
-            <textarea class="form-control" name="txtItinerario" rows="4" placeholder="Itinerario"></textarea>
+            <textarea class="form-control" name="txtItinerario" id="txtItinerario" rows="4" placeholder="Itinerario"></textarea>
           </div>
           <div class="form-group">
             <label for="btnSubirImagen">Guardar Imagen</label>
@@ -187,6 +191,27 @@
   $("#btnAgregar").click(function () {
     location.href ="agregarViaje.php";
   });
+
+  function agregarForm(datos)
+  {
+    d=datos.split('||');
+    $("#cmbIdAutobus").val(d[0]);
+    $("#txtDestino").val(d[0]);
+    $("#txtHoraSalida").val(d[1]);
+    $("#txtCostoAdulto").val(d[2]);
+    $("#txtCostoNiño").val(d[3]);
+    $("#txtCostoMay").val(d[4]);
+    $("#txtDescripcion").val(d[5]);
+    $("#txtDia").val(d[6]);
+    $("#txtMes").val(d[7]);
+    $("#txtAnio").val(d[8]);
+    $("#txtNota").val(d[9]);
+    $("#txtItinerario").val(d[10]);
+
+
+
+
+  }
 
 </script>
 

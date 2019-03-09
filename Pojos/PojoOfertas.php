@@ -7,17 +7,19 @@
 		//Definiendo atributos
 		public $idOferta;
 		public $idViaje;
-		public $costo_adulto;
-		public $costo_niño;
+		public $costo;
+		public $costoNinio;
+		public $costoAd;
 
 		function __construct1(){}
 
-		function __construct2($idOferta,$idViaje,$costo_adulto,$costo_niño)
+		function __construct2($idOferta,$idViaje,$costo,$costoNinio, $costoAd)
 		{
 			$this->idOferta=$idOferta;
 			$this->idViaje=$idViaje;
-			$this->costo_adulto=$costo_adulto;
-			$this->costo_niño=$costo_niño;
+			$this->costo=$costo;
+			$this->costoNinio=$costoNinio;
+			$this->costoAd=$costoAd;
 		}
 	}
 ?>

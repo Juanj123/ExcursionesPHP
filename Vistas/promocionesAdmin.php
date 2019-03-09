@@ -15,19 +15,23 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
   <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
 
-  <title>Hello, world!</title>
+  <title>Promociones</title>
 </head>
 <body>
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-lg-12 col-sm-12 col-xl-12">
-        <h2>Viajes</h2>
+        <h2>Promociones</h2>
         <br />
         <button id="btnAgregar" type="button" class="btn btn-success" style="margin-left: 50%;">Agregar Viaje</button>
         <br />
         <?php 
         require_once "../Datos/DaoPromociones.php";
+        require_once "../Datos/DaoViaje.php";
+        require_once "../Pojos/PojoOfertas.php";
         $daoPromociones = new DaoPromociones();
+        $pojo = new PojoOfertas();
+        $daoViaje = new DaoViaje();
         $lista = $daoPromociones->obtenerPromociones();
         $listaDes = $daoPromociones->obtenerDestinos();
 
@@ -40,6 +44,7 @@
               <th scope="col">costo Adulto</th>
               <th scope="col">Costo Niño Menos de 6 Años</th>
               <th scope="col">Costo Niño Mayor de 6 Años</th>
+              <th scope="col">Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -76,28 +81,27 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modificar Viaje</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Modificar Promociones</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <label for="cmbIdAutobus">Numero del ID autobus</label>
-          <select class="form-control" name="cmbIdAutobus">
-            <option>11</option>
-            <option>12</option>
-          </select>
+          <div class="form-group">
+            <label for="txtDestino">Destino</label>
+            <input type="text" class="form-control" name="txtDestino" placeholder="Costo Adulto" id="txtDestino">
+          </div>
           <div class="form-group">
             <label for="txtCostoAdulto">Costo Adulto</label>
-            <input type="text" class="form-control" name="txtCostoAdulto" placeholder="Costo Adulto">
+            <input type="text" class="form-control" name="txtCostoAdulto" placeholder="Costo Adulto" id="txtCostoAdulto">
           </div>
           <div class="form-group">
             <label for="txtCostoNiño">Costo Menores de 6 años</label>
-            <input type="text" class="form-control" name="txtCostoNiño" placeholder="Costo Mayores de 6 años">
+            <input type="text" class="form-control" name="txtCostoNiño" placeholder="Costo Mayores de 6 años" id="txtCostoNiño">
           </div>
           <div class="form-group">
             <label for="txtCostoMay">Costo Mayores de 6 años</label>
-            <input type="text" class="form-control" name="txtCostoMay" placeholder="Costo Mayores de 6 años">
+            <input type="text" class="form-control" name="txtCostoMay" placeholder="Costo Mayores de 6 años" id="txtCostoMay">
           </div>
         </div>
         <div class="modal-footer">
@@ -115,7 +119,6 @@
 <script type="text/javascript" src="JS/datatables.min.js"></script>
 <script type="text/javascript" src="JS/dataTables.bootstrap4.js"></script>
 <script type="text/javascript" src="JS/jquery.scrollUp.js"></script>
-<script type="text/javascript" src="JS/funciones.js"></script>
 <script type="text/javascript" src="JS/alertify.js"></script>
 
 <script>
@@ -151,25 +154,28 @@
     location.href ="agregarPromocion.php";
   });
 
+  function agregarForm(datos)
+  {
+    d=datos.split('||');
+    $("#txtDestino").val(d[0]);
+    $("#txtCostoAdulto").val(d[1]);
+    $("#txtCostoNiño").val(d[2]);
+    $("#txtCostoMay").val(d[3]);
+
+  }
+
 </script>
 
 <?php 
 if (isset($_GET['add'])) {
   if (isset($_POST)) {
-    $pojo-> idAutobus=$_POST['cmbIdAutobus'];
-    $pojo-> destino=$_POST['txtDestino'];
-    $pojo-> hora=$_POST['txtHoraSalida'];
+    var_dump($_POST["txtDestino"]);
+    $idViaje = $daoViaje->getIdViaje($_POST["txtDestino"]);
+    $pojo-> idOferta= $daoPromociones-> obtenerIdOferta($idViaje);
     $pojo-> costo=$_POST['txtCostoAdulto'];
     $pojo-> costoNinio=$_POST['txtCostoNiño'];
     $pojo-> costoAd=$_POST['txtCostoMay'];
-    $pojo-> descripcion=$_POST['txtDescripcion'];
-    $pojo-> dia=$_POST['txtDia'];
-    $pojo-> mes=$_POST['txtMes'];
-    $pojo-> anio=$_POST['txtAnio'];
-    $pojo-> nota=$_POST['txtNota'];
-    $pojo-> itinerario=$_POST['txtItinerario'];
-    $pojo-> img=$_POST['btnSubirImagen'];
-    $daoViaje->editarViaje($pojo);
+    $daoPromociones->editarPromocion($pojo);
     echo "<script>alert('Datos Guardados')</script>";
   }
 }
