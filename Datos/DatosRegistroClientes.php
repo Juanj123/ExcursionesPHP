@@ -48,8 +48,17 @@ private $conexion; /*Crea una variable conexion*/
         $clave=0;
 		//try 
 		//{
-        $con1= password_hash($obj->pw,PASSWORD_DEFAULT);
-        $con2= password_hash($obj->passadmin, PASSWORD_DEFAULT)
+        if($obj->pw == null){
+            $con2= password_hash($obj->passadmin, PASSWORD_DEFAULT);
+        }
+        else{
+          if($obj->passadmin == null){
+            $con1= password_hash($obj->pw,PASSWORD_DEFAULT);
+          }
+          
+        }
+        
+        
 
         echo "<script>alert('$con1')</script>";
             $sql = "INSERT INTO usuarios (nombres,apellidos,telefono,edad,correo,direccion,Usuario, contraseña,tipo, passadmin) values('$obj->nombres', '$obj->apellidos','$obj->telefono', '$obj->edad', '$obj->correo', '$obj->direccion','$obj->usuario', '$con1', '$obj->tipo', '$con2')";
