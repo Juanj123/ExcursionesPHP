@@ -169,14 +169,13 @@
 <?php 
 if (isset($_GET['add'])) {
   if (isset($_POST)) {
-    var_dump($_POST["txtDestino"]);
-    $idViaje = $daoViaje->getIdViaje($_POST["txtDestino"]);
-    $pojo-> idOferta= $daoPromociones-> obtenerIdOferta($idViaje);
+    $idViaje = $daoPromociones->getIdViajePromo(trim($_POST["txtDestino"]," "));
+    $pojo-> idOferta= $daoPromociones->obtenerIdOferta($idViaje);
     $pojo-> costo=$_POST['txtCostoAdulto'];
     $pojo-> costoNinio=$_POST['txtCostoNiño'];
     $pojo-> costoAd=$_POST['txtCostoMay'];
     $daoPromociones->editarPromocion($pojo);
-    echo "<script>alert('Datos Guardados')</script>";
+    echo "<script>location.href='promocionesAdmin.php'</script>";
   }
 }
 ?>

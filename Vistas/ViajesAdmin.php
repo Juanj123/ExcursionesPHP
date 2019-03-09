@@ -27,6 +27,8 @@
         <br />
         <?php 
         require_once "../Datos/DaoViaje.php";
+        require_once "../Pojos/PojoViaje.php";
+        $pojo = new PojoViaje();
         $daoViaje = new DaoViaje();
         $lista = $daoViaje->getDatosViaje();
 
@@ -207,10 +209,6 @@
     $("#txtAnio").val(d[8]);
     $("#txtNota").val(d[9]);
     $("#txtItinerario").val(d[10]);
-
-
-
-
   }
 
 </script>
@@ -218,6 +216,7 @@
 <?php 
 if (isset($_GET['add'])) {
   if (isset($_POST)) {
+    $pojo-> idViaje=$daoViaje->getIdViaje(trim($_POST["txtDestino"]," "));
     $pojo-> idAutobus=$_POST['cmbIdAutobus'];
     $pojo-> destino=$_POST['txtDestino'];
     $pojo-> hora=$_POST['txtHoraSalida'];
@@ -232,7 +231,7 @@ if (isset($_GET['add'])) {
     $pojo-> itinerario=$_POST['txtItinerario'];
     $pojo-> img=$_POST['btnSubirImagen'];
     $daoViaje->editarViaje($pojo);
-    echo "<script>alert('Datos Guardados')</script>";
+    echo "<script>location.href='ViajesAdmin.php'</script>";
   }
 }
 ?>
