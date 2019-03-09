@@ -48,30 +48,25 @@ private $conexion; /*Crea una variable conexion*/
         $clave=0;
 		//try 
 		//{
-            $sql = "INSERT INTO usuarios (nombres,apellidos,telefono,edad,correo,direccion,Usuario, contraseña,tipo) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $con1= password_hash($obj->pw,PASSWORD_DEFAULT);
+        $con2= password_hash($obj->passadmin, PASSWORD_DEFAULT)
+
+        echo "<script>alert('$con1')</script>";
+            $sql = "INSERT INTO usuarios (nombres,apellidos,telefono,edad,correo,direccion,Usuario, contraseña,tipo, passadmin) values('$obj->nombres', '$obj->apellidos','$obj->telefono', '$obj->edad', '$obj->correo', '$obj->direccion','$obj->usuario', '$con1', '$obj->tipo', '$con2')";
             
             $this->conectar();
             $this->conexion->prepare($sql)
-                 ->execute(
-                array(
-                		$obj->nombres,
-                		$obj->apellidos,
-                		$obj->telefono,
-                		$obj->edad,
-                		$obj->correo,
-                		$obj->direccion,
-                		$obj->usuario,
-                		$obj->pw,
-                        $obj->tipo));
+                 ->execute();
             $clave=$this->conexion->lastInsertId();
             return $clave;
-		//} catch (Exception $e) 
-//			return $clave;
-		//}finally{
+	//} catch (Exception $e) { 
+			//return $clave;
+	//}finally{
             
             /*
             En caso de que se necesite manejar transacciones, no deberá desconectarse mientras la transacción deba persistir
             */
             Conexion::cerrarConexion();
         }
-	}
+      }
+	
