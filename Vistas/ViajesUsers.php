@@ -24,18 +24,18 @@
             <fieldset style="border-style: solid; border: solid;" class="col-12">
               
                <legend>Buscar Viajes</legend>
-                     <div class="row"><p class="col-8">: <input type="text" name="Ingresa Busqueda:" class="col-9 form-control"></p>
+                     <div class="row"><p class="col-8">Buscar: <input type="text" name="Busqueda:" class=" form-control" id="buscar" placeholder="Ingresa Busqueda"></p>
 
-                    <p class="col-1"> <input type="radio" name="checkbox" id="checkbox_1" value="value">
+                    <p class="col-1 offset-0"> <input type="radio" name="checkbox" id="checkbox_1" value="value">
                    <label for="checkbox_1">Destino</label></p>
-                   <p class="col-1"> <input type="radio" name="checkbox" id="checkbox_2" value="value">
+                   <p class="col-1 offset-0"> <input type="radio" name="checkbox" id="checkbox_2" value="value">
                    <label for="checkbox_2" class="Success Checkbox">Mes</label></p>
-                   <p class="col-1"> <input type="radio" name="checkbox" id="checkbox_3" value="value">
+                   <p class="col-1 offset-0"> <input type="radio" name="checkbox" id="checkbox_3" value="value">
                    <label for="checkbox_3">Año</label></p></div>
                    
 
               </fieldset>  
-              <img >
+              
             </div>
         </div>
         <div class="row col-12">
@@ -57,6 +57,8 @@
              ?>
         </div>
       </div>
-    
+    <script >
+      $("buscar").typea
+    </script>
 </body>
 </html>
