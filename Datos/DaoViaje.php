@@ -6,48 +6,48 @@ require_once '../Pojos/PojoAutobus.php';
 class DaoViaje
 {
     private $conexion; /*Crea una variable conexion*/
-	private function conectar()
-	{
-		try{
-			$this->conexion = Conexion::abrirConexion(); /*inicializa la variable conexion, llamando el metodo abrirConexion(); de la clase Conexion por medio de una instancia*/
-		}
-		catch(Exception $e)
-		{
-			die($e->getMessage()); /*Si la conexion no se establece se cortara el flujo enviando un mensaje con el error*/
-		}
-	}
-	public function registrarViaje(PojoViaje $obj)
-	{
-        var_dump($obj);
-		$clave=0;
-		try 
-		{
-			$sql = "INSERT INTO viajes (img, destino, hora_salida, costo_adulto, costo_niño, costo_ad, descripcion, dia, mes, año, nota, itinerario) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private function conectar()
+    {
+      try{
+         $this->conexion = Conexion::abrirConexion(); /*inicializa la variable conexion, llamando el metodo abrirConexion(); de la clase Conexion por medio de una instancia*/
+     }
+     catch(Exception $e)
+     {
+         die($e->getMessage()); /*Si la conexion no se establece se cortara el flujo enviando un mensaje con el error*/
+     }
+ }
+ public function registrarViaje(PojoViaje $obj)
+ {
+    var_dump($obj);
+    $clave=0;
+    try 
+    {
+     $sql = "INSERT INTO viajes (img, destino, hora_salida, costo_adulto, costo_niño, costo_ad, descripcion, dia, mes, año, nota, itinerario) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-			$this->conectar();
-			$this->conexion->prepare($sql)
-			->execute(
-				array(
-					$obj->img,
-					$obj->destino,
-					$obj->hora,
-                    $obj->costo,
-                    $obj->costoNinio,
-                    $obj->costoAd,
-                    $obj->descripcion,
-                    $obj->dia,
-                    $obj->mes,
-                    $obj->anio,
-                    $obj->nota,
-                    $obj->itinerario
-				)
-			);
-			$clave=$this->conexion->lastInsertId();
-			return $clave;
-		} catch (Exception $e) 
-		{
-			return $clave;
-		}finally{
+     $this->conectar();
+     $this->conexion->prepare($sql)
+     ->execute(
+        array(
+           $obj->img,
+           $obj->destino,
+           $obj->hora,
+           $obj->costo,
+           $obj->costoNinio,
+           $obj->costoAd,
+           $obj->descripcion,
+           $obj->dia,
+           $obj->mes,
+           $obj->anio,
+           $obj->nota,
+           $obj->itinerario
+       )
+    );
+     $clave=$this->conexion->lastInsertId();
+     return $clave;
+ } catch (Exception $e) 
+ {
+     return $clave;
+ }finally{
 
             /*
             En caso de que se necesite manejar transacciones, no deberá desconectarse mientras la transacción deba persistir
@@ -90,43 +90,13 @@ class DaoViaje
     		{
     			$obj = new PojoViaje();
                 $obj->idViaje = $fila->idViaje;
-    			$obj->destino = $fila->destino;
-    			$obj->hora = $fila->hora_salida;
-    			$obj->dia = $fila->dia;
-    			$obj->mes = $fila->mes;
-    			$obj->anio = $fila->ano;
+                $obj->destino = $fila->destino;
+                $obj->hora = $fila->hora_salida;
+                $obj->dia = $fila->dia;
+                $obj->mes = $fila->mes;
+                $obj->anio = $fila->ano;
                 $obj->costo = $fila->costo_adulto;
                 $obj->descripcion = $fila->descripcion;
-
-    			$lista[] = $obj;
-    		}
-
-    		return $lista;
-    	}
-    	catch(Exception $e){
-    		echo $e->getMessage();
-    		return null;
-    	} finally {
-    		Conexion::cerrarConexion();
-    	}
-    }
-    public function obtenerAutobus($id)
-    {
-        try
-        {
-            $this->conectar();
-
-            $lista = array(); /*Se declara una variable de tipo  arreglo que almacenará los registros obtenidos de la BD*/
-
-            $sentenciaSQL = $this->conexion->prepare("SELECT idAutobus FROM autobus"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
-
-            $sentenciaSQL->execute();/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
-
-            /*Se recorre el cursor para obtener los datos*/
-            foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)
-            {
-                $obj = new PojoAutobus();
-                $obj->idAutobus = $fila->idAutobus;
 
                 $lista[] = $obj;
             }
@@ -134,90 +104,183 @@ class DaoViaje
             return $lista;
         }
         catch(Exception $e){
-            echo $e->getMessage();
-            return null;
-        } finally {
-            Conexion::cerrarConexion();
-        }
-    }
-    public function editarViaje(PojoViaje $obj)
+          echo $e->getMessage();
+          return null;
+      } finally {
+          Conexion::cerrarConexion();
+      }
+  }
+  public function obtenerAutobus($id)
+  {
+    try
     {
-        var_dump($obj);
-        
+        $this->conectar();
+
+        $lista = array(); /*Se declara una variable de tipo  arreglo que almacenará los registros obtenidos de la BD*/
+
+        $sentenciaSQL = $this->conexion->prepare("SELECT idAutobus FROM autobus"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
+
+        $sentenciaSQL->execute();/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
+
+        /*Se recorre el cursor para obtener los datos*/
+        foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)
+        {
+            $obj = new PojoAutobus();
+            $obj->idAutobus = $fila->idAutobus;
+
+            $lista[] = $obj;
+        }
+
+        return $lista;
+    }
+    catch(Exception $e){
+        echo $e->getMessage();
+        return null;
+    } finally {
+        Conexion::cerrarConexion();
+    }
+}
+public function editarViaje(PojoViaje $obj)
+{
+    var_dump($obj);
+
         //try 
         //{
-            $sql = "UPDATE viajes SET 
-            img= ?,
-            destino= ?,
-            hora_regreso= ?,
-            hora_salida= ?,
-            costo_adulto= ?,
-            costo_niño= ?,
-            costo_ad= ?,
-            descripcion= ?,
-            dia= ?,
-            mes= ?,
-            año= ?,
-            nota= ?,
-            itinerario= ? 
-            WHERE idViaje = ?";
+    $sql = "UPDATE viajes SET 
+    img= ?,
+    destino= ?,
+    hora_regreso= ?,
+    hora_salida= ?,
+    costo_adulto= ?,
+    costo_niño= ?,
+    costo_ad= ?,
+    descripcion= ?,
+    dia= ?,
+    mes= ?,
+    año= ?,
+    nota= ?,
+    itinerario= ? 
+    WHERE idViaje = ?";
 
-            $this->conectar();
-            
-            $sentenciaSQL = $this->conexion->prepare($sql); 
+    $this->conectar();
 
-            $sentenciaSQL->execute(
-                array(
-                    $obj->idViaje,
-                    $obj->img,
-                    $obj->destino,
-                    $obj->hora,
-                    $obj->costo,
-                    $obj->costoNinio,
-                    $obj->costoAd,
-                    $obj->descripcion,
-                    $obj->dia,
-                    $obj->mes,
-                    $obj->anio,
-                    $obj->nota,
-                    $obj->itinerario
-                ));
+    $sentenciaSQL = $this->conexion->prepare($sql); 
+
+    $sentenciaSQL->execute(
+        array(
+            $obj->idViaje,
+            $obj->img,
+            $obj->destino,
+            $obj->hora,
+            $obj->costo,
+            $obj->costoNinio,
+            $obj->costoAd,
+            $obj->descripcion,
+            $obj->dia,
+            $obj->mes,
+            $obj->anio,
+            $obj->nota,
+            $obj->itinerario
+        ));
             //var_dump($sentenciaSQL);
-            return true;
+    return true;
         //} catch (Exception $e){
             //echo $e->getMessage();
             //return false;
         //}finally{
            // Conexion::cerrarConexion();
         //}
-    }
-    public function getIdViaje($destino)
+}
+public function getIdViaje($destino)
+{
+    $idViaje = 0;
+    try
     {
-        $idViaje = 0;
-        try
+        $this->conectar();
+
+        $lista = array(); /*Se declara una variable de tipo  arreglo que almacenará los registros obtenidos de la BD*/
+
+        $sentenciaSQL = $this->conexion->prepare("SELECT idViaje FROM viajes where destino like ?"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
+
+        $sentenciaSQL->execute([$destino]);/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
+
+        /*Se recorre el cursor para obtener los datos*/
+        foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)
         {
-            $this->conectar();
-
-            $lista = array(); /*Se declara una variable de tipo  arreglo que almacenará los registros obtenidos de la BD*/
-
-            $sentenciaSQL = $this->conexion->prepare("SELECT idViaje FROM viajes where destino like  = ?"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
-
-            $sentenciaSQL->execute([$destino]);/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
-
-            /*Se recorre el cursor para obtener los datos*/
-            foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)
-            {
-                $obj = new PojoViaje();
-                $idViaje = $obj->idViaje = $fila->idViaje;
-            }
-
-            return $idViaje;
+            $obj = new PojoViaje();
+            $idViaje = $obj->idViaje = $fila->idViaje;
         }
-        catch(Exception $e){
-            echo $e->getMessage();
-            return null;
-        } finally {
+
+        return $idViaje;
+    }
+    catch(Exception $e){
+        echo $e->getMessage();
+        return null;
+    } finally {
+        Conexion::cerrarConexion();
+    }
+}
+public function obtenerDestinos()
+{
+    try
+    {
+        $this->conectar();
+
+        $lista = array(); /*Se declara una variable de tipo  arreglo que almacenará los registros obtenidos de la BD*/
+
+        $sentenciaSQL = $this->conexion->prepare("SELECT destino FROM viajes"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
+
+        $sentenciaSQL->execute();/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
+
+        /*Se recorre el cursor para obtener los datos*/
+        foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)
+        {
+            $obj = new PojoAutobus();
+            $obj->destino = $fila->destino;
+
+            $lista[] = $obj;
+        }
+
+        return $lista;
+    }
+    catch(Exception $e){
+        echo $e->getMessage();
+        return null;
+    } finally {
+        Conexion::cerrarConexion();
+    }
+}
+
+public function registrarPromocion(PojoViaje $obj)
+{
+    var_dump($obj);
+    $clave=0;
+    try 
+    {
+     $sql = "INSERT INTO `ofertas`(`idViaje`, `costo_adulto`, `costo_niño`, `costo_ad`) VALUES(?,?,?,?)";
+
+     $this->conectar();
+     $this->conexion->prepare($sql)
+     ->execute(
+        array(
+            $obj->idViaje,
+            $obj->costo,
+            $obj->costoNinio,
+            $obj->costoAd
+        )
+    );
+     $clave=$this->conexion->lastInsertId();
+     return $clave;
+ } catch (Exception $e) 
+ {
+     return $clave;
+ }finally{
+
+            /*
+            En caso de que se necesite manejar transacciones, no deberá desconectarse mientras la transacción deba persistir
+            */
             Conexion::cerrarConexion();
         }
     }
+
 }

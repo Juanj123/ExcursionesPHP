@@ -148,7 +148,7 @@
   });
 
   $("#btnAgregar").click(function () {
-    location.href ="agregarViaje.php";
+    location.href ="agregarPromocion.php";
   });
 
 </script>
