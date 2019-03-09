@@ -25,12 +25,11 @@
     <?php
     $objDaoAparta = new DaoApartaTuLugar();
     $objDaoPromociones = new DaoPromociones();
-    $idViaje = 2;
-    if ($objDaoAparta->ViajeOferta($idViaje) == 1 ) {
+    if ($objDaoAparta->ViajeOferta($idvi) == 1 ) {
         echo "<script>alert('Este Viaje tiene Descuento');</script>";
-        $lista = $objDaoAparta->getDatosOferta($idViaje);
+        $lista = $objDaoAparta->getDatosOferta($idvi);
     }else{
-        $lista = $objDaoAparta->getDatosViaje($idViaje);
+        $lista = $objDaoAparta->getDatosViaje($idvi);
     }
     
 
@@ -178,7 +177,7 @@
         </div>
     </div>
     <?php
-    $idAutobus = $objDaoAparta->getTipoAutobus($idViaje);
+    $idAutobus = $objDaoAparta->getTipoAutobus($idvi);
     echo "<script>
     var a = ".$idAutobus.";
     </script>";
@@ -192,7 +191,7 @@
             $pojo-> idAutobus= $idAutobus;
             $_SESSION['Nombre']="bmxpc7";
             $pojo-> idUsuario= $objDaoAparta->getIdUsuario($_SESSION['Nombre']);
-            $pojo-> idViaje=   $idViaje;
+            $pojo-> idViaje=   $idvi;
             $arregloAsientos = array();
             $arregloFinal = array();
             $valores = $_COOKIE["Asientos"];
