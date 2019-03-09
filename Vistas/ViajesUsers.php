@@ -22,37 +22,36 @@
         <div class="row">
             <div class="col-12"> 
             <fieldset style="border-style: solid; border: solid;" class="col-12">
-
+              
                <legend>Buscar Viajes</legend>
                      <div class="row"><p class="col-8">: <input type="text" name="Ingresa Busqueda:" class="col-9 form-control"></p>
 
-                    <p class="col-1"> <input type="checkbox" name="checkbox" id="checkbox_id" value="value">
-                   <label for="checkbox_id">Destino</label></p>
-                   <p class="col-1"> <input type="checkbox" name="checkbox" id="checkbox_id" value="value">
-                   <label for="checkbox_id">Mes</label></p>
-                   <p class="col-1"> <input type="checkbox" name="checkbox" id="checkbox_id" value="value">
-                   <label for="checkbox_id">Año</label></p></div>
+                    <p class="col-1"> <input type="radio" name="checkbox" id="checkbox_1" value="value">
+                   <label for="checkbox_1">Destino</label></p>
+                   <p class="col-1"> <input type="radio" name="checkbox" id="checkbox_2" value="value">
+                   <label for="checkbox_2" class="Success Checkbox">Mes</label></p>
+                   <p class="col-1"> <input type="radio" name="checkbox" id="checkbox_3" value="value">
+                   <label for="checkbox_3">Año</label></p></div>
                    
 
               </fieldset>  
+              <img >
             </div>
         </div>
-        <div class="row">
+        <div class="row col-12">
             <?php 
                 $objviajes= new DatosViajes();
 
                 $lista= $objviajes->obtenerviajes();
-
-                
                 foreach ($lista as $list ) {
-                     echo "entre";
-                   echo "<div class=promo style=float:left overflow:hidden margin-left:25px margin-top:15px>";
-                    echo "<div class=imge><img  style=width:400px height:200px></div> ";
+                    
+                   echo "<div class='promo' style='float:left;overflow:hid
+                   den;margin-left:25px;margin-top:15px;'>";
+                    echo "<div class='imge'><img src='$list->img' style='width:400px;height:200px;'></div> ";
                     echo "<h3>$list->destino</h3>";
-                    echo "<div class=txt><p class=text-justify pe>BALNEARIO LA GRUTA👙 Y A DISFRUTAR DE UNA TARDE EN SAN MIGUEL DE ALLENDE🏦 DOMINGO 12 DE MAYO 2019 Vamos a disfrutar de las aguas termales del balneario la gruta en San Miguel de Allende y como el lugar lo cierran temprano nos vamos a disfrutar de una tarde-noche en San Miguel de Allende..te late ?? !!</p> </div>";
-                    echo "<div class=pi style=overflow:hidden><h4 style=float:left></h4><Button class=btn btn-success btnIdViaje style=float:right><i class=fas fa-bus></i>Reservar</Button></div>";
+                    echo "<div class='txt'><p class='text-justifype pe'>BALNEARIO LA GRUTA👙 Y A DISFRUTAR DE UNA TARDE EN SAN MIGUEL DE ALLENDE🏦 DOMINGO 12 DE MAYO 2019 Vamos a disfrutar de las aguas termales del balneario la gruta en San Miguel de Allende y como el lugar lo cierran temprano nos vamos a disfrutar de una tarde-noche en San Miguel de Allende..te late ?? !!</p></div>";
+                    echo "<div class='pi' style='overflow: hidden'><h4 style='float: left'>$ $list->costoad Adultos</h4><Button class='btn btn-success IdViaje' style='float: right'><i class='fas fa-bus'></i>Reservar</Button></div>";
                     echo "</div>";
-                    echo "sali";
                 }
                
              ?>

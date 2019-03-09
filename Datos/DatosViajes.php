@@ -33,6 +33,7 @@ require_once '../Pojos/PojoAutobus.php';
     		{
     			$obj = new PojoViaje();
     			$obj->idViaje = $fila->idViaje;
+                $obj->img = $fila->img;
     			$obj->dia = $fila->dia;
     			$obj->mes= $fila->mes;
     			$obj->año = $fila->año;
