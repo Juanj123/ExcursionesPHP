@@ -19,26 +19,21 @@
 </head>
 <body>
      <div class="container-fluid">
+      <br>
         <div class="row">
-            <div class="col-12"> 
-            <fieldset style="border-style: solid; border: solid;" class="col-12">
-              
-               <legend>Buscar Viajes</legend>
-                     <div class="row"><p class="col-8">Buscar: <input type="text" name="Busqueda:" class=" form-control" id="buscar" placeholder="Ingresa Busqueda"></p>
-
-                    <p class="col-1 offset-0"> <input type="radio" name="checkbox" id="checkbox_1" value="value">
-                   <label for="checkbox_1">Destino</label></p>
-                   <p class="col-1 offset-0"> <input type="radio" name="checkbox" id="checkbox_2" value="value">
-                   <label for="checkbox_2" class="Success Checkbox">Mes</label></p>
-                   <p class="col-1 offset-0"> <input type="radio" name="checkbox" id="checkbox_3" value="value">
-                   <label for="checkbox_3">Año</label></p></div>
-                   
-
-              </fieldset>  
-              
-            </div>
+           <div class="col-8">
+            <input type="text" name="Busqueda:" class="form-control" id="buscar" placeholder="Ingresa Busqueda">
+           </div>
+           <div class="col-4">
+             <input class="offset-1" type="radio" name="checkbox" id="checkbox_1" value="value">
+             <label for="checkbox_1">Destino</label>
+             <input class="offset-1" type="radio" name="checkbox" id="checkbox_2" value="value">
+             <label for="checkbox_2" class="Success Checkbox">Mes</label>
+             <input class="offset-1" type="radio" name="checkbox" id="checkbox_3" value="value">
+             <label for="checkbox_3">Año</label>
+           </div>
         </div>
-        <div class="row col-12">
+        <div class="row ">
           <form method="post" action="apartaTuLugar.php">
             <?php 
                 $objviajes= new DatosViajes();

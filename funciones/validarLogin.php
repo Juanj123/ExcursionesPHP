@@ -11,14 +11,12 @@
 	  $pass=$_POST['contrasena'];
 	  
 	  $usuarioss= $crud->obtenerUsuario($username,$pass);
-      var_dump($usuarioss);
+      
 	  if($usuarioss->id != NULL){
 	  		$_SESSION['login'] = $usuarioss;
 
 	  		if($usuarioss->contraseña == null and $usuarioss->passadmin != null){
-	  			
                  header('Location: ../vistas/index_Aministrator.php');
-
 	  		}
 	  		else{
 	  			if($usuarioss->contraseña != null and $usuarioss->passadmin == null){
@@ -32,8 +30,6 @@
 	  }
 	 
 	}
-	
-
 	//echo "hola";
 	//$objDatoViajes = new DatosLogin();
 

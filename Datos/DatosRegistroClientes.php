@@ -1,7 +1,7 @@
 <?php
 //require_once '../../ExcursionesPHP/Datos/DatosRegistroClientes.php'; /*importa Conexion.php*/
 require_once '../Datos/Conexion.php';
-require_once '../../ExcursionesPHP/Pojos/PojoRegistros.php';
+require_once '../Pojos/PojoRegistros.php';
 require_once '../Vistas/login.php';
  /*importa el modelo */
    $nombre= $_POST["nombre"];
@@ -50,10 +50,12 @@ private $conexion; /*Crea una variable conexion*/
 		//{
         if($obj->pw == null){
             $con2= password_hash($obj->passadmin, PASSWORD_DEFAULT);
+            $con1= $obj->pw;
         }
         else{
           if($obj->passadmin == null){
             $con1= password_hash($obj->pw,PASSWORD_DEFAULT);
+            $con2= $obj->passadmin;
           }
           
         }
