@@ -108,15 +108,15 @@
           </div>
           <div class="form-group">
             <label for="txtCostoAdulto">Costo Adulto</label>
-            <input type="text" class="form-control" name="txtCostoAdulto" id="txtCostoAdulto" placeholder="Costo Adulto">
+            <input type="number" class="form-control" name="txtCostoAdulto" id="txtCostoAdulto" placeholder="Costo Adulto">
           </div>
           <div class="form-group">
             <label for="txtCostoNiño">Costo Menores de 6 años</label>
-            <input type="text" class="form-control" name="txtCostoNiño" id="txtCostoNiño" placeholder="Costo Mayores de 6 años">
+            <input type="number" class="form-control" name="txtCostoNiño" id="txtCostoNiño" placeholder="Costo Mayores de 6 años">
           </div>
           <div class="form-group">
             <label for="txtCostoMay">Costo Mayores de 6 años</label>
-            <input type="text" class="form-control" name="txtCostoMay" id="txtCostoMay" placeholder="Costo Mayores de 6 años">
+            <input type="number" class="form-control" name="txtCostoMay" id="txtCostoMay" placeholder="Costo Mayores de 6 años">
           </div>
           <div class="form-group">
             <label for="txtDescripcion">Descripcion</label>
@@ -125,9 +125,9 @@
           <label>Fecha del Viaje</label>
           <br>
           <div class="btn-group" role="group" aria-label="Basic example">
-            <input type="text" class="form-control" name="txtDia" id="txtDia" placeholder="Dia">
-            <input type="text" class="form-control" name="txtMes" id="txtMes" placeholder="Mes">
-            <input type="text" class="form-control" name="txtAnio" id="txtAnio" placeholder="Año">
+            <input type="number" class="form-control" name="txtDia" id="txtDia" placeholder="Dia">
+            <input type="number" class="form-control" name="txtMes" id="txtMes" placeholder="Mes">
+            <input type="number" class="form-control" name="txtAnio" id="txtAnio" placeholder="Año">
           </div>
           <div class="form-group">
             <label for="txtNota">Nota</label>

@@ -8,7 +8,7 @@
   <!-- Bootstrap CSS -->
   <link href=" css/bootstrap.min.css" rel="stylesheet" />
 
-  <title>Hello, world!</title>
+  <title>Agregar Viaje</title>
 </head>
 <body>
   <?php 
@@ -16,8 +16,7 @@
   require_once "../Pojos/PojoViaje.php";
   $daoViaje = new DaoViaje();
   $pojo = new PojoViaje();
-  $lista = $daoViaje->getDatosViaje();
-
+  $imgDir = "/imgPrueba";
   ?>
   <div class="container">
     <div class="row">
@@ -39,15 +38,15 @@
           </div>
           <div class="form-group">
             <label for="txtCostoAdulto">Costo Adulto</label>
-            <input type="text" class="form-control" name="txtCostoAdulto" placeholder="Costo Adulto">
+            <input type="number" class="form-control" name="txtCostoAdulto" placeholder="Costo Adulto">
           </div>
           <div class="form-group">
             <label for="txtCostoNiño">Costo Menores de 6 años</label>
-            <input type="text" class="form-control" name="txtCostoNiño" placeholder="Costo Mayores de 6 años">
+            <input type="number" class="form-control" name="txtCostoNiño" placeholder="Costo Mayores de 6 años">
           </div>
           <div class="form-group">
             <label for="txtCostoMay">Costo Mayores de 6 años</label>
-            <input type="text" class="form-control" name="txtCostoMay" placeholder="Costo Mayores de 6 años">
+            <input type="number" class="form-control" name="txtCostoMay" placeholder="Costo Mayores de 6 años">
           </div>
           <div class="form-group">
             <label for="txtDescripcion">Descripcion</label>
@@ -56,9 +55,9 @@
           <label>Fecha del Viaje</label>
           <br>
           <div class="btn-group" role="group" aria-label="Basic example">
-            <input type="text" class="form-control" name="txtDia" placeholder="Dia">
-            <input type="text" class="form-control" name="txtMes" placeholder="Mes">
-            <input type="text" class="form-control" name="txtAnio" placeholder="Año">
+            <input type="number" class="form-control" name="txtDia" placeholder="Dia">
+            <input type="number" class="form-control" name="txtMes" placeholder="Mes">
+            <input type="number" class="form-control" name="txtAnio" placeholder="Año">
           </div>
           <div class="form-group">
             <label for="txtNota">Nota</label>
@@ -94,6 +93,7 @@
       $pojo-> anio=$_POST['txtAnio'];
       $pojo-> nota=$_POST['txtNota'];
       $pojo-> itinerario=$_POST['txtItinerario'];
+
       $pojo-> img=$_POST['btnSubirImagen'];
       $daoViaje->registrarViaje($pojo);
       echo "<script>location.href ='AgregarViaje.php';</script>";
