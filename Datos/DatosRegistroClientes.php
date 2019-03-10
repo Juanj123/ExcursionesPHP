@@ -27,9 +27,8 @@ require_once '../Vistas/login.php';
    $objDaoAparta=new DatosRegistroClientes();
    $objDaoAparta->agregar($obj);
 
-   header("Location: ../Vistas/login.php");
-exit;
-   echo "<script>alert('registro guardado')</script>";
+   //header("Location: ../vistas/login.php");
+   echo "<script>location.href= '../vistas/login.php'</script>";
 
 class DatosRegistroClientes
 {
