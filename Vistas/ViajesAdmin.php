@@ -30,8 +30,7 @@
         require_once "../Pojos/PojoViaje.php";
         $pojo = new PojoViaje();
         $daoViaje = new DaoViaje();
-        $lista = $daoViaje->getDatosViaje();
-
+        $lista = $daoViaje->getDatosViajeOri();
         ?>
         <table id="tableViajes" class="table table-bordered table-hover table-responsive-sm table-responsive-md text-center">
           <thead class=" text-white" style="background-color: #c3497f;">
@@ -70,7 +69,7 @@
               <td><?php echo($clave->{"descripcion"}); ?></td>
               <td>
                 <button class="btn btn-success" data-target="#ModalModificar" data-toggle="modal" onclick="agregarForm(' <?php echo $datos ?>')">Editar</button>
-                <button class="btn btn-danger" onclick="preguntarSiNo('<?php echo ($clave->{"idViaje"}); ?>')">Eliminar</button>
+                <?php echo '<a href=eliminarViaje.php?delete&idViaje='.$clave->{"idViaje"}.' class="btn btn-danger">Eliminar</a>';;?>
               </td>
             </tr>
           </tbody>
@@ -144,21 +143,19 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
         </div>
       </div>
     </div>
   </form>
 </div>
-
 <script type="text/javascript" src="JS/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="JS/popper.min.js"></script>
 <script type="text/javascript" src="JS/bootstrap.min.js"></script>
 <script type="text/javascript" src="JS/datatables.min.js"></script>
 <script type="text/javascript" src="JS/dataTables.bootstrap4.js"></script>
 <script type="text/javascript" src="JS/jquery.scrollUp.js"></script>
-<script type="text/javascript" src="JS/funciones.js"></script>
 <script type="text/javascript" src="JS/alertify.js"></script>
 
 <script>
@@ -209,6 +206,23 @@
     $("#txtAnio").val(d[8]);
     $("#txtNota").val(d[9]);
     $("#txtItinerario").val(d[10]);
+  }
+
+  function preguntarSiNo(id)
+  {
+    alert(id);
+    alertify.confirm('Eliminar datos','¿Esta seguro de eliminar este registro?',
+      function(){
+        eleminarDatos(id);
+      },
+      function(){
+        alertify.error('Se cancelo');
+      });
+  }
+
+  function eleminarDatos(id)
+  {
+    document.cookie = "idEliminar = "+id;
   }
 
 </script>

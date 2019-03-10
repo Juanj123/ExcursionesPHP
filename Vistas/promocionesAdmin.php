@@ -34,7 +34,6 @@
         $daoViaje = new DaoViaje();
         $lista = $daoPromociones->obtenerPromociones();
         $listaDes = $daoPromociones->obtenerDestinos();
-
         ?>
         <table id="tableViajes" class="table table-bordered table-hover table-responsive-sm table-responsive-md text-center">
           <thead class=" text-white" style="background-color: #c3497f;">
@@ -55,7 +54,6 @@
             $clave->{"costoNinio"}."||".
             $clave->{"costoAd"};
             ?>
-
             <tr>
               <td><?php echo($clave->{"destino"}); ?></td>
               <td><?php echo($clave->{"costo"}); ?></td>
@@ -63,7 +61,7 @@
               <td><?php echo($clave->{"costoAd"}); ?></td>
               <td>
                 <button class="btn btn-success" data-target="#ModalModificar" data-toggle="modal" onclick="agregarForm(' <?php echo $datos ?>')">Editar</button>
-                <button class="btn btn-danger" onclick="preguntarSiNo('<?php echo ($clave->{"idViaje"}); ?>')">Eliminar</button>
+                <?php echo '<a href=eliminarPromocion.php?delete&idOferta='.$daoPromociones->obtenerIdOferta($daoPromociones->getIdViajePromo(trim($clave->{"destino"}," "))).' class="btn btn-danger">Eliminar</a>';;?>
               </td>
             </tr>
           </tbody>
@@ -162,6 +160,39 @@
     $("#txtCostoNiño").val(d[2]);
     $("#txtCostoMay").val(d[3]);
 
+  }
+
+  function preguntarSiNo(id)
+  {
+    alert(id);
+    alertify.confirm('Eliminar datos','¿Esta seguro de eliminar este registro?',
+      function(){
+        eleminarDatos(id);
+      },
+      function(){
+        alertify.error('Se cancelo');
+      });
+  }
+
+  function eleminarDatos(id)
+  {
+    cadena = "idOferta" + id;
+
+    $.ajax({
+     type:"POST",
+     url:"../eliminarDatos.php",
+     data: cadena,
+     success: function(r){
+      console.log(r.d);
+      if(r)
+      {
+       alertify.success('Eliminado con exito');
+       /* window.location = "Videos.php";*/
+     }else{
+       alertify.error('Fallo el servidor');
+     }
+   }
+ });
   }
 
 </script>

@@ -55,7 +55,7 @@ class DaoViaje
             Conexion::cerrarConexion();
           }
         }
-        public function eliminar($id)
+        public function eliminarViaje($id)
         {
           try 
           {
@@ -104,7 +104,7 @@ class DaoViaje
       }
     }
     
-    public function getDatosViaje()
+    public function getDatosViajeOri()
     {
     	try
     	{
@@ -112,7 +112,7 @@ class DaoViaje
 
     		$lista = array(); /*Se declara una variable de tipo  arreglo que almacenará los registros obtenidos de la BD*/
 
-    		$sentenciaSQL = $this->conexion->prepare("SELECT img, destino, hora_salida, costo_adulto, costo_niño as costo_ninio, costo_ad, descripcion, dia, mes, año as ano, nota, itinerario FROM viajes"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
+    		$sentenciaSQL = $this->conexion->prepare("SELECT img, destino, hora_salida, costo_adulto, costo_niño as costo_ninio, costo_ad, descripcion, dia, mes, año as ano, nota, itinerario, idViaje FROM viajes"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
 
     		$sentenciaSQL->execute();/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
 
@@ -132,6 +132,7 @@ class DaoViaje
           $obj->anio = $fila->ano;
           $obj->nota = $fila->nota;
           $obj->itinerario = $fila->itinerario;
+          $obj->idViaje = $fila->idViaje;
 
           $lista[] = $obj;
         }
