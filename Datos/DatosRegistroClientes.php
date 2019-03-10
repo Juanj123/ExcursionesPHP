@@ -1,7 +1,8 @@
-<?php
+<?php 
+
 //require_once '../../ExcursionesPHP/Datos/DatosRegistroClientes.php'; /*importa Conexion.php*/
 require_once '../Datos/Conexion.php';
-require_once '../../ExcursionesPHP/Pojos/PojoRegistros.php';
+require_once '../Pojos/PojoRegistros.php';
 require_once '../Vistas/login.php';
  /*importa el modelo */
    $nombre= $_POST["nombre"];
@@ -26,7 +27,8 @@ require_once '../Vistas/login.php';
    $objDaoAparta=new DatosRegistroClientes();
    $objDaoAparta->agregar($obj);
 
-   header('Location: ../vistas/login.php');
+   //header("Location: ../vistas/login.php");
+   echo "<script>location.href= '../vistas/login.php'</script>";
 
 class DatosRegistroClientes
 {
@@ -50,17 +52,19 @@ private $conexion; /*Crea una variable conexion*/
 		//{
         if($obj->pw == null){
             $con2= password_hash($obj->passadmin, PASSWORD_DEFAULT);
+            $con1= $obj->pw;
         }
         else{
           if($obj->passadmin == null){
             $con1= password_hash($obj->pw,PASSWORD_DEFAULT);
+            $con2= $obj->passadmin;
           }
           
         }
         
         
 
-        echo "<script>alert('$con1')</script>";
+        //echo "<script>alert('$con1')</script>";
             $sql = "INSERT INTO usuarios (nombres,apellidos,telefono,edad,correo,direccion,Usuario, contraseña,tipo, passadmin) values('$obj->nombres', '$obj->apellidos','$obj->telefono', '$obj->edad', '$obj->correo', '$obj->direccion','$obj->usuario', '$con1', '$obj->tipo', '$con2')";
             
             $this->conectar();
@@ -78,4 +82,4 @@ private $conexion; /*Crea una variable conexion*/
             Conexion::cerrarConexion();
         }
       }
-	
+	?>

@@ -11,18 +11,16 @@
 	  $pass=$_POST['contrasena'];
 	  
 	  $usuarioss= $crud->obtenerUsuario($username,$pass);
-      var_dump($usuarioss);
+      
 	  if($usuarioss->id != NULL){
 	  		$_SESSION['login'] = $usuarioss;
 
 	  		if($usuarioss->contraseña == null and $usuarioss->passadmin != null){
-	  			
                  header('Location: ../vistas/index_Aministrator.php');
-
 	  		}
 	  		else{
 	  			if($usuarioss->contraseña != null and $usuarioss->passadmin == null){
-	  				echo "<script>alert('entre')</script>";
+	  				//echo "<script>alert('entre')</script>";
                     header('Location: ../vistas/index_User.php');
 	  			}
 	  		}
@@ -31,9 +29,12 @@
 	  	header('Location: ../vistas/login.php');
 	  }
 	 
+	}else
+	{
+		if(isset($_POST['Registrar'])){
+			header("Location: ../vistas/Registro_Clientes.php");
+		}
 	}
-	
-
 	//echo "hola";
 	//$objDatoViajes = new DatosLogin();
 

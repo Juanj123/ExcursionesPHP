@@ -17,7 +17,7 @@
         }
         .login-box {
             width: 420px;
-            height: 420px;
+            height: 440px;
             background: rgba(0,0,0,0.5);
             color: #fff;
             top: 50%;
@@ -109,10 +109,42 @@
                  <p>Contraseña</p>
                 <input  type="password" class="form-control campos" ID="txtcontrasena" name="contrasena" placeholder="Ingresa contraseña" />
                 <BUTTON type="submit" name="Entrar" value="Entrar"  ID="entrar" >Entrar</BUTTON>
-                <a href="#">Olvidaste Contraseña?</a>
-                <BUTTON type="" value="Registrar" ID="entrar2">Registrar </BUTTON> 
+                <br>
+                <BUTTON type="submit" name="Registrar" ID="entrar2">Registrar </BUTTON> 
+                <a  href="../funciones/correoOlvidarContra.php">Olvidaste Contraseña?</a>
+                
             </form>
         </div>
+
+        <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <div class="container-fluid">
+           <div class="row">
+               <div class="col-2">
+                   <LABEL>Introduce tu correo:</LABEL>
+               </div>
+               <div class="col-10">
+                   <input type="text" name="" placeholder="Introduce Correo">
+               </div>
+           </div>
+       </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
     
 </body>
 </html>
