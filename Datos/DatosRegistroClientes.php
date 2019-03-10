@@ -1,4 +1,5 @@
-<?php
+<?php 
+
 //require_once '../../ExcursionesPHP/Datos/DatosRegistroClientes.php'; /*importa Conexion.php*/
 require_once '../Datos/Conexion.php';
 require_once '../Pojos/PojoRegistros.php';
@@ -26,7 +27,9 @@ require_once '../Vistas/login.php';
    $objDaoAparta=new DatosRegistroClientes();
    $objDaoAparta->agregar($obj);
 
-   header('Location: ../vistas/login.php');
+   header("Location: ../Vistas/login.php");
+exit;
+   echo "<script>alert('registro guardado')</script>";
 
 class DatosRegistroClientes
 {
@@ -62,7 +65,7 @@ private $conexion; /*Crea una variable conexion*/
         
         
 
-        echo "<script>alert('$con1')</script>";
+        //echo "<script>alert('$con1')</script>";
             $sql = "INSERT INTO usuarios (nombres,apellidos,telefono,edad,correo,direccion,Usuario, contraseña,tipo, passadmin) values('$obj->nombres', '$obj->apellidos','$obj->telefono', '$obj->edad', '$obj->correo', '$obj->direccion','$obj->usuario', '$con1', '$obj->tipo', '$con2')";
             
             $this->conectar();
@@ -80,4 +83,4 @@ private $conexion; /*Crea una variable conexion*/
             Conexion::cerrarConexion();
         }
       }
-	
+	?>

@@ -20,7 +20,7 @@
 	  		}
 	  		else{
 	  			if($usuarioss->contraseña != null and $usuarioss->passadmin == null){
-	  				echo "<script>alert('entre')</script>";
+	  				//echo "<script>alert('entre')</script>";
                     header('Location: ../vistas/index_User.php');
 	  			}
 	  		}
@@ -29,6 +29,11 @@
 	  	header('Location: ../vistas/login.php');
 	  }
 	 
+	}else
+	{
+		if(isset($_POST['Registrar'])){
+			header("Location: ../vistas/Registro_Clientes.php");
+		}
 	}
 	//echo "hola";
 	//$objDatoViajes = new DatosLogin();
