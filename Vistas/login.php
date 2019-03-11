@@ -145,6 +145,6 @@
     </div>
   </div>
 </div>
-    
+     <script type="text/javascript" src="JS/alertify.js"></script>
 </body>
 </html>

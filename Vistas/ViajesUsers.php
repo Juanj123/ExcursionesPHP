@@ -2,7 +2,8 @@
 <?php include 'headerUser.php';  ?>
     <link rel="stylesheet" href="../Vistas/CSS/animate.min.css">
     <link rel="stylesheet" href="../vistas/CSS/apartaTuLugar.css" />
-    <link rel="stylesheet" type="text/css" href="../Vistas/CSS/estilosPrincipal.css">
+    <link rel="stylesheet" type="text/css" href="CSS/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="CSS/estilosPrincipal.css">
 <body>
                <?php 
                 include "../Datos/DatosViajes.php";
@@ -12,7 +13,7 @@
       <br>
         <div class="row">
            <div class="col-8">
-            <input type="text" name="Busqueda:" class="form-control" id="buscar" placeholder="Ingresa Busqueda">
+            <input type="text" name="buscar" class="form-control" id="buscar" placeholder="Ingresa Busqueda">
            </div>
            <div class="col-4">
              <input class="offset-1" type="radio" name="checkbox" id="checkbox_1" value="value">
@@ -44,6 +45,25 @@
              </form>
         </div>
       </div>
+      
+      <script type="text/javascript" src="JS/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript" src="JS/popper.min.js"></script>
+      <script type="text/javascript" src="JS/bootstrap.js"></script>
+      <script type="text/javascript" src="JS/alertify.js"></script>
+      
+      <script>
+        $(document).ready(function(){
+             //alertify.alert('Hola', 'Hola Mundo');
+             var items=[
+                "elemento 1",
+                "elemento 2"
+             ];
+
+             $("#buscar").autocomplete({
+                source: items
+             });
+        });
+      </script>
 </body>
 
 <?php include 'footerUser.html';  ?>

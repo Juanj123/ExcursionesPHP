@@ -25,7 +25,11 @@
 	  			}
 	  		}
 	  }else{
-	  	echo "<script>alert('Usuario o contraseña incorrectos')</script>";
+	  	echo "<script>
+        $(document).ready(function(){
+             alertify.alert('Hola', 'Hola Mundo');
+        });
+      </script>";
 	  	header('Location: ../vistas/login.php');
 	  }
 	 
@@ -35,40 +39,4 @@
 			header("Location: ../vistas/Registro_Clientes.php");
 		}
 	}
-	//echo "hola";
-	//$objDatoViajes = new DatosLogin();
-
-	//$resultado = $objDatoViajes->validarLogin($username,$pass);
-
-
-     //var_dump($resultado);
-
-	/*if($resultado==false){
-            echo "<script>alert('Bienvenido administrador')</script>";
-			echo "<script>location.href='../vistas/index_Aministrator.php'</script>";
-	}
-	else{
-		echo "<script>alert('contraseña incorrecta')</script>";
-	}
-/*
-
-	/*if($f2=mysql_fetch_array($sql2)){
-		if($pass=$f2['passadmin']){
-			echo "<script>alert('Bienvenido administrador')</script>";
-			echo "<script>window.location.href='index_Aministrador.php'</script>";
-		}
-	}
-
-	$sql= mysql_query("SELECT * from usuarios where correo='$username' or Usuario='$username'", $conexionn);
-	
-	if($f2=mysql_fetch_array($sql)){
-		if($pass=$f2['contraseña']){
-			
-			echo "<script>window.location.href='index_User.php'</script>";
-		}
-		else{
-			echo "<script>alert('contraseña incorrecta')</script>";
-		}
-	}
-	*/
 ?>
