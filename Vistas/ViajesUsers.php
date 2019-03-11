@@ -1,23 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Viajes</title>
-     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+<?php include 'headerUser.php';  ?>
     <link rel="stylesheet" href="../Vistas/CSS/animate.min.css">
     <link rel="stylesheet" href="../vistas/CSS/apartaTuLugar.css" />
     <link rel="stylesheet" type="text/css" href="../Vistas/CSS/estilosPrincipal.css">
-<link href="../Vistas/JS/bootstrap.min.js" rel="stylesheet" type="text/js" />
-
-            <?php 
+<body>
+               <?php 
                 include "../Datos/DatosViajes.php";
                 require_once "../Pojos/PojoViaje.php";      
             ?>
-</head>
-<body>
      <div class="container-fluid">
       <br>
         <div class="row">
@@ -55,4 +45,5 @@
         </div>
       </div>
 </body>
-</html>
+
+<?php include 'footerUser.html';  ?>
