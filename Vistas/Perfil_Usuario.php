@@ -34,7 +34,7 @@ require_once '../Datos/DatosLogin.php';
   <div class="form-row">
     <div class="col-md-12 mb-12">
       <label for="validation01">Nombre(s):</label>
-      <input type="text" name="nombre" class="form-control" value= <?php $contenido['nombres'] ;?> id="validation01" placeholder="Nombre(s):" required>
+      <input type="text" name="nombre" class="form-control" value= "<?php echo $contenido['0']->nombres ?>" id="validation01" placeholder="Nombre(s):" required>
       <div class="invalid-feedback">
           Algo anda mal!
         </div>
@@ -44,7 +44,7 @@ require_once '../Datos/DatosLogin.php';
     </div>
     <div class="col-md-12 mb-12">
       <label for="validation02">Apellido(s):</label>
-      <input type="text" name="apellido" class="form-control" id="validation02" placeholder="Apellido(s)" required>
+      <input type="text" name="apellido" value= "<?php echo $contenido['0']->apellidos ?>" class="form-control" id="validation02" placeholder="Apellido(s)" required>
       <div class="invalid-feedback">
           Algo anda mal!
         </div>
@@ -58,7 +58,7 @@ require_once '../Datos/DatosLogin.php';
         <div class="input-group-prepend">
           <span class="input-group-text" id="inputGroupPrepend">@</span>
         </div>
-        <input type="email" name="correo" class="form-control" id="validationCustomUsername" placeholder="Correo" aria-describedby="inputGroupPrepend" required>
+        <input type="email" name="correo" class="form-control" value= "<?php echo $contenido['0']->correo ?>" id="validationCustomUsername" placeholder="Correo" aria-describedby="inputGroupPrepend" required>
         <div class="invalid-feedback"> 
           Algo anda mal!
         </div>
@@ -68,7 +68,7 @@ require_once '../Datos/DatosLogin.php';
   <div class="form-row">
     <div class="col-md-12 mb-12">
       <label for="validationCustom03">Dirección</label>
-      <input type="text" name="direccion" class="form-control" id="validationCustom03" placeholder="Dirección" required>
+      <input type="text" name="direccion" value= "<?php echo $contenido['0']->direccion ?>" class="form-control" id="validationCustom03" placeholder="Dirección" required>
       <div class="invalid-feedback">
         Algo anda mal!
       </div>
@@ -76,14 +76,14 @@ require_once '../Datos/DatosLogin.php';
 
     <div class="col-md-12 mb-12">
       <label for="validationCustom04">Teléfono</label>
-      <input type="number" name="telefono" class="form-control" id="validationCustom04" placeholder="Teléfono" required>
+      <input type="number" name="telefono" class="form-control" id="validationCustom04" value= "<?php echo $contenido['0']->telefono ?>" placeholder="Teléfono" required>
       <div class="invalid-feedback">
         Algo anda mal!
       </div>
     </div>
     <div class="col-md-12 mb-12">
       <label for="validationCustom05">Edad</label>
-      <input type="number" name="edad" class="form-control" id="validationCustom05" placeholder="number" required>
+      <input type="number" name="edad" class="form-control" value= "<?php echo $contenido['0']->edad ?>" id="validationCustom05" placeholder="number" required>
       <div class="invalid-feedback">
         Algo anda mal!
       </div>
