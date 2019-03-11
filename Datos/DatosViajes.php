@@ -57,5 +57,73 @@ require_once '../Pojos/PojoAutobus.php';
     		Conexion::cerrarConexion();
     	}
 	}
+
+    public function obtenerdestino(){
+        try
+        {
+            $this->conectar();
+
+            $lista = array(); /*Se declara una variable de tipo  arreglo que almacenará los registros obtenidos de la BD*/
+
+            $sentenciaSQL = $this->conexion->prepare("SELECT distinct destino FROM viajes "); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
+
+            $sentenciaSQL->execute();/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
+
+            /*Se recorre el cursor para obtener los datos*/
+            foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)
+            {
+                $equipo = utf8_encode($fila->destino);
+                array_push($lista, $equipo);
+            }
+
+            return $lista;
+        }
+        catch(Exception $e){
+            echo $e->getMessage();
+            return null;
+        } finally {
+            Conexion::cerrarConexion();
+        }
+    }
+    public function obtenerviajesFD($destino){
+        try
+        {
+            $this->conectar();
+
+            $lista = array(); /*Se declara una variable de tipo  arreglo que almacenará los registros obtenidos de la BD*/
+
+            $sentenciaSQL = $this->conexion->prepare("SELECT * FROM viajes where destino=$destino"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
+
+            $sentenciaSQL->execute();/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
+
+            /*Se recorre el cursor para obtener los datos*/
+            foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)
+            {
+                $obj = new PojoViaje();
+                $obj->idViaje = $fila->idViaje;
+                $obj->img = $fila->img;
+                $obj->dia = $fila->dia;
+                $obj->mes= $fila->mes;
+                $obj->año = $fila->año;
+                $obj->destino = $fila->destino;
+                $obj->hora = $fila->hora_salida;
+                $obj->descripcion = $fila->descripcion;
+                $obj->nota= $fila->nota;
+                $obj->costo = $fila->costo_ad;
+                $obj->CostoNino = $fila->costo_niño;
+                $obj->costoad = $fila->costo_adulto;
+
+                $lista[] = $obj;
+            }
+
+            return $lista;
+        }
+        catch(Exception $e){
+            echo $e->getMessage();
+            return null;
+        } finally {
+            Conexion::cerrarConexion();
+        }
+    }
  }
  ?>

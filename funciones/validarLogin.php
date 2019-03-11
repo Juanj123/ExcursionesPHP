@@ -13,7 +13,9 @@
 	  $usuarioss= $crud->obtenerUsuario($username,$pass);
       
 	  if($usuarioss->id != NULL){
-	  		$_SESSION['login'] = $usuarioss;
+	  	   
+	  		$_SESSION['login'] = $usuarioss->usuario;
+	  		echo $_SESSION['login'];
 
 	  		if($usuarioss->contraseña == null and $usuarioss->passadmin != null){
                  header('Location: ../vistas/index_Aministrator.php');

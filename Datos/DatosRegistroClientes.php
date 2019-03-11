@@ -81,5 +81,6 @@ private $conexion; /*Crea una variable conexion*/
             */
             Conexion::cerrarConexion();
         }
+       
       }
 	?>

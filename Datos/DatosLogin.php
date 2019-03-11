@@ -1,6 +1,7 @@
 <?php 
 require_once 'Conexion.php'; /*importa Conexion.php*/
 require_once '../Pojos/PojoApartaTuLugar.php'; /*importa el modelo */
+require_once '../Pojos/PojoRegistros.php';
 require_once '../Pojos/PojoUsuarios.php';
 require_once '../Pojos/PojoViaje.php';
 require_once '../Pojos/PojoAutobus.php';
@@ -19,35 +20,6 @@ class DatosLogin
        // }
     }
 
-    public function validarLogin($usuario, $contra){
-       // try
-        //{
-            $this->conectar();
-
-            $sentenciaSQL = $this->conexion->prepare("SELECT * FROM usuarios where (Usuario = '$usuario' or correo = '$usuario') and (contraseña = '$contra' or passadmin= '$contra';"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
-            $lista= array();
-            //$sentenciaSQL->execute();/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
-            $sentenciaSQL-> execute();/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
-            
-            /*Se recorre el cursor para obtener los datos*/
-            foreach($sentenciaSQL-> fetchAll(PDO::FETCH_OBJ) as $fila)
-            {
-                $obj = new PojoUsuarios();
-                $obj-> nombres = $fila-> nombres;
-                $obj-> apellidos = $fila-> apellidos;
-
-                $lista[] = $obj;
-            }
-//Conexion::cerrarConexion();
-            return $lista;
-        //}
-        //catch(Exception $e){
-          //  echo $e->getMessage();
-          //  return null;
-        //} finally {
-           
-        //}
-    } 
     public function obtenerUsuario($nombre, $clave){
             $this->conectar();
             $select=$this->conexion->prepare("SELECT * FROM usuarios WHERE Usuario='$nombre'");//AND clave=:clave
@@ -95,9 +67,45 @@ class DatosLogin
                     return $usuario;
                      }
             }
-           
-            
+
+public function obtenerUsuariobyid($usuario){
+        try
+        {
+            $this->conectar();
+
+            $lista = array(); /*Se declara una variable de tipo  arreglo que almacenará los registros obtenidos de la BD*/
+
+            $sentenciaSQL = $this->conexion->prepare("SELECT * FROM usuarios where Usuario='$usuario'"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
+
+            $sentenciaSQL->execute();/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
+
+            /*Se recorre el cursor para obtener los datos*/
+            foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)
+            {
+                $usuario = new PojoRegistros();
+
+                      $usuario->id = $fila->idUsuario;
+                      $usuario->nombres= $fila->nombres;
+                      $usuario->apellidos= $fila->apellidos;
+                      $usuario->telefono = $fila->telefono;
+                      $usuario->edad = $fila->edad;
+                      $usuario->correo = $fila->correo;
+                      $usuario->direccion = $fila->direccion;
+                     
+
+                $lista[] = $usuario;
+            }
+
+            return $lista;
         }
+        catch(Exception $e){
+            echo $e->getMessage();
+            return null;
+        } finally {
+            Conexion::cerrarConexion();
+        }
+    }
+  }
 
 ?>
 
