@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <?php 
-        $idvi=$_POST['id'];
-        echo "<script>alert('$idvi')</script>";
-     ?>
+    $idvi=$_POST['id'];
+    echo "<script>alert('$idvi')</script>";
+    setcookie("idViaje", $idvi,time()+30);
+    ?>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,7 +22,7 @@
     require_once("../Pojos/PojoApartaTuLugar.php");
     ?>
 </head>
-<body>
+<body id="hola">
     <?php
     $objDaoAparta = new DaoApartaTuLugar();
     $objDaoPromociones = new DaoPromociones();
@@ -184,36 +185,38 @@
     ?>
 
     <?php 
-    $pojo = new PojoApartaTuLugar();
-    if (isset($_GET['add'])) {
-        if (isset($_POST)) {    
-            $pojo-> totalPagar= $_COOKIE["Total"];
-            $pojo-> idAutobus= $idAutobus;
-            $_SESSION['Nombre']="bmxpc7";
-            $pojo-> idUsuario= $objDaoAparta->getIdUsuario($_SESSION['Nombre']);
-            $pojo-> idViaje=   $idvi;
-            $arregloAsientos = array();
-            $arregloFinal = array();
-            $valores = $_COOKIE["Asientos"];
-            $arr1 = str_split($valores);
-            var_dump($arr1);
-            $contador = 0;
-            $arregloAsientos = preg_split("[,]", $valores);
-            $remp = array("Asiento","[","]","{","}",":",'"');
-            $arregloFinal = str_replace($remp, "", $arregloAsientos);
-            var_dump($arregloFinal);
-            
-            foreach ($arregloFinal as $asiento)
-            {
-                $pojo-> n_Asiento = $asiento;
-                $objDaoAparta->registrarAsientos($pojo);
+    try {
+        $pojo = new PojoApartaTuLugar();
+        if (isset($_GET['add'])) {
+            if (isset($_POST)) {
+                $pojo-> totalPagar= $_COOKIE["Total"];
+                $pojo-> idAutobus= $objDaoAparta->getTipoAutobus($_COOKIE["idViaje"]);
+                $_SESSION['Nombre']="bmxpc7";
+                $pojo-> idUsuario= $objDaoAparta->getIdUsuario($_SESSION['Nombre']);
+                $pojo-> idViaje= $_COOKIE["idViaje"];
+                $arregloAsientos = array();
+                $arregloFinal = array();
+                $valores = $_COOKIE["Asientos"];
+                $arr1 = str_split($valores);
+                $contador = 0;
+                $arregloAsientos = preg_split("[,]", $valores);
+                $remp = array("Asiento","[","]","{","}",":",'"');
+                $arregloFinal = str_replace($remp, "", $arregloAsientos);
+                foreach ($arregloFinal as $asiento)
+                {
+                    $pojo-> n_Asiento = $asiento;
+                    $objDaoAparta->registrarAsientos($pojo);
+                }
+                $objDaoAparta->registrarReservacion($pojo);
+                $pojo-> idReservacion=$objDaoAparta->getIdReservacion();
+                $objDaoAparta->registrarReservacionUsuario($pojo);
+                echo "<script>location.href='ViajesUsers.php'</script>";
             }
-            $objDaoAparta->registrarReservacion($pojo);
-            $pojo-> idReservacion=$objDaoAparta->getIdReservacion();
-            $objDaoAparta->registrarReservacionUsuario($pojo);
-            echo "<script>location.href='apartaTuLugar.php'</script>";
         }
-    } 
+    } catch (Exception $e) {
+        echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+    }finally{
+    }
     ?>
 
     <!-- Optional JavaScript -->
