@@ -21,7 +21,7 @@ Array.prototype.unique = function (a) {
 
 $(document).ready(function () {
     $("#txtTotal").val(Sumar());
-    $("#lblTotalNinos").html("$" + pagoNino().toString());
+    $("#lblTotalNinos").html("$" + pagoNinoMay().toString());
     $("#lblTotalNinosMay").html("$" + pagoNino().toString());
     $("#lblTotalAdultos").html("$" + pagoAdulto().toString());
     $("#Validacion").modal("show");
@@ -126,6 +126,8 @@ function mostrar() {
     $('#lblNinosMay').css({ 'display': 'block' });
     $('.btn.btn-dark').css({ 'margin-top': '-200px' });
     $('#oculto').css({ 'display': 'block' });
+    document.getElementById("cmbNinos").value = '0';
+    document.getElementById("cmbNinosMay").value = '0';
 }
 
 function Ocultar() {
@@ -136,6 +138,7 @@ function Ocultar() {
     $('#lblTotalNinosMay').css({ 'display': 'none' });
     $('.btn.btn-dark').css({ 'margin-top': '-300px' });
     document.getElementById("cmbNinos").value = '0';
+    document.getElementById("cmbNinosMay").value = '0';
     $("#txtTotal").val(Sumar());
 }
 
