@@ -36,7 +36,7 @@
 
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="Perfil_Usuario.php"><i class="fas fa-suitcase"></i> Viajes</a>
+                                <a class="nav-link" href="ViajesUsers.php"><i class="fas fa-suitcase"></i> Viajes</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#"><i class="fas fa-camera-retro"></i>Galeria</a>
@@ -47,14 +47,14 @@
                            
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fas fa-home"></i> Principal</a>
+                                <a class="nav-link" href="index_User.php"><i class="fas fa-home"></i> Principal</a>
                             </li>
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuario
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="PerfilUsuario.aspx">Perfil</a>
+                                    <a class="dropdown-item" href="Perfil_Usuario.php">Perfil</a>
                                     <a class="dropdown-item" href="#">Cambiar Contraseña</a>
                                     <a class="dropdown-item" href="#">Pagos</a>
                                     <div class="dropdown-divider"></div>
