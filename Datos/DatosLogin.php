@@ -105,7 +105,74 @@ public function obtenerUsuariobyid($usuario){
             Conexion::cerrarConexion();
         }
     }
+
+    public function modificar(PojoRegistros $obj)
+  {
+    
+    //try 
+    //{
+      $sql = "UPDATE usuarios SET 
+          
+                    nombres = ?,
+                    apellidos = ?,
+                    telefono = ?,
+                    edad = ?,
+                    correo = ?,
+                    direccion = ?
+                    WHERE idUsuario = ? ";
+
+            $this->conectar();
+            
+            $sentenciaSQL = $this->conexion->prepare($sql); 
+
+      $sentenciaSQL->execute(
+        array(    
+          //$obj->idVideo,
+              
+            $obj->nombres,
+            $obj->apellidos,
+            $obj->telefono,
+            $obj->edad,
+            $obj->correo,
+            $obj->direccion,
+            $obj->idUsuario,));
+      //var_dump($sentenciaSQL);
+            return true;
+    //} catch (Exception $e){
+      //echo $e->getMessage();
+      //return false;
+    //}finally{
+           Conexion::cerrarConexion();
+        //}
   }
+
+  public function obtenerid($usuario){
+        //try
+        //{
+            $this->conectar();
+
+            //$lista = array(); /*Se declara una variable de tipo  arreglo que almacenará los registros obtenidos de la BD*/
+
+            $sentenciaSQL = $this->conexion->prepare("SELECT idUsuario from usuarios where Usuario='$usuario'"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
+
+            $sentenciaSQL->execute();/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
+
+            /*Se recorre el cursor para obtener los datos*/
+            foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)
+            {
+                      $usuario = $fila->idUsuario;
+
+            }
+
+            return $usuario;
+        //}
+        //catch(Exception $e){
+          //  echo $e->getMessage();
+            //return null;
+        //} finally {
+          //  Conexion::cerrarConexion();
+        }
+    }
 
 ?>
 
