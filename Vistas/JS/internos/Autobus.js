@@ -12,6 +12,7 @@
     } 
     $("#asientosAutobus").css({ 'display': 'block' });
     $("#btnSelectAsientos").css({ 'display': 'none' });
+    alert(leerCookie("AsientosOcupados"));
     var asientosOcupados;
     asientosOcupados = document.cookie.split(',');
     for (var j = 0; j < asientosOcupados.length; j++) {

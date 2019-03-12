@@ -23,7 +23,7 @@
       <div class="col-md-12 col-lg-12 col-sm-12 col-xl-12">
         <h2>Promociones</h2>
         <br />
-        <button id="btnAgregar" type="button" class="btn btn-success" style="margin-left: 50%;">Agregar Viaje</button>
+        <button id="btnAgregar" type="button" class="btn btn-success" style="margin-left: 50%;">Agregar Promocion</button>
         <br />
         <?php 
         require_once "../Datos/DaoPromociones.php";

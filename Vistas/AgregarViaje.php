@@ -40,11 +40,11 @@
             <input type="number" class="form-control" name="txtCostoAdulto" placeholder="Costo Adulto">
           </div>
           <div class="form-group">
-            <label for="txtCostoNiño">Costo Menores de 6 años</label>
+            <label for="txtCostoNiño">Costo <b>Menores</b> de 6 años</label>
             <input type="number" class="form-control" name="txtCostoNiño" placeholder="Costo Mayores de 6 años">
           </div>
           <div class="form-group">
-            <label for="txtCostoMay">Costo Mayores de 6 años</label>
+            <label for="txtCostoMay">Costo <b>Mayores</b> de 6 años</label>
             <input type="number" class="form-control" name="txtCostoMay" placeholder="Costo Mayores de 6 años">
           </div>
           <div class="form-group">

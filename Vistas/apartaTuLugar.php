@@ -25,6 +25,9 @@
 <body>
     <?php
     $objDaoAparta = new DaoApartaTuLugar();
+    $AsientosOcupados = array();
+    $AsientosOcupados = $objDaoAparta->getAsientosOcupados($idvi);
+    setcookie("AsientosOcupados", serialize($AsientosOcupados));
     $objDaoPromociones = new DaoPromociones();
     if ($objDaoAparta->ViajeOferta($idvi) == 1 ) {
         echo "<script>alert('Este Viaje tiene Descuento');</script>";

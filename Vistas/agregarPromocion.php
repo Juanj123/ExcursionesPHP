@@ -47,7 +47,7 @@
             <label for="txtCostoMay">Costo <b>Mayores</b> de 6 años</label>
             <input type="text" class="form-control" name="txtCostoMay" placeholder="Costo Mayores de 6 años">
           </div>
-          <button type="submit" class="btn btn-primary">Guardar Viaje</button>
+          <button type="submit" class="btn btn-primary">Guardar Promocion</button>
           <button type="button" class="btn btn-secondary">Cancelar</button>
         </form>
       </div>
