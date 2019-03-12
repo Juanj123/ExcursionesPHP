@@ -39,7 +39,7 @@
                                 <a class="nav-link" href="ViajesUsers.php"><i class="fas fa-suitcase"></i> Viajes</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fas fa-camera-retro"></i>Galeria</a>
+                                <a class="nav-link" href="GaleriaUsers.php"><i class="fas fa-camera-retro"></i>Galeria</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#"><i class="far fa-money-bill-alt"></i>Promociones</a>

@@ -1,5 +1,8 @@
 <?php include 'headerUser.php'; ?>
 <body>
+	<br>
+	<br>
+	
    <link href=" https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css" rel="styleshee"/>
     <link href="../Vistas/CSS/estilosGaleria.css" rel="stylesheet" />
 
@@ -68,7 +71,6 @@
 </div>
  
 </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
     <script>
     baguetteBox.run('.tz-gallery');
