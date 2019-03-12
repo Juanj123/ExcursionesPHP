@@ -22,6 +22,7 @@ Array.prototype.unique = function (a) {
 $(document).ready(function () {
     $("#txtTotal").val(Sumar());
     $("#lblTotalNinos").html("$" + pagoNino().toString());
+    $("#lblTotalNinosMay").html("$" + pagoNino().toString());
     $("#lblTotalAdultos").html("$" + pagoAdulto().toString());
     $("#Validacion").modal("show");
     
@@ -82,23 +83,15 @@ $(document).ready(function () {
 function Sumar() {
     var n1 = $(cmbAdultos).val();
     var n2 = $(cmbNinos).val();
-    var suma = parseInt(n1) + parseInt(n2);
+    var n3 = $(cmbNinosMay).val();
+    var suma = parseInt(n1) + parseInt(n2) + parseInt(n3);
     return suma;
 }
 
 function pagoTotal() {
-    var suma = parseFloat(pagoAdulto())+parseFloat(pagoNino())
+    var suma = parseFloat(pagoAdulto())+parseFloat(pagoNino())+parseFloat(pagoNinoMay())
     return suma;
 }
-
-$("#cmbAdultos").change(function () {
-    $("#txtTotal").val(Sumar());
-    $("#lblTotalAdultos").html("$" + pagoAdulto().toString());
-});
-$("#cmbNinos").change(function () {
-    $("#txtTotal").val(Sumar());
-    $("#lblTotalNinos").html("$" + pagoNino().toString());
-});
 
 $("#btnNiños").click(function () {
     visible++;
@@ -123,10 +116,14 @@ function validarLugares() {
 function mostrar() {
     $('#oculto').addClass('animated bounceInUp form-group col-md-4');
     $('#lblNinos').addClass('animated bounceInUp');
+    $('#lblNinosMay').addClass('animated bounceInUp');
     $('#lblTotalNinos').addClass('animated bounceInUp');
+    $('#lblTotalNinosMay').addClass('animated bounceInUp');
     $('#oculto').css({ 'display': 'block' });
     $('#lblTotalNinos').css({ 'display': 'block' });
+    $('#lblTotalNinosMay').css({ 'display': 'block' });
     $('#lblNinos').css({ 'display': 'block' });
+    $('#lblNinosMay').css({ 'display': 'block' });
     $('.btn.btn-dark').css({ 'margin-top': '-200px' });
     $('#oculto').css({ 'display': 'block' });
 }
@@ -135,6 +132,8 @@ function Ocultar() {
     $('#oculto').css({ 'display': 'none' });
     $('#lblTotalNinos').css({ 'display': 'none' });
     $('#lblNinos').css({ 'display': 'none' });
+    $('#lblNinosMay').css({ 'display': 'none' });
+    $('#lblTotalNinosMay').css({ 'display': 'none' });
     $('.btn.btn-dark').css({ 'margin-top': '-300px' });
     document.getElementById("cmbNinos").value = '0';
     $("#txtTotal").val(Sumar());
@@ -179,6 +178,13 @@ function pagoAdulto() {
     return suma;
 }
 
+function pagoNinoMay() {
+    var precio = $("#lblPrecioNinoMay").html()
+    var n2 = $("#cmbNinosMay").val();
+    var suma = precio * parseInt(n2);
+    return suma;
+}
+
 function pagoNino() {
     var precio = $("#lblPrecioNino").html()
     var n2 = $("#cmbNinos").val();
@@ -191,5 +197,10 @@ $("#cmbAdultos").change(function () {
 });
 $("#cmbNinos").change(function () {
     $("#txtTotal").val(Sumar());
-    $("#lblTotalNinos").html("$" + pagoNino().toString());
+    $("#lblTotalNinosMay").html("$" + pagoNino().toString());
+    
+});
+$("#cmbNinosMay").change(function () {
+    $("#txtTotal").val(Sumar());
+    $("#lblTotalNinos").html("$" + pagoNinoMay().toString());
 });

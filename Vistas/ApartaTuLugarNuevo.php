@@ -129,7 +129,9 @@
                     <li class="list-group-item">
                         <h3 style="margin-left: -70px">Total de Asientos</h3>
                         <input class="form-control" id="txtTotal" readonly="readonly" type="text" style="position: inherit; width: 50px; height: 50px; text-align: center; margin-top: -45px; margin-left: 270px" />
+                        <br>
                         <button type="button" class="btn btn-danger" id="btnSelectAsientos">Escoge tus asientos</button>
+                            <button id="btnConfirmar" type="button" class="btn btn-dark" style="display: none; margin-left: 30%">Confirmar Lugares</button> 
                     </li>
                 </ul>
             </div>
@@ -688,9 +690,12 @@
             $("#btnAs48").css({ 'backgroundColor': 'red' });
             $("#btnAs48").prop('disabled', true);
         }
+
 });
-    
+    $("#btnSelectAsientos").css({ 'display': 'none' });
+    $("#btnConfirmar").css({ 'display': 'block' });
         });
+
 $("#btnAs1").click(function () {
     asientosActivo1++;
     if (asientosActivo1 % 2 === 0) {
@@ -1362,7 +1367,76 @@ $("#btnAs48").click(function () {
         validarLugares();
     }
 });
+
+$("#btnConfirmar").click(function () {
+    $(".modal-body").html('<div class="alert alert-light" role="alert">' +
+        '<h3 style="color:black; text-align:center;">Lugares Apartados</h3>' +
+        '</div>' +
+        '<div class="alert alert-primary" role="alert">' +
+        '<h3 style="color:black; text-align:center;">Adultos</h3>' +
+        '</div>' +
+        '<h3 style="color:black; text-align:center;">' + document.getElementById('cmbAdultos').value + '</h3>' +
+        '<div class="alert alert-info" role="alert">' +
+        '<h3 style="color:black; text-align:center;">Niños</h3>' +
+        '</div>' +
+        '<h3 style="color:black; text-align:center;">' + document.getElementById('cmbNinos').value + '</h3>' +
+        '<div class="alert alert-dark" role="alert">' +
+        '<h3 style="color:black; text-align:center;">Total a pagar</h3>' +
+        '</div>' +
+        '<h3 style="color:black; text-align:center; font-weight: bold;">$' + (parseFloat(pagoAdulto()) + parseFloat(pagoNino())) + '</h3>' +
+        '<div class="alert alert-dark" role="alert">' +
+        '<h3 style="color:black; text-align:center;">Asientos Seleccionados</h3>' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<label for="Nota">Deja una Nota</label>' +
+        '<textarea class="form-control" id="Nota" rows="3"></textarea>' +
+        '</div>' +
+        '<div id="Padre"></div>');
+    $("#exampleModal").modal("show");
+    for (var j = 0; j < asientosSeleccionados.length; j++) {
+        var asiento = '<button type="button" class="btn btn-primary"><h4>Asiento <span class="badge badge-light">' + asientosSeleccionados.unique()[j] + '</span></h4></button>';
+        $("#Padre").append(asiento);
+    }
+    var Json = JSON.stringify(asientosSeleccionados.unique());
+    var date = new Date();
+    date.setTime(date.getTime() + (30 * 1000));
+    document.cookie = 'Asientos = {"Asiento":"' + Json + '"};';
+    document.cookie = 'Total =' + (parseFloat(pagoAdulto()) + parseFloat(pagoNino())) + ';';
+});
     </script>
+    <?php 
+    try {
+        $pojo = new PojoApartaTuLugar();
+        if (isset($_GET['add'])) {
+            if (isset($_POST)) {
+                $pojo-> totalPagar= $_COOKIE["Total"];
+                $pojo-> idAutobus= $objDaoAparta->getTipoAutobus($_COOKIE["idViaje"]);
+                $_SESSION['Nombre']="bmxpc7";
+                $pojo-> idUsuario= $objDaoAparta->getIdUsuario($_SESSION['Nombre']);
+                $pojo-> idViaje= $_COOKIE["idViaje"];
+                $arregloAsientos = array();
+                $arregloFinal = array();
+                $valores = $_COOKIE["Asientos"];
+                $arr1 = str_split($valores);
+                $contador = 0;
+                $arregloAsientos = preg_split("[,]", $valores);
+                $remp = array("Asiento","[","]","{","}",":",'"');
+                $arregloFinal = str_replace($remp, "", $arregloAsientos);
+                foreach ($arregloFinal as $asiento)
+                {
+                    $pojo-> n_Asiento = $asiento;
+                    $objDaoAparta->registrarAsientos($pojo);
+                }
+                $objDaoAparta->registrarReservacion($pojo);
+                $pojo-> idReservacion=$objDaoAparta->getIdReservacion();
+                $objDaoAparta->registrarReservacionUsuario($pojo);
+                echo "<script>location.href='ViajesUsers.php'</script>";
+            }
+        }
+    } catch (Exception $e) {
+        echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+    }finally{
+    }
+    ?>
 </body>
 </html>
-
