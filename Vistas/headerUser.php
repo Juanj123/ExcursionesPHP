@@ -36,7 +36,7 @@
 
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="ViajesUsers.php"><i class="fas fa-suitcase"></i> Viajes</a>
+                                <a class="nav-link" href="Perfil_Usuario.php"><i class="fas fa-suitcase"></i> Viajes</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#"><i class="fas fa-camera-retro"></i>Galeria</a>
