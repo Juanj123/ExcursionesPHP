@@ -1,5 +1,4 @@
-﻿
-var data;
+﻿var data;
 var tabla;
 function addRowDT(data)
 {

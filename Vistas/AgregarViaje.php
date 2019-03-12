@@ -16,13 +16,12 @@
   require_once "../Pojos/PojoViaje.php";
   $daoViaje = new DaoViaje();
   $pojo = new PojoViaje();
-  $imgDir = "/imgPrueba";
   ?>
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-lg-12 col-sm-12 col-xl-12">
         <h2>Agregar Viaje</h2>
-        <form method="POST" action="?add">
+        <form method="POST" action="?add" enctype="multipart/form-data">
           <label for="cmbIdAutobus">Numero del ID autobus</label>
           <select class="form-control" name="cmbIdAutobus">
             <option>11</option>
@@ -81,6 +80,12 @@
   <?php 
   if (isset($_GET['add'])) {
     if (isset($_POST)) {
+      $archivo = $_FILES["btnSubirImagen"]["tmp_name"];
+      $nombre = $_FILES["btnSubirImagen"]["name"];
+      $tipo = $_FILES["btnSubirImagen"]["type"];
+      $tamano = $_FILES["btnSubirImagen"]["size"];
+      $destino = "imgViaje/".$nombre;
+      $subido = move_uploaded_file($archivo, $destino);
       $pojo-> idAutobus=$_POST['cmbIdAutobus'];
       $pojo-> destino=$_POST['txtDestino'];
       $pojo-> hora=$_POST['txtHoraSalida'];
@@ -93,10 +98,14 @@
       $pojo-> anio=$_POST['txtAnio'];
       $pojo-> nota=$_POST['txtNota'];
       $pojo-> itinerario=$_POST['txtItinerario'];
-
-      $pojo-> img=$_POST['btnSubirImagen'];
-      $daoViaje->registrarViaje($pojo);
-      echo "<script>location.href ='AgregarViaje.php';</script>";
+      if ($subido) {
+        echo "Subido Exitosamente <br>";
+        $pojo-> img=$destino;
+        $daoViaje->registrarViaje($pojo);
+        echo "<script>location.href ='ViajesAdmin.php';</script>";
+      }else{
+         echo "Error al Subir Imagen";
+      }
     }
   }
   ?>

@@ -22,7 +22,7 @@
     require_once("../Pojos/PojoApartaTuLugar.php");
     ?>
 </head>
-<body id="hola">
+<body>
     <?php
     $objDaoAparta = new DaoApartaTuLugar();
     $objDaoPromociones = new DaoPromociones();
