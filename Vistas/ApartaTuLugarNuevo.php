@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <?php 
-    $idvi=6;
+    $idvi=1;
     echo "<script>alert('$idvi')</script>";
     setcookie("idViaje", $idvi,time()+30);
 

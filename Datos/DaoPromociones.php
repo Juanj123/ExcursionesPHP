@@ -168,20 +168,20 @@ public function editarPromocion(PojoOfertas $obj)
 }
 public function eliminarOferta($id)
 {
-  try 
-  {
+  //try 
+  //{
     $this->conectar();
 
     $sentenciaSQL = $this->conexion->prepare("DELETE FROM ofertas WHERE idOferta=?");                     
 
     $sentenciaSQL->execute([$id]);
     return true;
-  } catch (Exception $e) 
-  {
-    return false;
-  }finally{
+  //} catch (Exception $e) 
+  //{
+    //return false;
+  //}finally{
     Conexion::cerrarConexion();
-  }
+  //}
 
 }
 
