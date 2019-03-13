@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <?php 
+    session_start();
     $idvi=$_POST['id'];
     echo "<script>alert('$idvi')</script>";
     setcookie("idViaje", $idvi,time()+30);
@@ -1427,8 +1428,9 @@ $("#btnConfirmar").click(function () {
             if (isset($_POST)) {
                 $pojo-> totalPagar= $_COOKIE["Total"];
                 $pojo-> idAutobus= $objDaoAparta->getTipoAutobus($_COOKIE["idViaje"]);
-                $_SESSION['Nombre']="bmxpc7";
-                $pojo-> idUsuario= $objDaoAparta->getIdUsuario($_SESSION['Nombre']);
+                $juanjo=$_SESSION['login'];
+                echo "<script>alert('$juanjo');</script>";
+                $pojo-> idUsuario= $objDaoAparta->getIdUsuario($_SESSION['login']);
                 $pojo-> idViaje= $_COOKIE["idViaje"];
                 $arregloAsientos = array();
                 $arregloFinal = array();
@@ -1446,7 +1448,7 @@ $("#btnConfirmar").click(function () {
                 $objDaoAparta->registrarReservacion($pojo);
                 $pojo-> idReservacion=$objDaoAparta->getIdReservacion();
                 $objDaoAparta->registrarReservacionUsuario($pojo);
-                echo "<script>location.href='ViajesUsers.php'</script>";
+                echo "<script>window.location.href='ViajesUsers.php'</script>";
             }
         }
     } catch (Exception $e) {

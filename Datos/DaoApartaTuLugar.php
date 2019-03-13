@@ -56,31 +56,31 @@ class DaoApartaTuLugar
         {
 
          $clave=0;
-         try 
-         {
+         //try 
+         //{
           $sql = "INSERT INTO reservacion (idAutobus, idViaje, totalAPagar) values(?, ?, ?)";
 
           $this->conectar();
           $this->conexion->prepare($sql)
           ->execute(
            array(
-            $obj-> idAutobus,
-            $obj-> idViaje,
-            $obj-> totalPagar
+            $obj->idAutobus,
+            $obj->idViaje,
+            $obj->totalPagar
           )
          );
           $clave=$this->conexion->lastInsertId();
           return $clave;
-        } catch (Exception $e) 
-        {
-          return $clave;
-        }finally{
+        //} catch (Exception $e) 
+        //{
+         // return $clave;
+//        }finally{
 
             /*
             En caso de que se necesite manejar transacciones, no deberá desconectarse mientras la transacción deba persistir
             */
             Conexion::cerrarConexion();
-          }
+          //}
         }
         public function registrarReservacionUsuario(PojoApartaTuLugar $obj)
         {

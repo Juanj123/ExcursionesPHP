@@ -2,18 +2,9 @@
 <body>
 	<br>
 	<br>
-
-   <link href=" https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css" rel="styleshee"/>
-    <link href="../Vistas/CSS/estilosGaleria.css" rel="stylesheet" />
-
     <div class="container">
-     
- 
- 
 <div class="container gallery-container col-md-12 col-lg-12 col-sm-12 col-xl-12">
-  
     <div class="tz-gallery">
-  
         <div class="row mb-3">
             <div class="col-md-4">
                 <div class="card">
@@ -33,8 +24,8 @@
              
             <div class="col-md-4">
                 <div class="card">
-                    <a class="lightbox" href="img/47301056_2279072158829965_5230059007225364480_n.jpg">
-                    <img src="img/47301056_2279072158829965_5230059007225364480_n.jpg" alt="Park" class="card-img-top">
+                    <a class="lightbox" href="img/50839901_2488693981171657_3171322320002220032_n.jpg">
+                    <img src="img/50839901_2488693981171657_3171322320002220032_n.jpg" alt="Park" class="card-img-top">
                     </a>
                 </div>
             </div>
@@ -71,9 +62,11 @@
 </div>
  
 </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
-    <script>
-    baguetteBox.run('.tz-gallery');
-</script>
+    	 <script src="JS/baguetteBox.js"></script>
+	
 </body>
-<?php include 'footerUser.html'; ?>
+
+<script>
+    baguetteBox.run('.tz-gallery');
+    </script>
+<?php include 'footerUser.html' ?>
