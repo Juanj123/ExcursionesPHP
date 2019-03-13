@@ -338,8 +338,6 @@
         </tr> 
         </table> 
 <?php  }?>
-    
-            
         </div>
       </div>
     </div>
@@ -427,7 +425,6 @@
             </div>
         </div>
     <div class="col-sm">
-      <div id="tarjetaLugarViaje" style="position: absolute; margin-left: 65%; margin-top: 1px">
         <h2 id="lblDestino" style="position: center"><?php echo $lista[0]->{"destino"}; ?></h2>
         <div class="card" style="width: 25rem;">
             <img id="imgViaje" class="card-img-top" src= <?php echo $lista[0]->{"img"}; ?> alt="Card image cap">
@@ -459,11 +456,10 @@
             </div>
         </div>
     </div>
-    </div>
   </div>
 </div>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false" data-backdrop="static">
-        <form action="?add" method="POST">
+        <form action="ApartaTuLugarNuevo.php" method="POST">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">

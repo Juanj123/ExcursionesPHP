@@ -9,6 +9,7 @@
                 require_once "../Datos/Conexion.php";
                 include "../Datos/DatosViajes.php";
                 require_once "../Pojos/PojoViaje.php";  
+                require_once("../Datos/DaoApartaTuLugar.php");
 
                 $obj = new DatosViajes();
                 $listas = $obj->obtenerdestino();
@@ -73,5 +74,4 @@
     });
       </script>
 </body>
-
 <?php include 'footerUser.html';  ?>
