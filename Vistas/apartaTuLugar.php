@@ -5,7 +5,7 @@
     session_start();
     $idvi=$_POST['id'];
     echo "<script>alert('$idvi')</script>";
-    setcookie("idViaje", $idvi,time()+30);
+    setcookie("idViaje", $idvi,time()+150);
 
     ?>
     <!-- Required meta tags -->
@@ -1409,7 +1409,7 @@ $("#btnConfirmar").click(function () {
         '</div>' +
         '<div class="form-group">' +
         '<label for="Nota">Deja una Nota</label>' +
-        '<textarea class="form-control" id="Nota" rows="3"></textarea>' +
+        '<textarea name="txtNota"  class="form-control" id="Nota" rows="3"></textarea>' +
         '</div>' +
         '<div id="Padre"></div>');
     $("#exampleModal").modal("show");
@@ -1424,40 +1424,5 @@ $("#btnConfirmar").click(function () {
     document.cookie = 'Total =' + (parseFloat(pagoAdulto()) + parseFloat(pagoNino())) + ';';
 });
     </script>
-    <?php 
-    try {
-        $pojo = new PojoApartaTuLugar();
-        if (isset($_GET['add'])) {
-            if (isset($_POST)) {
-                $pojo-> totalPagar= $_COOKIE["Total"];
-                $pojo-> idAutobus= $objDaoAparta->getTipoAutobus($_COOKIE["idViaje"]);
-                $juanjo=$_SESSION['login'];
-                echo "<script>alert('$juanjo');</script>";
-                $pojo-> idUsuario= $objDaoAparta->getIdUsuario($_SESSION['login']);
-                $pojo-> idViaje= $_COOKIE["idViaje"];
-                $arregloAsientos = array();
-                $arregloFinal = array();
-                $valores = $_COOKIE["Asientos"];
-                $arr1 = str_split($valores);
-                $contador = 0;
-                $arregloAsientos = preg_split("[,]", $valores);
-                $remp = array("Asiento","[","]","{","}",":",'"');
-                $arregloFinal = str_replace($remp, "", $arregloAsientos);
-                foreach ($arregloFinal as $asiento)
-                {
-                    $pojo-> n_Asiento = $asiento;
-                    $objDaoAparta->registrarAsientos($pojo);
-                }
-                $objDaoAparta->registrarReservacion($pojo);
-                $pojo-> idReservacion=$objDaoAparta->getIdReservacion();
-                $objDaoAparta->registrarReservacionUsuario($pojo);
-                echo "<script>window.location.href='ViajesUsers.php'</script>";
-            }
-        }
-    } catch (Exception $e) {
-        echo 'Excepción capturada: ',  $e->getMessage(), "\n";
-    }finally{
-    }
-    ?>
   </body>
 </html>

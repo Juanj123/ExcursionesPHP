@@ -7,12 +7,14 @@ $objDaoAparta = new DaoApartaTuLugar();
 $objDaoPromociones = new DaoPromociones();
 $pojo = new PojoApartaTuLugar();
 if (isset($_POST)) {
+    $nota = $_POST["txtNota"];
     $pojo-> totalPagar= $_COOKIE["Total"];
     $pojo-> idAutobus= $objDaoAparta->getTipoAutobus($_COOKIE["idViaje"]);
     $juanjo=$_SESSION['login'];
     echo "<script>alert('$juanjo');</script>";
     $pojo-> idUsuario= $objDaoAparta->getIdUsuario($_SESSION['login']);
     $pojo-> idViaje= $_COOKIE["idViaje"];
+    $pojo-> nota= $nota;
     $arregloAsientos = array();
     $arregloFinal = array();
     $valores = $_COOKIE["Asientos"];

@@ -1,26 +1,72 @@
 <?php
-require_once '../fpdf/fpdf.php';
-require_once '../Datos/DaoApartaTuLugar.php';
-require_once '../Pojos/PojoApartaTuLugar.php';
-$pojo = new PojoApartaTuLugar();
-$daoAparta = new DaoApartaTuLugar();
+require('../fpdf/fpdf.php');
+
 class PDF extends FPDF
 {
-   //Cabecera de página
-   function Header()
-   {
+	function Header()
+	{
+		global $title;
+		$this->Image('../Vistas/img/Excursiones Lore Pantoja.png',10,8,33);
 
-       $this->Image('../Vistas/img/Excursiones Lore Pantoja.png',10,8,33);
+		$this->SetFont('Arial','B',30);
 
-      $this->SetFont('Arial','B',30);
+		$this->Cell(200,30,'Excursiones Lore Pantoja',0,0,'C');
+		$this->Ln(40);
+	}
 
-      $this->Cell(200,30,'Excursiones Lore Pantoja',0,0,'C');
-   }
+	function Footer()
+	{
+    // Posición a 1,5 cm del final
+		$this->SetY(-15);
+    // Arial itálica 8
+		$this->SetFont('Arial','I',8);
+    // Color del texto en gris
+		$this->SetTextColor(128);
+    // Número de página
+		$this->Cell(0,10,'Pagina '.$this->PageNo(),0,0,'C');
+	}
+
+	function ChapterTitle()
+	{
+    // Arial 12
+		$this->SetFont('Arial','',16);
+    // Color de fondo
+		$this->SetFillColor(0,0,0);
+	// Color de Letra
+		$this->SetTextColor(255,255,255);
+    // Título
+		$this->Cell(0,6,"Informacion del Usuario",0,0,'C',true);
+    // Salto de línea
+		$this->Ln(4);
+	}
+
+	function ChapterBody($file)
+	{
+    // Leemos el fichero
+		$txt = file_get_contents($file);
+    // Times 12
+		$this->SetFont('Times','',12);
+    // Imprimimos el texto justificado
+		$this->MultiCell(0,5,$txt);
+    // Salto de línea
+		$this->Ln();
+    // Cita en itálica
+		$this->SetFont('','I');
+		$this->Cell(0,5,'(fin del extracto)');
+	}
+
+	function PrintChapter($file)
+	{
+		$this->AddPage();
+		$this->ChapterTitle();
+		$this->ChapterBody($file);
+	}
 }
 
-//Creación del objeto de la clase heredada
-$pdf=new PDF();
-$pdf->AddPage();
-$pdf->SetFont('Times','',12);
+$pdf = new PDF();
+$title = '20000 Leguas de Viaje Submarino';
+$pdf->SetTitle($title);
+$pdf->SetAuthor('Julio Verne');
+$pdf->PrintChapter('backupAparta.txt');
 $pdf->Output();
 ?>

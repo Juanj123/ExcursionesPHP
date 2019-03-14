@@ -58,7 +58,7 @@ class DaoApartaTuLugar
          $clave=0;
          //try 
          //{
-          $sql = "INSERT INTO reservacion (idAutobus, idViaje, totalAPagar) values(?, ?, ?)";
+          $sql = "INSERT INTO reservacion (idAutobus, idViaje, totalAPagar, nota) values(?, ?, ?, ?)";
 
           $this->conectar();
           $this->conexion->prepare($sql)
@@ -66,7 +66,8 @@ class DaoApartaTuLugar
            array(
             $obj->idAutobus,
             $obj->idViaje,
-            $obj->totalPagar
+            $obj->totalPagar,
+            $obj->nota
           )
          );
           $clave=$this->conexion->lastInsertId();

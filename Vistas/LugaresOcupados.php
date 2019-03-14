@@ -360,8 +360,55 @@
         </div>
     </div>
     </div>
-        
-    
+    <div class="col-sm">
+        <table id="tableViajes" class="table table-bordered table-hover table-responsive-sm table-responsive-md text-center">
+          <thead class=" text-white" style="background-color: #c3497f;">
+
+            <tr>
+              <th scope="col">Usuario</th>
+              <th scope="col">Hora</th>
+              <th scope="col">fecha</th>
+              <th scope="col">Costo</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+           <?php 
+           foreach ($lista as $clave) {
+            $datos = $clave->{"destino"}."||".
+            $clave->{"hora"}."||".
+            $clave->{"costo"}."||".
+            $clave->{"costoNinio"}."||".
+            $clave->{"costoAd"}."||".
+            $clave->{"descripcion"}."||".
+            $clave->{"dia"}."||".
+            $clave->{"mes"}."||".
+            $clave->{"anio"}."||".
+            $clave->{"nota"}."||".
+            $clave->{"itinerario"}."||".
+            $clave->{"img"};
+            ?>
+
+            <tr>
+              <td><?php echo($clave->{"destino"}); ?></td>
+              <td><?php echo($clave->{"hora"}); ?></td>
+              <td><?php echo($clave->{"dia"})."/".$clave->{"mes"}."/".$clave->{"anio"}; ?></td>
+              <td><?php echo($clave->{"costo"}); ?></td>
+              <td><?php echo($clave->{"descripcion"}); ?></td>
+              <td>
+                <button class="btn btn-success" data-target="#ModalModificar" data-toggle="modal" onclick="agregarForm(' <?php echo $datos ?>')">Editar</button>
+                <?php echo '<a href=eliminarViaje.php?delete&idViaje='.$clave->{"idViaje"}.' class="btn btn-danger">Eliminar</a>';;?>
+              </td>
+            </tr>
+          </tbody>
+
+          <?php 
+        }
+        ?>
+
+      </table>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="JS/jquery-3.3.1.min.js"></script>
