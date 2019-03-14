@@ -7,7 +7,7 @@
 .container.gallery-container {
     background-color: #fff;
     color: #35373a;
-    min-height: initial;
+    min-height: -webkit-fill-available;
     border-radius: 20px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.06);
 }
@@ -29,6 +29,8 @@
 
 .tz-gallery {
     padding: 40px;
+        /* WebKit-based browsers will ignore this. */
+    height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
 }
 
 
