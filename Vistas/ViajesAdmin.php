@@ -93,11 +93,6 @@
           </button>
         </div>
         <div class="modal-body">
-          <label for="cmbIdAutobus">Numero del ID autobus</label>
-          <select class="form-control" name="cmbIdAutobus">
-            <option>11</option>
-            <option>12</option>
-          </select>
           <div class="form-group">
             <label for="txtDestino">Destino</label>
             <input type="text" class="form-control" name="txtDestino" id="txtDestino" placeholder="Destino">
@@ -125,6 +120,7 @@
           <label>Fecha del Viaje</label>
           <br>
           <div class="btn-group" role="group" aria-label="Basic example">
+            <input type="date" name="fecha">
             <input type="number" class="form-control" name="txtDia" id="txtDia" placeholder="Dia">
             <input type="number" class="form-control" name="txtMes" id="txtMes" placeholder="Mes">
             <input type="number" class="form-control" name="txtAnio" id="txtAnio" placeholder="Año">
