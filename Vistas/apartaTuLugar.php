@@ -101,17 +101,33 @@
     $datosAutobus = $objDaoAparta->getImgNomAutobus($objDaoAparta->getIDAutobus($idvi));
     $json = $objDaoAparta->getAsientosOcupados($idvi);
     $noAutobuses = $objDaoAparta->getNoAutobus($idvi);
-    $lugaresOcupadosViaje = $objDaoAparta ->getNoAsientosViaje($idvi);
-    $lugaresXAutobus = $datosAutobus[0]->{"nAsientos"};
+    $totalAsientosViaje = $objDaoAparta->getTotalAsientosViaje($idvi);
+    $promedio = $totalAsientosViaje/$noAutobuses;
+    $lugaresOcupadosViaje = $objDaoAparta ->getNoAsientosViaje($idvi)+2;
+    $lugaresXAutobus = $promedio;
     $validarAutobus = 0;
     $validarAutobus = ($lugaresXAutobus - $lugaresOcupadosViaje)-2;
+    $listaRepetidos = $objDaoAparta->getAsientosRepetidos($idvi);
+    $repetidos = array();
+    if ($lugaresOcupadosViaje>$promedio) {
+        $noAutobuses;
+    }else{
+        $noAutobuses = 1;
+    }
+    if ($noAutobuses ==1) {
+         echo "<script>alert('Este Autobus aun no llena el primer Autobus');</script>";
+    }else{
+        foreach ($listaRepetidos as $rep) {
+           array_push($repetidos, $rep->{"n_Asiento"});
+        }
+         echo "<script>alert('Se esta llenando otro autobus');</script>";
+    }
     if ($noAutobuses > 1) {
         if ($validarAutobus <= 4) {
             echo "<script>alert('Este Autobus esta quedando sin Asientos');</script>";
         }if ($validarAutobus == 0) {
             if ($noAutobuses > 1) {
                 echo "<script>alert('Tiene Suerte hay mas de un autobus en este viaje');</script>";
-                $json = [];
             }
             #echo "<script>location.href='ViajesUsers.php'</script>";
         }  
@@ -121,8 +137,10 @@
     ?>
     <div class="container">
   <div class="row">
-    <div class="col-sm">
+    <div style="margin-left: -50px" class="col-sm">
       <div>
+        <br>
+        <h5 style="margin-left: 40%"><?php echo $noAutobuses; ?></h5>
         <img style="position: sticky;" src=<?php echo $datosAutobus[0]->{"img"} ?>>
         <div id="tblLugares" style="display: none;">
             <?php 
@@ -424,7 +442,8 @@
         </div>
       </div>
     </div>
-    <div class="col-sm">
+    <div style="margin-left: -100px;" class="col-sm">
+        <br>
             <div class="card" id="opcionesApartaTuLugar">
                 <div class="card-header bg-dark text-white">
                     <h4 class="my-0 font-weight-normal">Aparta Tu Lugar</h4>
@@ -509,6 +528,7 @@
             </div>
         </div>
     <div class="col-sm">
+    <br>    
         <h2 id="lblDestino" style="position: center"><?php echo $lista[0]->{"destino"}; ?></h2>
         <div class="card" style="width: 25rem;">
             <img id="imgViaje" class="card-img-top" src= <?php echo $lista[0]->{"img"}; ?> alt="Card image cap">
@@ -638,8 +658,10 @@
             $("#tblLugares").css({ 'display': 'block' });
             var asientosOcupados = new Array();
             <?php 
-            if (is_null($json)) {
-                echo "<script>alert('Hola Compa');</script>";
+            if ($noAutobuses != 1) {
+                for ($i=0; $i < count($repetidos); $i++) {
+                    echo "asientosOcupados.push(".$repetidos[$i].");";
+                }
             }else{
                 foreach ($json as $key) {
                 echo "asientosOcupados.push(".$key->{"n_Asiento"}.");";
