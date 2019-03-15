@@ -605,5 +605,67 @@ public function getNoAsientosViaje($idViaje)
     Conexion::cerrarConexion();
   }
 }
+
+public function getTotalAsientosViaje($idViaje)
+{
+  $concept;
+  try
+  {
+    $this->conectar();
+
+    $sentenciaSQL = $this->conexion->prepare("SELECT sum(n_Asientos) as numero from autobus A inner join autoviaje V on A.idAutobus = V.idAutobus where V.idViaje = ?"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
+
+    $sentenciaSQL->execute([$idViaje]);/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
+
+    /*Se recorre el cursor para obtener los datos*/
+    foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)
+    {
+      $concept = $fila->numero;
+    }
+    return $concept;
+  }
+  catch(Exception $e)
+  {
+    echo $e->getMessage();
+    return null;
+  }
+  finally 
+  {
+    Conexion::cerrarConexion();
+  }
+}
+
+public function getAsientosRepetidos($idViaje)
+{
+  try
+  {
+    $this->conectar();
+
+    $lista = array(); /*Se declara una variable de tipo  arreglo que almacenará los registros obtenidos de la BD*/
+
+    $sentenciaSQL = $this->conexion->prepare("SELECT s.n_asientos, count(*) as repeticion FROM asientosselect s join viajes v WHERE (s.idViaje = v.idViaje and s.idViaje = ?) group by n_asientos having count(*) > 1;"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
+
+    $sentenciaSQL->execute([$idViaje]);/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
+
+    /*Se recorre el cursor para obtener los datos*/
+    foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)
+    {
+     $obj = new PojoApartaTuLugar();
+     $obj->n_Asiento = $fila->n_asientos;
+     $obj->repeticion = $fila->repeticion;
+
+     $lista[] = $obj;
+   }
+
+   return $lista;
+ }
+ catch(Exception $e){
+  echo $e->getMessage();
+  return null;
+} finally {
+  Conexion::cerrarConexion();
+}
+}
+
 }
 ?>

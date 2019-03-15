@@ -35,10 +35,26 @@
     $datosAutobus = $objDaoAparta->getImgNomAutobus($objDaoAparta->getIDAutobus($idvi));
     $json = $objDaoAparta->getAsientosOcupados($idvi);
     $noAutobuses = $objDaoAparta->getNoAutobus($idvi);
-    $lugaresOcupadosViaje = $objDaoAparta ->getNoAsientosViaje($idvi);
-    $lugaresXAutobus = $datosAutobus[0]->{"nAsientos"};
+    $totalAsientosViaje = $objDaoAparta->getTotalAsientosViaje($idvi);
+    $promedio = $totalAsientosViaje/$noAutobuses;
+    $lugaresOcupadosViaje = $objDaoAparta ->getNoAsientosViaje($idvi)+2;
+    $lugaresXAutobus = $promedio;
     $validarAutobus = 0;
     $validarAutobus = ($lugaresXAutobus - $lugaresOcupadosViaje)-2;
+    $listaRepetidos = $objDaoAparta->getAsientosRepetidos($idvi);
+    if ($lugaresOcupadosViaje>$promedio) {
+        $noAutobuses;
+    }else{
+        $noAutobuses = 1;
+    }
+    if ($noAutobuses ==1) {
+         echo "<script>alert('Este Autobus aun no llena el primer Autobus');</script>";
+    }else{
+        foreach ($listaRepetidos as $key) {
+           $repetidos = $key->{"n_Asiento"};
+        }
+         echo "<script>alert('Se esta llenando otro autobus');</script>";
+    }
     if ($noAutobuses > 1) {
         if ($validarAutobus <= 4) {
             echo "<script>alert('Este Autobus esta quedando sin Asientos');</script>";
@@ -532,8 +548,10 @@
             $("#tblLugares").css({ 'display': 'block' });
             var asientosOcupados = new Array();
             <?php 
-            if (is_null($json)) {
-                echo "<script>alert('Hola Compa');</script>";
+            if ($noAutobuses != 1) {
+                for ($i=0; $i < count($repetidos); $i++) {
+                    echo "asientosOcupados.push(".$repetidos[$i].");";
+                }
             }else{
                 foreach ($json as $key) {
                 echo "asientosOcupados.push(".$key->{"n_Asiento"}.");";

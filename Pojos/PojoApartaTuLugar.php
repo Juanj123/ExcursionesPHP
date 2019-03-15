@@ -17,11 +17,12 @@
 		public $totalPagar;
 		public $destino;
 		public $img;
+		public $repeticion;
 
 		function __construct1(){}
 
 		function __construct2($idUsuario,$idAutobus,$n_Asiento,$idReservacion,$idViaje,$nota,
-			$costo,$costoNinio,$costoAd,$totalPagar,$destino,$img)
+			$costo,$costoNinio,$costoAd,$totalPagar,$destino,$img, $repeticion)
 		{
 			$this->idUsuario=$idUsuario;
 			$this->idAutobus=$idAutobus;
@@ -35,6 +36,7 @@
 			$this->totalPagar=$totalPagar;
 			$this->destino=$destino;
 			$this->img=$img;
+			$this->repeticion = $repeticion;
 		}
 	}
 ?>
