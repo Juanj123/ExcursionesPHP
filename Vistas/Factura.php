@@ -1,11 +1,46 @@
 <?php
 ob_start();
 require_once '../fpdf/fpdf.php';
-require_once '../Datos/daoPDF.php';
-require_once '../Pojos/PojoPDF.php';
-$pojo = new PojoPDF();
-$daoAPago = new daoPDF();
-$dao = new DaoPagos();
+require_once '../Datos/DaoPagos.php';
+require_once '../Pojos/PojoPagosMos.php';
+require_once '../Pojos/PojoPagos.php';
+require_once '../Pojos/PojoFactura.php';
+$pojo = new PojoPagosMos();
+$daoAPago = new DaoPagos();
+/*
+class PDF extends FPDF
+{
+		function Header()
+		{
+			$this->Image('img/Niña.png', 5, 5, 30 );
+			$this->SetFont('Arial','B',15);
+			$this->Cell(30);
+			$this->Cell(120,10, 'Reporte De Estados',0,0,'C');
+			$this->Ln(20);
+		}
+		
+		function Footer()
+		{
+			$this->SetY(-15);
+			$this->SetFont('Arial','I', 8);
+			$this->Cell(0,10, 'Pagina '.$this->PageNo().'/{nb}',0,0,'C' );
+		}
+}
+
+	$pdf = new PDF();
+	$pdf->AliasNbPages();
+	$pdf->AddPage();
+	
+	$pdf->SetFillColor(232,232,232);
+	$pdf->SetFont('Arial','B',12);
+	$pdf->Cell(70,6,'ESTADO',1,0,'C',1);
+	$pdf->Cell(20,6,'ID',1,0,'C',1);
+	$pdf->Cell(70,6,'MUNICIPIO',1,1,'C',1);
+	
+	$pdf->SetFont('Arial','',10);
+	ob_end_clean();
+	$pdf->Output();
+	*/
 
 $fpdf = new fpdf('P','mm','letter',true);
 $fpdf->SetMargins(5,5,5,5);
@@ -22,6 +57,7 @@ $fpdf->Cell(20, 2, 'excursiones.lore.pantoja@gmail.com');
 $fpdf->Cell(20, 2, '');
 $fpdf->Cell(20, 2, 'Telefono: 445-122-0935');
 
+$dao = new DaoPagos();
 $id=1;
 $idViaje = 1;
 $lista = $dao->obtenerPagos($id);
@@ -39,7 +75,7 @@ foreach ($lista as $clave) {
 $fpdf->Cell(20, 2, 'Numero de reservacion: '.$clave->{"idReservacion"});
 $fpdf->Ln(2);
 $fpdf->SetFont('Courier', '', 5);
-$fpdf->Cell(20, 2, 'Fecha de la Factura: '.getdate());
+$fpdf->Cell(20, 2, 'Fecha de la Factura: '.$clave->{"fecha_pago"});
 }
 $fpdf->Ln(2);
 foreach ($listAnio as $clave) {
