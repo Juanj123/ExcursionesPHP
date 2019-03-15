@@ -124,7 +124,6 @@ function mostrar() {
     $('#lblTotalNinosMay').css({ 'display': 'block' });
     $('#lblNinos').css({ 'display': 'block' });
     $('#lblNinosMay').css({ 'display': 'block' });
-    $('.btn.btn-dark').css({ 'margin-top': '-200px' });
     $('#oculto').css({ 'display': 'block' });
     document.getElementById("cmbNinos").value = '0';
     document.getElementById("cmbNinosMay").value = '0';

@@ -41,9 +41,14 @@
     $validarAutobus = ($lugaresXAutobus - $lugaresOcupadosViaje)-2;
     if ($noAutobuses > 1) {
         if ($validarAutobus <= 4) {
-            $noAutobuses--;
             echo "<script>alert('Este Autobus esta quedando sin Asientos');</script>";
-        }
+        }if ($validarAutobus == 0) {
+            if ($noAutobuses > 1) {
+                echo "<script>alert('Tiene Suerte hay mas de un autobus en este viaje');</script>";
+                $json = [];
+            }
+            #echo "<script>location.href='ViajesUsers.php'</script>";
+        }  
     }else{
         
     }
@@ -428,7 +433,8 @@
                     </li>
                     <li class="list-group-item">
                         <h3 style="margin-left: 10%">Total de Asientos</h3>
-                        <input class="form-control" id="txtTotal" readonly="readonly" type="text" style="position: inherit; width: 50px; height: 50px; text-align: center; margin-top: -45px; margin-left: 85%" />
+                        <br>
+                        <input class="form-control" id="txtTotal" readonly="readonly" type="text" style="position: inherit; width: 50px; height: 50px; text-align: center; margin-left: 45%" />
                         <br>
                         <button type="button" class="btn btn-danger" id="btnSelectAsientos" style="margin-left: 25%">Escoge tus asientos</button>
                             <button id="btnConfirmar" type="button" class="btn btn-dark" style="display: none; margin-left: 30%">Confirmar Lugares</button> 
@@ -525,10 +531,17 @@
             $("#tblLugares").addClass("animated zoomIn");
             $("#tblLugares").css({ 'display': 'block' });
             var asientosOcupados = new Array();
-            <?php foreach ($json as $key) {
+            <?php 
+            if (is_null($json)) {
+                echo "<script>alert('Hola Compa');</script>";
+            }else{
+                foreach ($json as $key) {
                 echo "asientosOcupados.push(".$key->{"n_Asiento"}.");";
             } ?>
             alert(asientosOcupados);
+            <?php  
+            }
+            ?>
             asientosOcupados.forEach(function(element) {
         if (element == 1) {
             $("#btnAs1").css({ 'backgroundColor': 'red' });
