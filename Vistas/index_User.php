@@ -16,19 +16,38 @@
 				echo "<iframe width='100%' height='500' src='".$clave->{'url'}."' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>";
 		}
 
-
-
 	?>
-            
-                   
-
-
                    <div class="col-4">
                         <h5>Fotos</h5>
                      
                         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="float:left; border-radius: 15px; width: 100%; height: 100%;">
                         <div class="carousel-inner">
-                            <asp:Literal runat="server" ID="ltImg" Text=""></asp:Literal>
+                            <?php 
+                                require_once '../Datos/DaoPrincipalGaleria.php';
+
+                                $datoscarrusel= new DaoPrincipalGaleria();
+
+                                $imagenes= $datoscarrusel->obtenerimagenes();
+                                $i = 0;
+                                foreach ($imagenes as $key) {
+                                     if ($i == 0){
+                                        echo "<div class='carousel-item active'>";
+                            echo "<img src='".$key->{'img'}."' alt='Third slide' style='width: 100%; height: 100%;' />";
+                            echo "</div>";
+                        }else
+                        {
+                            echo "<div class='carousel-item'>";
+                            echo "<img src='".$key->{'img'}."' alt='Third slide' style='width: 100%; height: 100%;' />";
+                            echo "</div>";
+                        }
+                          $i++;
+                            
+                        
+                    }
+                                
+
+                            ?>
+                            
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -45,9 +64,9 @@
                     
                     <div class="col-8"  id="texto" style=" overflow: hidden; float:left; border-radius: 20px;">
                         <asp:Literal runat="server" ID="ltParrafo" Text=""></asp:Literal>
-                       <%-- <p class="text-justify e">
+                        <p class="text-justify e">
                             viéndole don Quijote de aquella manera, con muestras de tanta tristeza, le dijo: Sábete, Sancho, que no es un hombre más que otro si no hace más que otro. Todas estas borrascas que nos suceden son señales de que presto ha de serenar el tiempo y han de sucedernos bien las cosas; porque no es posible que el mal ni el bien sean durables, y de aquí se sigue que, habiendo durado mucho el mal, el bien está ya cerca. Así que, no debes congojarte por las desgracias que a mí me suceden, pues a ti no te cabe
-                        </p>--%>
+                        </p>
                     </div>
         
   </div>
