@@ -31,13 +31,15 @@ if (isset($_POST)) {
     $objDaoAparta->registrarReservacion($pojo);
     $pojo-> idReservacion=$objDaoAparta->getIdReservacion();
     $objDaoAparta->registrarReservacionUsuario($pojo);
-    $file = fopen("backupAparta.txt", "w");
+    $file = fopen("backupAparta.txt", "a+");
     fwrite($file, "Usuario" . PHP_EOL);
     fwrite($file, $juanjo . PHP_EOL);
     fwrite($file, "Asientos Ocupados" . PHP_EOL);
     foreach ($arregloFinal as $key) {
         fwrite($file, $key . PHP_EOL);
     }
+    fwrite($file,"IdViaje")
+    fwrite($file, "---------------------------". PHP_EOL);
     fclose($file);
     echo "<script>window.location.href='ViajesUsers.php'</script>";
 }

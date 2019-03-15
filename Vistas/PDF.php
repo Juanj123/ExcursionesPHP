@@ -1,8 +1,11 @@
 <?php
-require('../fpdf/fpdf.php');
-
-class PDF extends FPDF
+require_once('../fpdf/fpdf.php');
+require_once('../tfpdf/tfpdf.php');
+require_once('../Datos/DaoLugaresOcupados.php');
+class PDF extends tfpdf
 {
+	$daoUsuario = new DaoLugaresOcupados();
+	$Reservacion = 27;#$_COOKIE["idViaje"];
 	function Header()
 	{
 		global $title;
@@ -40,33 +43,36 @@ class PDF extends FPDF
 		$this->Ln(4);
 	}
 
-	function ChapterBody($file)
+	function ChapterBody()
 	{
-    // Leemos el fichero
-		$txt = file_get_contents($file);
+		$this->Ln(10);
+		$this->SetTextColor(0,0,0);
     // Times 12
-		$this->SetFont('Times','',12);
+		$this->SetFont('Times','',18);
     // Imprimimos el texto justificado
-		$this->MultiCell(0,5,$txt);
+		$this->Cell(0,20,"Nombre: ");
     // Salto de línea
-		$this->Ln();
+		$this->Ln(10);
+		$this->Cell(0,20, $daoUsuario->getNombreCompleto($Reservacion));
     // Cita en itálica
 		$this->SetFont('','I');
-		$this->Cell(0,5,'(fin del extracto)');
 	}
 
-	function PrintChapter($file)
+	function PrintChapter()
 	{
+		$this->SetTextColor(0,0,0);
 		$this->AddPage();
 		$this->ChapterTitle();
-		$this->ChapterBody($file);
+		$this->ChapterBody();
 	}
 }
-
 $pdf = new PDF();
-$title = '20000 Leguas de Viaje Submarino';
+$title = 'Reservacion';
 $pdf->SetTitle($title);
-$pdf->SetAuthor('Julio Verne');
-$pdf->PrintChapter('backupAparta.txt');
+$pdf->SetAuthor('Excursiones Lore Pantoja');
+$pdf->PrintChapter();
+ob_end_clean();
 $pdf->Output();
+
+
 ?>
