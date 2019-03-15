@@ -42,6 +42,7 @@
     $validarAutobus = 0;
     $validarAutobus = ($lugaresXAutobus - $lugaresOcupadosViaje)-2;
     $listaRepetidos = $objDaoAparta->getAsientosRepetidos($idvi);
+    $repetidos = array();
     if ($lugaresOcupadosViaje>$promedio) {
         $noAutobuses;
     }else{
@@ -50,8 +51,8 @@
     if ($noAutobuses ==1) {
          echo "<script>alert('Este Autobus aun no llena el primer Autobus');</script>";
     }else{
-        foreach ($listaRepetidos as $key) {
-           $repetidos = $key->{"n_Asiento"};
+        foreach ($listaRepetidos as $rep) {
+           array_push($repetidos, $rep->{"n_Asiento"});
         }
          echo "<script>alert('Se esta llenando otro autobus');</script>";
     }
@@ -61,7 +62,6 @@
         }if ($validarAutobus == 0) {
             if ($noAutobuses > 1) {
                 echo "<script>alert('Tiene Suerte hay mas de un autobus en este viaje');</script>";
-                $json = [];
             }
             #echo "<script>location.href='ViajesUsers.php'</script>";
         }  
@@ -71,8 +71,10 @@
     ?>
     <div class="container">
   <div class="row">
-    <div class="col-sm">
+    <div style="margin-left: -50px" class="col-sm">
       <div>
+        <br>
+        <h5 style="margin-left: 40%"><?php echo $noAutobuses; ?></h5>
         <img style="position: sticky;" src=<?php echo $datosAutobus[0]->{"img"} ?>>
         <div id="tblLugares" style="display: none;">
             <?php 
@@ -374,7 +376,8 @@
         </div>
       </div>
     </div>
-    <div class="col-sm">
+    <div style="margin-left: -100px;" class="col-sm">
+        <br>
             <div class="card" id="opcionesApartaTuLugar">
                 <div class="card-header bg-dark text-white">
                     <h4 class="my-0 font-weight-normal">Aparta Tu Lugar</h4>
@@ -459,6 +462,7 @@
             </div>
         </div>
     <div class="col-sm">
+    <br>    
         <h2 id="lblDestino" style="position: center"><?php echo $lista[0]->{"destino"}; ?></h2>
         <div class="card" style="width: 25rem;">
             <img id="imgViaje" class="card-img-top" src= <?php echo $lista[0]->{"img"}; ?> alt="Card image cap">
