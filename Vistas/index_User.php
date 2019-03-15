@@ -3,7 +3,23 @@
 <body>
 	<link rel="stylesheet" type="text/css" href="CSS/estilosPrincipal.css">
 <div class="container col-md-12 col-lg-12 col-sm-12 col-xl-12" style="overflow: hidden; background-color: white; border-radius: 15px; box-shadow: 1px 1px 2px 1px #818181;" id="conte1">
-            <iframe width="100%" height="500" src="https://www.youtube.com/embed/TnbUbzq03es" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+	<?php  
+		require_once '../Datos/DaoVideo.php';
+		require_once '../Pojos/PojoVideo.php'; 
+        $daovideo = new DaoVideo();
+        
+		$videos = $daovideo-> obtenerTodos();
+
+		foreach ($videos as $clave) {
+
+				echo "<iframe width='100%' height='500' src='".$clave->{'url'}."' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>";
+		}
+
+
+
+	?>
+            
                    
 
 

@@ -107,13 +107,15 @@ private $conexion; /*Crea una variable conexion*/
 	//Funcion para obtener datos de principalVideo retornando una liste
 	public function obtenerTodos()
 	{
+		/*
 		try
 		{
+			*/
             $this->conectar();
             
 			$lista = array(); /*Se declara una variable de tipo  arreglo que almacenará los registros obtenidos de la BD*/
 
-			$sentenciaSQL = $this->conexion->prepare("SELECT nombre, estado, url FROM principalVideo"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
+			$sentenciaSQL = $this->conexion->prepare("SELECT nombre, estado, url FROM principalVideo where estado = 'Activo'"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
 			
 			$sentenciaSQL->execute();/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
             
@@ -127,16 +129,22 @@ private $conexion; /*Crea una variable conexion*/
 
                 
 				$lista[] = $obj;
+
+				
 			}
             
 			return $lista;
+			/*
 		}
 		catch(Exception $e){
 			echo $e->getMessage();
 			return null;
 		} finally {
+			*/
             Conexion::cerrarConexion();
+            /*
         }
+        */
 	}
 
 	    /*Metodo que obtiene un registro de la base de datos, retorna un objeto */
