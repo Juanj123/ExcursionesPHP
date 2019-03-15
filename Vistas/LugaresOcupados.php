@@ -20,12 +20,14 @@
     require_once("../Datos/DaoPromociones.php");
     require_once("../Pojos/PojoApartaTuLugar.php");
     require_once("../Datos/DaoViaje.php");
+    require_once("../Datos/DaoLugaresOcupados.php");
     ?>
   <body>
         <?php
     $objDaoAparta = new DaoApartaTuLugar();
     $objViajes = new DaoViaje();
     $objDaoPromociones = new DaoPromociones();
+    $daoLugOcu = new DaoLugaresOcupados();
     ?>
     <div class="container">
         <form action="?mostrar" method="POST">
@@ -57,6 +59,7 @@
                 $json = $objDaoAparta->getAsientosOcupados($idvi);
          ?>
         <div class="col col-lg-3">
+            <h1 style="margin-left: 160%"><?php echo $daoLugOcu->GetDestino($idvi); ?></h1>
         <img style="position: sticky; margin-left: 150%;" src=<?php echo $datosAutobus[0]->{"img"} ?>>
         <div id="tblLugares" style="margin-left: 150%">
             <?php 
@@ -365,47 +368,35 @@
           <thead class=" text-white" style="background-color: #c3497f;">
 
             <tr>
+              <th scope="col">IdReservacion</th>
               <th scope="col">Usuario</th>
-              <th scope="col">Hora</th>
-              <th scope="col">fecha</th>
-              <th scope="col">Costo</th>
-              <th scope="col">Descripcion</th>
-              <th scope="col">Acciones</th>
+              <th scope="col">Nota</th>
+              <th scope="col">Total</th>
             </tr>
           </thead>
           <tbody>
-           <?php 
+            <?php 
+            $lista = $daoLugOcu->getDatosTabla($idvi);
            foreach ($lista as $clave) {
-            $datos = $clave->{"destino"}."||".
-            $clave->{"hora"}."||".
-            $clave->{"costo"}."||".
-            $clave->{"costoNinio"}."||".
-            $clave->{"costoAd"}."||".
-            $clave->{"descripcion"}."||".
-            $clave->{"dia"}."||".
-            $clave->{"mes"}."||".
-            $clave->{"anio"}."||".
-            $clave->{"nota"}."||".
-            $clave->{"itinerario"}."||".
-            $clave->{"img"};
             ?>
-
             <tr>
-              <td><?php echo($clave->{"destino"}); ?></td>
-              <td><?php echo($clave->{"hora"}); ?></td>
-              <td><?php echo($clave->{"dia"})."/".$clave->{"mes"}."/".$clave->{"anio"}; ?></td>
-              <td><?php echo($clave->{"costo"}); ?></td>
-              <td><?php echo($clave->{"descripcion"}); ?></td>
-              <td>
-                <button class="btn btn-success" data-target="#ModalModificar" data-toggle="modal" onclick="agregarForm(' <?php echo $datos ?>')">Editar</button>
-                <?php echo '<a href=eliminarViaje.php?delete&idViaje='.$clave->{"idViaje"}.' class="btn btn-danger">Eliminar</a>';;?>
-              </td>
+              <td><?php echo($clave->{"idReservacion"}); ?></td>
+              <td><?php echo($clave->{"nombre"}); ?></td>
+              <td><?php echo($clave->{"nota"}); ?></td>
+              <td><?php echo($clave->{"totalPagar"}); ?></td>
             </tr>
-          </tbody>
+          
 
           <?php 
         }
         ?>
+        </tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><b>TOTAL DEL VIAJE</b></td>
+            <td><?php echo"<b>".$daoLugOcu->getTotalViaje($idvi)."</b>"; ?></td>
+        </tr>
 
       </table>
     </div>
@@ -415,6 +406,8 @@
     <script src="JS/popper.min.js"></script>
     <script src="JS/bootstrap.min.js"></script>
     <script src="JS/bootbox.min.js"></script>
+    <script src="JS/datatables.min.js"></script>
+    <script src="JS/dataTables.bootstrap4.js"></script>
     <script>
             var asientosOcupados = new Array();
             <?php foreach ($json as $key) {
@@ -614,6 +607,21 @@
             $("#btnAs48").prop('disabled', true);
         }
 });
+$(document).ready(function(){
+    $("#tableViajes").dataTable({
+      dom: 'Bfrtip',
+      buttons: [
+      'copy', 'csv', 'excel', 'pdf', 'print'
+      ],
+      "aoColumnDefs": [{"bSortable": false, "aTargets": [4,3] }],
+      "order": [[0,"asc"], [1,"asc"]],
+      "language": {
+        "url" : "JS/datatables/jquery.dataTables_i18n.spanish.json"
+      }
+    });
+
+
+  });
   </script>
          <?php
          }

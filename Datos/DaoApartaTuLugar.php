@@ -6,8 +6,6 @@ require_once '../Pojos/PojoViaje.php';
 require_once '../Pojos/PojoAutobus.php';
 require_once '../Pojos/asientos.php';
 
-
-
 class DaoApartaTuLugar
 {
   private $conexion; /*Crea una variable conexion*/
