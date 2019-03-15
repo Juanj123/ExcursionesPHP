@@ -1,4 +1,13 @@
 Usuario
 bmxpc7
 Asientos Ocupados
-3
+14
+17
+18
+25
+26
+29
+30
+33
+34
+37

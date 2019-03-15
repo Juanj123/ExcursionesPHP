@@ -494,7 +494,7 @@ public function getImgNomAutobus($idAutobus)
 
     $lista = array(); /*Se declara una variable de tipo  arreglo que almacenará los registros obtenidos de la BD*/
 
-    $sentenciaSQL = $this->conexion->prepare("SELECT img, nombre FROM autobus where idAutobus = ?"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
+    $sentenciaSQL = $this->conexion->prepare("SELECT img, nombre, n_Asientos FROM autobus where idAutobus = ?"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
 
     $sentenciaSQL->execute([$idAutobus]);/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
 
@@ -504,6 +504,7 @@ public function getImgNomAutobus($idAutobus)
      $obj = new PojoAutobus();
      $obj->img = $fila->img;
      $obj->nombre = $fila->nombre;
+     $obj->nAsientos = $fila->n_Asientos;
 
      $lista[] = $obj;
    }
@@ -548,6 +549,61 @@ public function GetDestinos()
   Conexion::cerrarConexion();
 }
 }
+public function getNoAutobus($idViaje)
+{
+  $concept;
+  try
+  {
+    $this->conectar();
 
+    $sentenciaSQL = $this->conexion->prepare("SELECT count(n_Asientos) as numero from autobus A inner join autoviaje V on A.idAutobus = V.idAutobus where V.idViaje = ?"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
+
+    $sentenciaSQL->execute([$idViaje]);/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
+
+    /*Se recorre el cursor para obtener los datos*/
+    foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)
+    {
+      $concept = $fila->numero;
+    }
+    return $concept;
+  }
+  catch(Exception $e)
+  {
+    echo $e->getMessage();
+    return null;
+  }
+  finally 
+  {
+    Conexion::cerrarConexion();
+  }
+}
+public function getNoAsientosViaje($idViaje)
+{
+  $concept;
+  try
+  {
+    $this->conectar();
+
+    $sentenciaSQL = $this->conexion->prepare("SELECT count(n_asientos) as numero from asientosselect where idViaje = ?"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
+
+    $sentenciaSQL->execute([$idViaje]);/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
+
+    /*Se recorre el cursor para obtener los datos*/
+    foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)
+    {
+      $concept = $fila->numero;
+    }
+    return $concept;
+  }
+  catch(Exception $e)
+  {
+    echo $e->getMessage();
+    return null;
+  }
+  finally 
+  {
+    Conexion::cerrarConexion();
+  }
+}
 }
 ?>

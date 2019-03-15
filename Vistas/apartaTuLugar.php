@@ -6,7 +6,6 @@
     $idvi=$_POST['id'];
     echo "<script>alert('$idvi')</script>";
     setcookie("idViaje", $idvi,time()+150);
-
     ?>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -35,6 +34,19 @@
     }
     $datosAutobus = $objDaoAparta->getImgNomAutobus($objDaoAparta->getIDAutobus($idvi));
     $json = $objDaoAparta->getAsientosOcupados($idvi);
+    $noAutobuses = $objDaoAparta->getNoAutobus($idvi);
+    $lugaresOcupadosViaje = $objDaoAparta ->getNoAsientosViaje($idvi);
+    $lugaresXAutobus = $datosAutobus[0]->{"nAsientos"};
+    $validarAutobus = 0;
+    $validarAutobus = ($lugaresXAutobus - $lugaresOcupadosViaje)-2;
+    if ($noAutobuses > 1) {
+        if ($validarAutobus <= 4) {
+            $noAutobuses--;
+            echo "<script>alert('Este Autobus esta quedando sin Asientos');</script>";
+        }
+    }else{
+        
+    }
     ?>
     <div class="container">
   <div class="row">
@@ -124,7 +136,7 @@
         <td width="35" height="35"> 
         <button id="btnAs45" type="button" class="btn btn-light">45</button></td> 
         <td width="35" height="35"> 
-        <button id="btnAs45" type="button" class="btn btn-light">46</button></td> 
+        <button id="btnAs46" type="button" class="btn btn-light">46</button></td> 
         </tr> 
         </table> 
 
@@ -1356,34 +1368,6 @@ $("#btnAs46").click(function () {
     else {
         $("#btnAs46").css({ 'backgroundColor': 'green' });
         asientosSeleccionados.push("46");
-        validarLugares();
-    }
-});
-
-$("#btnAs47").click(function () {
-    asientosActivo47++;
-    if (asientosActivo47 % 2 === 0) {
-        $("#btnAs47").css({ 'backgroundColor': 'transparent' });
-        var index = asientosSeleccionados.indexOf("47");
-        asientosSeleccionados.splice(index, 1);
-    }
-    else {
-        $("#btnAs47").css({ 'backgroundColor': 'green' });
-        asientosSeleccionados.push("47");
-        validarLugares();
-    }
-});
-
-$("#btnAs48").click(function () {
-    asientosActivo48++;
-    if (asientosActivo48 % 2 === 0) {
-        $("#btnAs48").css({ 'backgroundColor': 'transparent' });
-        var index = asientosSeleccionados.indexOf("48");
-        asientosSeleccionados.splice(index, 1);
-    }
-    else {
-        $("#btnAs48").css({ 'backgroundColor': 'green' });
-        asientosSeleccionados.push("48");
         validarLugares();
     }
 });
