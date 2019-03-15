@@ -65,6 +65,10 @@ $(document).ready(function () {
             '<h3 style="color:black; text-align:center;">Niños</h3>' +
             '</div>' +
             '<h3 style="color:black; text-align:center;">' + document.getElementById('cmbNinos').value + '</h3>' +
+            '<div class="alert alert-info" role="alert">' +
+            '<h3 style="color:black; text-align:center;">Niños Mayores</h3>' +
+            '</div>' +
+            '<h3 style="color:black; text-align:center;">' + document.getElementById('cmbNinosMay').value + '</h3>' +
             '<div class="alert alert-dark" role="alert">' +
             '<h3 style="color:black; text-align:center;">Total a pagar</h3>' +
             '</div>' +
@@ -150,9 +154,13 @@ $("#btnConfirmar").click(function () {
         '</div>' +
         '<h3 style="color:black; text-align:center;">' + document.getElementById('cmbAdultos').value + '</h3>' +
         '<div class="alert alert-info" role="alert">' +
-        '<h3 style="color:black; text-align:center;">Niños</h3>' +
+        '<h3 style="color:black; text-align:center;">Niños Menores a 6 años</h3>' +
         '</div>' +
         '<h3 style="color:black; text-align:center;">' + document.getElementById('cmbNinos').value + '</h3>' +
+        '<div class="alert alert-dark" role="alert">' +
+        '<h3 style="color:black; text-align:center;">Niños Mayores a 6 años</h3>' +
+        '</div>' +
+        '<h3 style="color:black; text-align:center;">' + document.getElementById('cmbNinosMay').value + '</h3>' +
         '<div class="alert alert-dark" role="alert">' +
         '<h3 style="color:black; text-align:center;">Total a pagar</h3>' +
         '</div>' +
