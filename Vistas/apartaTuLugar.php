@@ -7,15 +7,80 @@
     echo "<script>alert('$idvi')</script>";
     setcookie("idViaje", $idvi,time()+150);
     ?>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+    <link href=" css/bootstrap.min.css" rel="stylesheet" />
+    <link href=" css/estilosMaster.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="JS/datatables/dataTables.bootstrap4.min.css">
+
+    <link rel="stylesheet" type="text/css" href="CSS/alertify.css">
+    <link rel="stylesheet" type="text/css" href="CSS/default.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    
     <link rel="stylesheet" href="CSS/animate.min.css">
 
+
+    
+<link rel="stylesheet" href="fancy/lightbox.css">
+<link href=" https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css" rel="stylesheet" />
+   <link rel="stylesheet" type="text/css" href="CSS/estilosGaleria.css">
+
     <title>Aparta Tu Lugar</title>
+
+    <div class="container col-md-12 col-lg-12 col-sm-12 col-xl-12">
+
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xl-12">
+
+                <nav class="navbar navbar-expand-lg navbar-dark">
+
+                    <a class="navbar-brand" href="PrincipalUsers.aspx" style="font-size:25px">
+                        <img src="img/Niña.png" style="bottom: 20px; right: 20px; width: 60px; height: 60px; background-size: cover;" />
+                        Excursiones"LORE PANTOJA</a>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="ViajesUsers.php"><i class="fas fa-suitcase"></i> Viajes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="GaleriaUsers.php"><i class="fas fa-camera-retro"></i>Galeria</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="far fa-money-bill-alt"></i>Promociones</a>
+                            </li>
+                           
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="index_User.php"><i class="fas fa-home"></i> Principal</a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['login']; ?>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="Perfil_Usuario.php">Perfil</a>
+                                    <a class="dropdown-item" href="#">Cambiar Contraseña</a>
+                                    <a class="dropdown-item" href="#">Pagos</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Cerrar sesión</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+        </div>
+    </div> 
   </head>
       <?php
     require_once("../Datos/DaoApartaTuLugar.php");
@@ -23,6 +88,7 @@
     require_once("../Pojos/PojoApartaTuLugar.php");
     ?>
   <body>
+    <br>
         <?php
     $objDaoAparta = new DaoApartaTuLugar();
     $objDaoPromociones = new DaoPromociones();
@@ -538,6 +604,46 @@
             </div>
         </div>
     </div>
+    <br>
+  </body>
+  <footer>
+    <div class="container col-md-12 col-lg-12 col-sm-12 col-xl-12">
+          <div class="row">
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xl-12">
+                     <div class="card-group">
+                          <div class="card">
+                                <img class="card-img-top" src="img/Niña.png" alt="Card image cap" style="bottom: 20px; right: 40px; width: 100px; height: 100px; background-size: cover; align-items: center;">
+                                <div class="card-body">
+                                     <h5 class="card-title">Contacto</h5>
+                                     <p class="card-text">
+                                          Telefono: (445) 455 0458
+                                              
+                                                <br />
+                                          Correo: lorepantoja@gmail.com
+                                              
+                                                <br />
+                                          Direccion: Calle 5 de mayo Moroleón
+                                         
+                                     </p>
+
+                                </div>
+                                <div class="card-footer">
+                                     <small class="text-muted">Información del negocio</small>
+                                </div>
+                          </div>
+                          <div class="card">
+                                <div class="card-body">
+                                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1873.0407502123894!2d-101.20078103915233!3d20.13064719872842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842cfaf108a928dd%3A0x5339526589b4f871!2sCalle+16+de+Septiembre%2C+Morole%C3%B3n%2C+Gto.!5e0!3m2!1ses!2smx!4v1552286714239" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                </div>
+                                <div class="card-footer">
+                                     <small class="text-muted">Nos encontramos en</small>
+                                </div>
+                          </div>
+                     </div>
+                </div>
+          </div>
+     </div>
+</footer>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="JS/jquery-3.3.1.min.js"></script>
@@ -1443,5 +1549,4 @@ $("#btnConfirmar").click(function () {
     document.cookie = 'Total =' + (parseFloat(pagoAdulto()) + parseFloat(pagoNino())) + ';';
 });
     </script>
-  </body>
 </html>
