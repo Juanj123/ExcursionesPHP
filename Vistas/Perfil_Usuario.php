@@ -2,7 +2,7 @@
   <?php  include 'headerUser.php';?> 
     
 <?php 
-    session_start();
+    
     
 
     $varse=$_SESSION['login'];

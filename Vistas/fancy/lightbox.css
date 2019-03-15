@@ -7,10 +7,10 @@ html.lb-disable-scrolling {
 }
 
 .lightboxOverlay {
-  position: absolute;
+ 
   top: 0;
   left: 0;
-  z-index: 9999;
+ 
   background-color: black;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   opacity: 0.8;
@@ -18,17 +18,17 @@ html.lb-disable-scrolling {
 }
 
 .lightbox {
-  position: absolute;
+ 
   left: 0;
   width: 100%;
-  z-index: 10000;
+ 
   text-align: center;
   line-height: 0;
   font-weight: normal;
 }
 
 .lightbox .lb-image {
-  display: block;
+ 
   height: auto;
   max-width: inherit;
   max-height: none;
@@ -57,12 +57,12 @@ html.lb-disable-scrolling {
 
 .lb-outerContainer:after {
   content: "";
-  display: table;
+  
   clear: both;
 }
 
 .lb-loader {
-  position: absolute;
+ 
   top: 43%;
   left: 0;
   height: 25%;
@@ -80,7 +80,7 @@ html.lb-disable-scrolling {
 }
 
 .lb-nav {
-  position: absolute;
+  
   top: 0;
   left: 0;
   height: 100%;

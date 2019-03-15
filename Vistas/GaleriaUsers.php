@@ -10,7 +10,7 @@
            <div class="row ">
             <div class="col-md-4">
                 <div class="card">
-                  <a class="example-image-link lightbox" href="img/33664107_10204985976927359_6836652645973753856_n.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image card-img-top" src="img/33664107_10204985976927359_6836652645973753856_n.jpg" alt=""/></a>
+                  <a class="example-image-link lightbox" href="img/33664107_10204985976927359_6836652645973753856_n.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="card-img-top" src="img/33664107_10204985976927359_6836652645973753856_n.jpg" alt=""/></a>
                 </div>
             </div>
          
@@ -20,7 +20,16 @@
                   <a class="example-image-link lightbox" href="img/33664107_10204985976927359_6836652645973753856_n.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image card-img-top" src="img/33664107_10204985976927359_6836652645973753856_n.jpg" alt=""/></a>
                 </div>
             </div>
-
+ <div class="col-md-4">
+                <div class="card">
+                  <a class="example-image-link lightbox" href="img/33664107_10204985976927359_6836652645973753856_n.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image card-img-top" src="img/33664107_10204985976927359_6836652645973753856_n.jpg" alt=""/></a>
+                </div>
+            </div>
+             <div class="col-md-4">
+                <div class="card">
+                  <a class="example-image-link lightbox" href="img/33664107_10204985976927359_6836652645973753856_n.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image card-img-top" src="img/33664107_10204985976927359_6836652645973753856_n.jpg" alt=""/></a>
+                </div>
+            </div>
 <div class="col-md-4">
                 <div class="card">
                   <a class="example-image-link lightbox" href="img/33664107_10204985976927359_6836652645973753856_n.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image card-img-top" src="img/33664107_10204985976927359_6836652645973753856_n.jpg" alt=""/></a>
