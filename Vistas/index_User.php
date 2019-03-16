@@ -42,14 +42,9 @@
                             echo "<img src='".$key->{'img'}."' alt='Third slide' style='width: 100%; height: 100%;' />";
                             echo "</div>";
                         }
-                          $i++;
-                            
-                        
+                          $i++;       
                     }
-                                
-
-                            ?>
-                            
+                ?>        
                         </div>
 
                         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">

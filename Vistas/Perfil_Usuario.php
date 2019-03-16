@@ -80,7 +80,7 @@
     </div> 
   </div>
   
-  <input class="btn btn-primary" type="submit" value='<?php echo $_SESSION['login'] ?>' name="btn">
+  <input class="btn btn-primary" type="submit" text="Modificar Usuario" value='<?php echo $_SESSION['login'] ?>' name="btn">
 </form>
 
 <script>
