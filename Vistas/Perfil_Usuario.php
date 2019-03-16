@@ -79,18 +79,8 @@
       </div>
     </div> 
   </div>
-  <div class="form-group">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-      <label class="form-check-label" for="invalidCheck">
-        Acceptar terminos y condiciones
-      </label>
-      <div class="invalid-feedback">
-        Falta acceptar algo!
-      </div>
-    </div>
-  </div>
-  <input class="btn btn-primary" type="submit" value='<?php  $_SESSION['login'] ?>' name="btn">
+  
+  <input class="btn btn-primary" type="submit" text="Modificar Usuario" value='<?php echo $_SESSION['login'] ?>' name="btn">
 </form>
 
 <script>

@@ -42,14 +42,9 @@
                             echo "<img src='".$key->{'img'}."' alt='Third slide' style='width: 100%; height: 100%;' />";
                             echo "</div>";
                         }
-                          $i++;
-                            
-                        
+                          $i++;       
                     }
-                                
-
-                            ?>
-                            
+                ?>        
                         </div>
 
                         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -72,12 +67,17 @@
                         </p>
                     </div>
 
-                    
+              
  </div>
+
  <hr>
- <h1 class="text-center">Promociones</h1>
+ 
+ <hr>
+ <h1 class="text-center">Proximos Viajes</h1>
 
 <div class="container col-md-12 col-lg-12 col-sm-12 col-xl-12" style="overflow:hidden;">
+    <form method="post" action="apartaTuLugar.php" id="form1">
+
       <?php 
       require_once '../Datos/DaoPromociones.php';
       require_once '../Pojos/PojoViaje.php';              
@@ -92,12 +92,12 @@
                     echo "<div class='imge'><img src='$list->img' style='width:400px;height:200px;'></div> ";
                     echo "<h3>$list->destino</h3>";
                     echo "<div class='txt'><p class='text-justifype pe'>hola</p></div>";
-                    echo "<div class='pi' style='overflow: hidden'><h4 style='float: left'>$ $list->costoad Adultos</h4><Button class='btn btn-success IdViaje' name='id' value='$list->idViaje' type='submit' style='float: right'><i class='fas fa-bus'></i>Reservar</Button></div>";
+                    echo "<div class='pi' style='overflow: hidden'><h4 style='float: left'>$ $list->costoAd Adulto</h4><Button class='btn btn-success IdViaje' name='id' value='$list->idViaje' type='submit' style='float: right'><i class='fas fa-bus'></i>Reservar</Button></div>";
                     echo "</div>";
                 }
                
              ?>
-           
+           </form>
         </div>
 
 
