@@ -3,5 +3,5 @@
 
 	session_destroy();
 
-	header("Location: ../vistas/index_User.php");
+	header("Location: ../vistas/index.php");
 ?>
