@@ -4,26 +4,19 @@
   
 
   <ul class="galeria">
-    <li class="galeria_item"><img src="imgViaje/coco.jpg" class="galeria_img"></li>
-    <li class="galeria_item"><img src="imgViaje/GUADALAJARA.jpg" class="galeria_img"></li>
-    <li class="galeria_item"><img src="imgViaje/Guanajuato.jpg" class="galeria_img"></li>
-    <li class="galeria_item"><img src="imgViaje/Huandacareo.jpg" class="galeria_img"></li>
-    <li class="galeria_item"><img src="imgViaje/Moroleon.jpg" class="galeria_img"></li>
-    <li class="galeria_item"><img src="imgViaje/teotihuacan.jpg" class="galeria_img"></li>
-    <li class="galeria_item"><img src="imgViaje/Uriangato.jpg" class="galeria_img"></li>
-    <li class="galeria_item"><img src="imgViaje/Yuriria.jpg" class="galeria_img"></li>
-    <li class="galeria_item"><img src="imgViaje/coco.jpg" class="galeria_img"></li>
-    <li class="galeria_item"><img src="imgViaje/GUADALAJARA.jpg" class="galeria_img"></li>
-    <li class="galeria_item"><img src="imgViaje/coco.jpg" class="galeria_img"></li>
-    <li class="galeria_item"><img src="imgViaje/GUADALAJARA.jpg" class="galeria_img"></li>
-    <li class="galeria_item"><img src="imgViaje/Guanajuato.jpg" class="galeria_img"></li>
-    <li class="galeria_item"><img src="imgViaje/Huandacareo.jpg" class="galeria_img"></li>
-    <li class="galeria_item"><img src="imgViaje/Moroleon.jpg" class="galeria_img"></li>
-    <li class="galeria_item"><img src="imgViaje/teotihuacan.jpg" class="galeria_img"></li>
-    <li class="galeria_item"><img src="imgViaje/Uriangato.jpg" class="galeria_img"></li>
-    <li class="galeria_item"><img src="imgViaje/Yuriria.jpg" class="galeria_img"></li>
-    <li class="galeria_item"><img src="imgViaje/coco.jpg" class="galeria_img"></li>
-    <li class="galeria_item"><img src="imgViaje/GUADALAJARA.jpg" class="galeria_img"></li>
+    <?php 
+      require_once '../Datos/DatosGaleriaUsers.php';
+      require_once '../Pojos/PojoGaleria.php';
+      $mostrar= new DatosGaleriaUsers();
+
+      $resultado=$mostrar->obtenerimgGaleria();
+
+      foreach ($resultado as $clave) {
+
+        echo "<li class='galeria_item'><img src='".$clave->{'img_galeria'}."' class='galeria_img'></li>";
+    }
+    ?>
+
   </ul>
   
 </body>
