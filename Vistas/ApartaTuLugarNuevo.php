@@ -31,6 +31,6 @@ if (isset($_POST)) {
     $objDaoAparta->registrarReservacion($pojo);
     $pojo-> idReservacion=$objDaoAparta->getIdReservacion();
     $objDaoAparta->registrarReservacionUsuario($pojo);
-    echo "<script>window.location.href='ViajesUsers.php'</script>";
+    echo "<script>window.location.href='PDF.php'</script>";
 }
 ?>

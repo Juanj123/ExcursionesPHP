@@ -3,9 +3,10 @@
 	* 
 	*/
 	class PojoApartaTuLugar
-	{		public $idUsuario;
+	{		
 
 		//Definiendo atributos
+		public $idUsuario;
 		public $idAutobus;
 		public $n_Asiento;
 		public $idReservacion;

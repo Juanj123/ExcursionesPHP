@@ -7,9 +7,12 @@ require_once '../Datos/DaoPagos.php';
 require_once '../Pojos/PojoPagosMos.php';
 require_once '../Pojos/PojoPagos.php';
 require_once '../Pojos/PojoFactura.php';
+require_once '../Datos/DaoApartaTuLugar.php';
+session_start();
 $pojo = new PojoPDF();
 $daoPDF = new daoPDF();
 $dao = new DaoPagos();
+$objDaoAparta = new DaoApartaTuLugar();
 
 $fpdf = new fpdf('P','mm','letter',true);
 $fpdf->SetMargins(5,5,5,5);
@@ -29,13 +32,13 @@ $fpdf->Ln(2);
 $fpdf->SetFont('Courier', '', 12);
 $fpdf->Cell(100, 30, 'Informacion de la Reservacion','T',0,'C',0);
 
-$id=3;
-$idViaje = 1;
-$lista = $dao->obtenerPagos($id);
+$juanjo= $_SESSION['login'];
+$idViaje = $_COOKIE["idViaje"];
+$lista = $dao->obtenerPagos($objDaoAparta->getIdUsuario($juanjo));
 $listAnio = $daoPDF->obtenerFechaViaje($idViaje);
-$listUsuario = $daoPDF->getNombre($id);
-$listabla = $dao->obtenerFactura($id, $idViaje);
-$lisTotal = $dao->obtenerTotalF($id);
+$listUsuario = $daoPDF->getNombre($objDaoAparta->getIdUsuario($juanjo));
+$listabla = $dao->obtenerFactura($objDaoAparta->getIdUsuario($juanjo), $idViaje);
+$listaAsientos = $daoPDF->getAsientos($objDaoAparta->getIdUsuario($juanjo), $idViaje);
 $hoy = getdate();
 $dia = $hoy["weekday"];
 $diaM = $hoy["mday"];
@@ -50,9 +53,9 @@ $fpdf->SetFillColor(239, 239, 239);
 $fpdf->Rect(5,35,100,10,'F');
 $fpdf->SetFont('Courier', 'B', 7);
 foreach ($lista as $clave) {
-$fpdf->Cell(40, 2, 'Numero de reservacion: '.$clave->{"idReservacion"});
-$fpdf->Ln(2);
-$fpdf->SetFont('Courier', '', 5);
+	$fpdf->Cell(40, 2, 'Numero de reservacion: '.$clave->{"idReservacion"});
+	$fpdf->Ln(2);
+	$fpdf->SetFont('Courier', '', 5);
 }
 if ($dia == "Monday") {
 	$d = "lunes";
@@ -144,10 +147,10 @@ if ($hora == 13) {
 }if ($hora == 24) {
 	$h = 12;
 }
-$fpdf->Cell(40, 2, 'Fecha de la Factura: '.$d.' '.$diaM.' '.$m.' del '.$año.'. a las '.$h.':'.$minuto.':'.$segundo);
+$fpdf->Cell(40, 2, 'Fecha de la Factura: '.$d.' '.$diaM.' '.$m.' del '.$año.'. a las '.($h+6).':'.$minuto.':'.$segundo);
 $fpdf->Ln(3);
 foreach ($listAnio as $clave) {
-$fpdf->Cell(40, 2, 'Fecha de Vencimiento: '.$clave->{"fecha"});
+	$fpdf->Cell(40, 2, 'Fecha de Vencimiento: '.$clave->{"fecha"});
 }
 
 
@@ -156,17 +159,17 @@ $fpdf->SetFont('Courier', 'B', 5);
 $fpdf->Cell(40, 2, 'Facturado a: ');
 $fpdf->Ln(5);
 foreach ($listUsuario as $clave) {
-$fpdf->SetFont('Courier', '', 5);
-$fpdf->Cell(40, 2, $clave->{"nombre"});
-$fpdf->Ln(5);
-$fpdf->Cell(40, 2, $clave->{"direccion"});
-$fpdf->Ln(5);
-$fpdf->Cell(40, 2, $clave->{"correo"});
+	$fpdf->SetFont('Courier', '', 5);
+	$fpdf->Cell(40, 2, $clave->{"nombre"});
+	$fpdf->Ln(5);
+	$fpdf->Cell(40, 2, $clave->{"direccion"});
+	$fpdf->Ln(5);
+	$fpdf->Cell(40, 2, $clave->{"correo"});
 }
 $fpdf->Image('../Vistas/img/Excursiones Lore Pantoja.png',100,2,22);
 
 
-$fpdf->Ln(40);
+$fpdf->Ln(20);
 $fpdf->Setlinewidth(1);
 $fpdf->SetDrawColor(0,0,0);
 $fpdf->SetTextColor(0,0,0);
@@ -186,22 +189,34 @@ foreach ($listabla as $clave) {
 		$fpdf->SetFillColor(255,255,255);
 	}
 	$fpdf->Cell(70, 5, $clave->{"destino"},0,0,'C',1);
-	$fpdf->Cell(20, 5, $clave->{"monto"},0,0,'C',1);
+	$fpdf->Cell(40, 5, $clave->{"monto"},0,0,'C',1);
 	$fpdf->Ln();
 	$i++;
 }
-	$fpdf->SetFillColor(0,0,0);
-	$fpdf->SetTextColor(255,255,255);
-	foreach ($lisTotal as $clave) {
-	$fpdf->Cell(70, 5,'Total',0,0,'C',1);
-	$fpdf->Cell(20, 5, $clave->{"totalAPagar"},0,0,'C',1);
+
+$j = 0;
+$fpdf->Ln(10);
+$fpdf->Setlinewidth(1);
+$fpdf->Cell(70, 5, 'No. Asiento','T',0,'C',0);
+foreach ($listaAsientos as $clave) {
+	if ($j % 2 == 0) {
+		$fpdf->SetFillColor(200,200,200);
+		$fpdf->Ln(4);
+	}else
+	{
+		$fpdf->SetFillColor(255,255,255);
+	}
+	$fpdf->Cell(70, 5, $clave->{"n_Asiento"},0,0,'C',1);
 	$fpdf->Ln();
-	$fpdf->Cell(70, 5,'Total Abonado',0,0,'C',1);
-	$fpdf->Cell(20, 5, $clave->{"monto"},0,0,'C',1);
-	$fpdf->Ln();
-	$fpdf->Cell(70, 5,'Total a Pagar',0,0,'C',1);
-	$fpdf->Cell(20, 5, $clave->{"totalAPagar"}-$clave->{"monto"},0,0,'C',1);
+	$j++;
 }
+$fpdf->Ln();
+$fpdf->Cell(20,5, "Nota Importante:");
+$fpdf->SetDrawColor(255,0,0);
+$fpdf->SetTextColor(255,0,0);
+$fpdf->Ln(2);
+$fpdf->Cell(20,5, "Si No Se Cubre El 100% Del Costo Total 8 Dias Antes Del Viaje, No Se Respetara Sus Asientos");
+
 ob_end_clean();
 $fpdf->OutPut();
 ?>

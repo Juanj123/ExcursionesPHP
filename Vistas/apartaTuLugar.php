@@ -5,7 +5,7 @@
     session_start();
     $idvi=$_POST['id'];
     echo "<script>alert('$idvi')</script>";
-    setcookie("idViaje", $idvi,time()+150);
+    setcookie("idViaje", $idvi,time()+300);
     ?>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
