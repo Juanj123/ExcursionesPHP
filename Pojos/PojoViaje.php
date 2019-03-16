@@ -20,10 +20,11 @@
 		public $img;
 		public $itinerario;
 		public $oferta;
+		public $fecha;
 
 		function __construct1(){}
 
-		function __construct2($idViaje,$idAutobus,$dia,$mes,$año,$destino,$hora,$descripcion,$nota,$costo,$costoNinio,$costoAd,$img,$itinerario,$oferta)
+		function __construct2($idViaje,$idAutobus,$dia,$mes,$año,$destino,$hora,$descripcion,$nota,$costo,$costoNinio,$costoAd,$img,$itinerario,$oferta,$fecha)
 		{
 			$this->idViaje=$idViaje;
 			$this->idAutobus=$idAutobus;
@@ -40,6 +41,7 @@
 			$this->img=$img;
 			$this->itinerario=$itinerario;
 			$this->oferta=$oferta;
+			$this->fecha=$fecha;
 		}
 	}
 ?>
