@@ -1,61 +1,49 @@
 <?php include 'headerUser.php'; ?>
+
 <body>
-    <br>
-    <br>
-      <div class="container">
-         <div class="container gallery-container col-md-12 col-lg-12 col-sm-12 col-xl-12">
-            <div class="tz-gallery">
+  
 
-
-           <div class="row ">
-            <div class="col-md-4">
-                <div class="card">
-                  <a class="example-image-link lightbox" href="img/33664107_10204985976927359_6836652645973753856_n.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="card-img-top" src="img/33664107_10204985976927359_6836652645973753856_n.jpg" alt=""/></a>
-                </div>
-            </div>
-         
-            
-            <div class="col-md-4">
-                <div class="card">
-                  <a class="example-image-link lightbox" href="img/33664107_10204985976927359_6836652645973753856_n.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image card-img-top" src="img/33664107_10204985976927359_6836652645973753856_n.jpg" alt=""/></a>
-                </div>
-            </div>
- <div class="col-md-4">
-                <div class="card">
-                  <a class="example-image-link lightbox" href="img/33664107_10204985976927359_6836652645973753856_n.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image card-img-top" src="img/33664107_10204985976927359_6836652645973753856_n.jpg" alt=""/></a>
-                </div>
-            </div>
-             <div class="col-md-4">
-                <div class="card">
-                  <a class="example-image-link lightbox" href="img/33664107_10204985976927359_6836652645973753856_n.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image card-img-top" src="img/33664107_10204985976927359_6836652645973753856_n.jpg" alt=""/></a>
-                </div>
-            </div>
-<div class="col-md-4">
-                <div class="card">
-                  <a class="example-image-link lightbox" href="img/33664107_10204985976927359_6836652645973753856_n.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image card-img-top" src="img/33664107_10204985976927359_6836652645973753856_n.jpg" alt=""/></a>
-                </div>
-            </div>
-           <div class="col-md-4">
-                <div class="card">
-                  <a class="example-image-link lightbox" href="img/33664107_10204985976927359_6836652645973753856_n.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image card-img-top" src="img/33664107_10204985976927359_6836652645973753856_n.jpg" alt=""/></a>
-                </div>
-            </div>
-           
-            <div class="col-md-4">
-                <div class="card">
-                  <a class="example-image-link lightbox" href="img/33664107_10204985976927359_6836652645973753856_n.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image card-img-top" src="img/33664107_10204985976927359_6836652645973753856_n.jpg" alt=""/></a>
-                </div>
-            </div>
-      
-
-         </div>
-        </div>
-   </div>
-</div>   
-<br>
-<br>
-<script src="fancy/lightbox-plus-jquery.min.js"></script>
+  <ul class="galeria">
+    <li class="galeria_item"><img src="imgViaje/coco.jpg" class="galeria_img"></li>
+    <li class="galeria_item"><img src="imgViaje/GUADALAJARA.jpg" class="galeria_img"></li>
+    <li class="galeria_item"><img src="imgViaje/Guanajuato.jpg" class="galeria_img"></li>
+    <li class="galeria_item"><img src="imgViaje/Huandacareo.jpg" class="galeria_img"></li>
+    <li class="galeria_item"><img src="imgViaje/Moroleon.jpg" class="galeria_img"></li>
+    <li class="galeria_item"><img src="imgViaje/teotihuacan.jpg" class="galeria_img"></li>
+    <li class="galeria_item"><img src="imgViaje/Uriangato.jpg" class="galeria_img"></li>
+    <li class="galeria_item"><img src="imgViaje/Yuriria.jpg" class="galeria_img"></li>
+    <li class="galeria_item"><img src="imgViaje/coco.jpg" class="galeria_img"></li>
+    <li class="galeria_item"><img src="imgViaje/GUADALAJARA.jpg" class="galeria_img"></li>
+    <li class="galeria_item"><img src="imgViaje/coco.jpg" class="galeria_img"></li>
+    <li class="galeria_item"><img src="imgViaje/GUADALAJARA.jpg" class="galeria_img"></li>
+    <li class="galeria_item"><img src="imgViaje/Guanajuato.jpg" class="galeria_img"></li>
+    <li class="galeria_item"><img src="imgViaje/Huandacareo.jpg" class="galeria_img"></li>
+    <li class="galeria_item"><img src="imgViaje/Moroleon.jpg" class="galeria_img"></li>
+    <li class="galeria_item"><img src="imgViaje/teotihuacan.jpg" class="galeria_img"></li>
+    <li class="galeria_item"><img src="imgViaje/Uriangato.jpg" class="galeria_img"></li>
+    <li class="galeria_item"><img src="imgViaje/Yuriria.jpg" class="galeria_img"></li>
+    <li class="galeria_item"><img src="imgViaje/coco.jpg" class="galeria_img"></li>
+    <li class="galeria_item"><img src="imgViaje/GUADALAJARA.jpg" class="galeria_img"></li>
+  </ul>
+  
 </body>
+
 <?php include 'footerUser.html' ?>
 
+<script >
+    $('.galeria_img').click(function(e){
+      var img = e.target.src;
 
+      $('body').append('<div class="modal" id="modal"><img src="'+img+'" class="modal_img"><div class="modal_boton" id="modal_boton">X</div></div>');
+
+      $('#modal_boton').click(function(){
+        $('#modal').remove();
+      })
+    });
+
+    $(document).keyup(function(e){
+      if(e.which==27){
+        $('#modal').remove();
+      }
+    })
+  </script>

@@ -72,10 +72,13 @@
                         </p>
                     </div>
 
-                    
+              
  </div>
+
  <hr>
- <h1 class="text-center">Promociones</h1>
+ 
+ <hr>
+ <h1 class="text-center">Proximos Viajes</h1>
 
 <div class="container col-md-12 col-lg-12 col-sm-12 col-xl-12" style="overflow:hidden;">
       <?php 

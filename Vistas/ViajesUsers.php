@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="../Vistas/CSS/animate.min.css">
     <link rel="stylesheet" href="../vistas/CSS/apartaTuLugar.css" />
     <link rel="stylesheet" type="text/css" href="CSS/jquery-ui.css">
+    <script type="text/javascript" src="JS/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="CSS/estilosPrincipal.css">
 <body>
                <?php 
@@ -53,7 +54,7 @@
         </div>
       </div>
       
-      <script type="text/javascript" src="JS/jquery-3.2.1.min.js"></script>
+      
       <script type="text/javascript" src="JS/popper.min.js"></script>
       <script type="text/javascript" src="JS/bootstrap.js"></script>
       <script type="text/javascript" src="JS/alertify.js"></script>
@@ -64,14 +65,10 @@
              var items= <?= json_encode($listas) ?>;
 
              $("#buscar").autocomplete({
-                source: items,
-                select: function(event, item){
-                    
-                        //$("#form1").html('hola'); 
-                        console.log(item.item.value);
-             }
+                source: items
+             });
+                
         });
-    });
       </script>
 </body>
 <?php include 'footerUser.html';  ?>
