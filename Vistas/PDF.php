@@ -218,5 +218,5 @@ $fpdf->Ln(2);
 $fpdf->Cell(20,5, "Si No Se Cubre El 100% Del Costo Total 8 Dias Antes Del Viaje, No Se Respetara Sus Asientos");
 
 ob_end_clean();
-$fpdf->OutPut();
+$fpdf->OutPut("InformacionUsuario.pdf","d");
 ?>

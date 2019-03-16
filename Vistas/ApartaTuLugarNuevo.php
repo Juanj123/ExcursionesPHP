@@ -31,6 +31,8 @@ if (isset($_POST)) {
     $objDaoAparta->registrarReservacion($pojo);
     $pojo-> idReservacion=$objDaoAparta->getIdReservacion();
     $objDaoAparta->registrarReservacionUsuario($pojo);
-    echo "<script>window.location.href='PDF.php'</script>";
+    $fileName = basename('PDF.php');
+    $filePath = '../Vistas/'.$fileName;
+    echo "<script>window.open('PDF.php','ViajesUsers.php');window.location.href='ViajesUsers.php';</script>";
 }
 ?>
