@@ -22,7 +22,7 @@ class DaoPromociones{
 
     $lista = array(); /*Se declara una variable de tipo  arreglo que almacenará los registros obtenidos de la BD*/
 
-    $sentenciaSQL = $this->conexion->prepare("SELECT A.img ,A.destino, N.costo_adulto, N.costo_niño, N.costo_ad FROM viajes A INNER JOIN ofertas N ON A.idViaje = N.idViaje;"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
+    $sentenciaSQL = $this->conexion->prepare("SELECT A.idViaje,A.img ,A.destino, N.costo_adulto, N.costo_niño, N.costo_ad FROM viajes A INNER JOIN ofertas N ON A.idViaje = N.idViaje;"); /*Se arma la sentencia sql para seleccionar todos los registros de la base de datos*/
 
     $sentenciaSQL->execute();/*Se ejecuta la sentencia sql, retorna un cursor con todos los elementos*/
 
@@ -30,6 +30,7 @@ class DaoPromociones{
     foreach($sentenciaSQL->fetchAll(PDO::FETCH_OBJ) as $fila)
     {
      $obj = new PojoViaje();
+     $obj->idViaje = $fila->idViaje;
      $obj->img = $fila->img;
      $obj->destino = $fila->destino;
      $obj->costoAd = $fila->costo_ad;

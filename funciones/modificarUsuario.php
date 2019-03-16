@@ -25,7 +25,7 @@ require_once '../Datos/DatosLogin.php';
    $obj->correo= $correo;
    $obj->direccion = $direccion;
    $objlogin->modificar($obj);
-
+   echo "<script>alert('ya se modifico esta madre')</script>";
    //header("Location: ../vistas/login.php");
    echo "<script>location.href= '../vistas/Perfil_usuario.php'</script>";
 ?>

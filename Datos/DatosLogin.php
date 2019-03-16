@@ -119,7 +119,7 @@ public function obtenerUsuariobyid($usuario){
                     edad = ?,
                     correo = ?,
                     direccion = ?
-                    WHERE idUsuario = ? ";
+                    WHERE Usuario= ? ";
 
             $this->conectar();
             
@@ -135,7 +135,7 @@ public function obtenerUsuariobyid($usuario){
             $obj->edad,
             $obj->correo,
             $obj->direccion,
-            $obj->idUsuario,));
+            $obj->id,));
       //var_dump($sentenciaSQL);
             return true;
     //} catch (Exception $e){
