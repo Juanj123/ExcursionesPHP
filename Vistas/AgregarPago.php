@@ -47,7 +47,8 @@
     			$pojoV = new PojoViaje();
     			$dao = new DaoPagos();
     			$pojoR = new PojoReservacion();
-    			$idUsuario = 1;
+    			$idUsuario = $dao-> obtenerIdUsuario($_SESSION['login']);
+
     			$monto = $dao-> obtenerMonto($idUsuario);
 
     			if(isset($_POST['btnAgregar']))
@@ -70,7 +71,7 @@
     			echo "total= ".$pojoR-> totalApagar;
 
     				$pojo-> idReservacion = $pojoR-> idReservacion; /* $dao-> obtenerIdReservacion($_POST['cbViaje']);*/
-    				$pojo-> idUsuario = 1; //$dao-> obtenerIdUsuario("angel");
+    				$pojo-> idUsuario = $idUsuario; //$dao-> obtenerIdUsuario("angel");
     				$pojo-> monto = $_POST['txtMonto'];
     				$pojo-> fecha_pago = $_POST['txtFecha'];
     				
@@ -93,6 +94,10 @@
     			}
 
 				 ?>
+
+				 <form name="frmFactura" method="POST" enctype="multipart/form-data" action="Factura.php">
+				 	
+				 </form>
 			</div>
 		</div>
 	</div>

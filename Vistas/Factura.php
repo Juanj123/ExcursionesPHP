@@ -130,9 +130,11 @@ foreach ($listabla as $clave) {
 	$fpdf->Ln();
 	$fpdf->Cell(70, 5,'Total Abonado',0,0,'C',1);
 	$fpdf->Cell(20, 5, $clave->{"monto"},0,0,'C',1);
+	/*
 	$fpdf->Ln();
 	$fpdf->Cell(70, 5,'Total a Pagar',0,0,'C',1);
 	$fpdf->Cell(20, 5, $clave->{"totalAPagar"}-$clave->{"monto"},0,0,'C',1);
+	*/
 }
 
 ob_end_clean();
